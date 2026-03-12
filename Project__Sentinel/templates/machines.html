@@ -6,82 +6,62 @@
   <link rel="stylesheet" href="/static/cyber.css"/>
   <script src="/static/sentinel.js" defer></script>
   <style>
-    .machines-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
-                     gap:14px;margin-bottom:24px; }
-    .machine-card {
-      background:var(--surface-2); border:1px solid var(--border-1);
-      border-radius:var(--radius-lg); overflow:hidden;
-      transition:border-color 0.25s, box-shadow 0.25s, transform 0.2s;
-      cursor:pointer;
-    }
-    .machine-card:hover { border-color:var(--border-2); transform:translateY(-2px);
-                          box-shadow:0 8px 32px rgba(0,0,0,0.3); }
-    .machine-card.this { border-color:var(--border-2); }
-    .machine-card.offline { opacity:0.55; }
-    .mcard-head { padding:16px 18px;border-bottom:1px solid var(--border-1);
-                  display:flex;align-items:center;justify-content:space-between; }
-    .mcard-icon { width:42px;height:42px;border:1px solid var(--border-2);
-                  border-radius:var(--radius);display:flex;align-items:center;
-                  justify-content:center;font-size:20px;flex-shrink:0;
-                  background:var(--glass); }
-    .mcard-name { font-family:var(--f-head);font-size:16px;font-weight:700;
-                  color:var(--tx-hi);letter-spacing:0.5px; }
-    .mcard-ip   { font-family:var(--f-data);font-size:12px;color:var(--tx-lo);margin-top:2px; }
-    .mcard-os   { font-family:var(--f-data);font-size:12px;color:var(--tx-lo); }
-    .mcard-stats { display:grid;grid-template-columns:repeat(3,1fr);padding:14px 18px;gap:8px; }
-    .mstat { text-align:center; }
-    .mstat-val { font-family:var(--f-head);font-size:24px;font-weight:800;line-height:1; }
-    .mstat-label { font-family:var(--f-head);font-size:11px;font-weight:600;
-                   letter-spacing:1.5px;color:var(--tx-lo);margin-top:4px;text-transform:uppercase; }
-    .mcard-foot { padding:10px 18px;border-top:1px solid var(--border-1);
-                  display:flex;align-items:center;justify-content:space-between; }
-    .online-dot  { width:9px;height:9px;border-radius:50%;background:var(--g400);
-                   box-shadow:0 0 7px var(--g400); }
-    .offline-dot { width:9px;height:9px;border-radius:50%;background:var(--r400); }
-
-    /* Add machine form */
-    .add-bar { background:var(--surface-2);border:1px solid var(--border-1);
-               border-radius:var(--radius-lg);padding:16px 20px;
-               display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:20px; }
-    .add-bar-label { font-family:var(--f-head);font-size:13px;font-weight:600;
-                     letter-spacing:1px;color:var(--tx-lo);text-transform:uppercase;white-space:nowrap; }
-    .add-bar .input { max-width:220px; }
-    .add-bar-hint { font-family:var(--f-data);font-size:12px;color:var(--tx-lo); }
-
-    /* Drive scanner */
-    .drive-toolbar { display:flex;align-items:center;gap:12px;
-                     background:var(--surface-2);border:1px solid var(--border-1);
-                     border-radius:var(--radius-lg);padding:16px 20px;
-                     margin-bottom:14px; }
-    .progress-wrap { background:var(--surface-2);border:1px solid var(--border-1);
-                     border-radius:var(--radius);padding:12px 18px;margin-bottom:14px;display:none; }
-    .progress-bar-track { background:var(--n700);height:5px;border-radius:3px;margin-top:8px; }
-    .progress-bar-fill { height:5px;border-radius:3px;background:var(--g400);
-                         width:0%;transition:width 0.6s ease;
-                         box-shadow:0 0 8px var(--g400); }
-
-    /* Detail panel */
-    .detail-panel { display:none;margin-top:4px; }
+    .machines-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px;margin-bottom:24px; }
+    .machine-card  { background:var(--surface-2);border:1px solid var(--border-1);border-radius:var(--radius-lg);overflow:hidden;cursor:pointer;transition:all 0.2s; }
+    .machine-card:hover,.machine-card.selected { border-color:var(--border-3);box-shadow:0 0 24px rgba(0,200,83,0.12);transform:translateY(-2px); }
+    .machine-card.selected { border-color:var(--g400); }
+    .mcard-head  { padding:15px 18px;border-bottom:1px solid var(--border-1);display:flex;align-items:center;justify-content:space-between; }
+    .mcard-icon  { width:40px;height:40px;border:1px solid var(--border-2);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0; }
+    .mcard-name  { font-family:var(--f-head);font-size:16px;font-weight:700;color:var(--tx-hi); }
+    .mcard-ip    { font-family:var(--f-data);font-size:12px;color:var(--tx-lo);margin-top:2px; }
+    .mcard-type  { font-family:var(--f-data);font-size:11px;color:var(--tx-lo); }
+    .mcard-stats { display:grid;grid-template-columns:repeat(3,1fr);padding:12px 16px;gap:6px; }
+    .mstat       { text-align:center; }
+    .mstat-val   { font-family:var(--f-head);font-size:22px;font-weight:800;line-height:1; }
+    .mstat-lbl   { font-family:var(--f-head);font-size:10px;font-weight:600;letter-spacing:1.5px;color:var(--tx-lo);margin-top:3px;text-transform:uppercase; }
+    .mcard-foot  { padding:9px 16px;border-top:1px solid var(--border-1);font-family:var(--f-data);font-size:12px;color:var(--tx-lo);display:flex;align-items:center;justify-content:space-between; }
+    .online-dot  { width:8px;height:8px;border-radius:50%;background:var(--g400);box-shadow:0 0 6px var(--g400); }
+    .offline-dot { width:8px;height:8px;border-radius:50%;background:var(--n300); }
+    .add-bar     { background:var(--surface-2);border:1px solid var(--border-1);border-radius:var(--radius-lg);padding:14px 20px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:18px; }
+    .add-bar-label { font-family:var(--f-head);font-size:13px;font-weight:700;letter-spacing:1px;color:var(--tx-lo);text-transform:uppercase;white-space:nowrap; }
+    .detail-panel { display:none;margin-bottom:28px; }
     .detail-panel.open { display:block; }
-    .detail-scroll { overflow-x:auto;max-height:400px;overflow-y:auto; }
-    .summary-row { display:grid;grid-template-columns:repeat(4,1fr);
-                   padding:16px 22px;gap:12px;border-bottom:1px solid var(--border-1); }
-    .sum-item { text-align:center; }
-    .sum-val { font-family:var(--f-head);font-size:28px;font-weight:800; }
-    .sum-label { font-family:var(--f-head);font-size:11px;font-weight:600;
-                 letter-spacing:1.5px;color:var(--tx-lo);text-transform:uppercase;margin-top:3px; }
-    .disc-bar { background:var(--surface-2);border:1px solid var(--border-1);
-                border-radius:var(--radius);padding:10px 16px;margin-bottom:14px;
-                display:flex;align-items:center;gap:10px;font-family:var(--f-data);font-size:13px; }
+    .tab-bar { display:flex;gap:2px;padding:0 22px;border-bottom:1px solid var(--border-1);background:var(--surface-3); }
+    .tab-btn { font-family:var(--f-head);font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:13px 18px;border:none;background:none;color:var(--tx-lo);cursor:pointer;border-bottom:3px solid transparent;transition:all 0.18s;margin-bottom:-1px; }
+    .tab-btn:hover { color:var(--tx-hi); }
+    .tab-btn.active { color:var(--g300);border-bottom-color:var(--g400); }
+    .tab-content { display:none;padding:22px; }
+    .tab-content.active { display:block; }
+    .vuln-row-critical { border-left:3px solid #ff1744!important;background:rgba(255,23,68,0.05); }
+    .vuln-row-high     { border-left:3px solid var(--r400)!important;background:rgba(240,62,62,0.03); }
+    .vuln-row-medium   { border-left:3px solid var(--a400)!important; }
+    .vuln-row-low      { border-left:3px solid rgba(0,200,83,0.2)!important; }
+    .badge-critical    { color:#ff4d4d;background:rgba(255,23,68,0.18);border:1px solid rgba(255,23,68,0.5); }
+    .port-pill { display:inline-flex;align-items:center;gap:5px;font-family:var(--f-data);font-size:12px;padding:4px 10px;border-radius:4px;background:var(--surface-3);border:1px solid var(--border-1);color:var(--tx-mid);margin:3px; }
+    .port-pill.dangerous { border-color:rgba(240,62,62,0.4);color:var(--r300);background:rgba(240,62,62,0.08); }
+    .scan-progress { background:var(--surface-3);border:1px solid var(--border-1);border-radius:var(--radius);padding:14px 18px;margin-bottom:14px; }
+    .progress-track { background:var(--n700);height:5px;border-radius:3px;margin-top:8px;overflow:hidden; }
+    .progress-fill  { height:5px;background:var(--g400);border-radius:3px;width:0%;transition:width 0.5s;box-shadow:0 0 8px var(--g400); }
+    .sim-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:14px; }
+    .sim-box  { background:var(--surface-3);border:1px solid var(--border-1);border-radius:var(--radius);padding:16px; }
+    .sim-box-title { font-family:var(--f-head);font-size:14px;font-weight:700;margin-bottom:4px; }
+    .sim-box-sub   { font-family:var(--f-data);font-size:11px;color:var(--tx-lo);margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--border-1); }
+    .attack-card  { background:rgba(240,62,62,0.04);border:1px solid rgba(240,62,62,0.2);border-radius:var(--radius);padding:16px;margin-bottom:10px; }
+    .attack-title { font-family:var(--f-head);font-size:15px;font-weight:700;color:var(--r300);margin-bottom:6px; }
+    .attack-desc  { font-family:var(--f-body);font-size:14px;color:var(--tx-mid);margin-bottom:8px; }
+    .attack-meta  { display:flex;gap:10px;flex-wrap:wrap; }
+    .table-scroll { overflow-x:auto;max-height:420px;overflow-y:auto; }
+    .summary-row  { display:grid;grid-template-columns:repeat(5,1fr);padding:16px 22px;gap:10px;border-bottom:1px solid var(--border-1); }
+    .sum-item     { text-align:center; }
+    .sum-val      { font-family:var(--f-head);font-size:28px;font-weight:800; }
+    .sum-label    { font-family:var(--f-head);font-size:11px;font-weight:700;letter-spacing:1.5px;color:var(--tx-lo);margin-top:3px;text-transform:uppercase; }
   </style>
 </head>
 <body>
 <div id="toast-box"></div>
-
 <aside class="sidebar">
   <a href="/" class="sidebar-logo">
-    <div class="sidebar-logo-mark"><div class="sidebar-logo-icon">⬡</div>
-    <span class="sidebar-logo-name">SENTINEL</span></div>
+    <div class="sidebar-logo-mark"><div class="sidebar-logo-icon">⬡</div><span class="sidebar-logo-name">SENTINEL</span></div>
     <div class="sidebar-logo-sub">THREAT INTELLIGENCE</div>
   </a>
   <div class="sidebar-threat">
@@ -108,160 +88,161 @@
 
 <div class="main">
   <div class="topbar">
-    <div>
-      <span class="topbar-title">Machines</span>
-      <span class="topbar-sub">/ Multi-Host Network Scan</span>
-    </div>
+    <div><span class="topbar-title">Machines</span><span class="topbar-sub">/ Multi-Host Network Monitor</span></div>
     <div class="topbar-actions">
       <span style="font-family:var(--f-data);font-size:12px;color:var(--tx-lo);">
-        Agent port: 5001 &nbsp;·&nbsp; Local IP:
-        <span id="local-ip" style="color:var(--g400);">…</span>
+        Local IP: <span id="local-ip" style="color:var(--g400);">…</span> &nbsp;·&nbsp; Agent port: 5001
       </span>
     </div>
   </div>
 
   <div class="page">
-    <!-- Discovery status -->
-    <div class="disc-bar">
-      <div class="spinner" id="disc-spinner"></div>
-      <span id="disc-status" style="color:var(--tx-lo);">Scanning network for agents…</span>
-    </div>
-
-    <!-- Add machine -->
+    <!-- Add bar -->
     <div class="add-bar">
       <span class="add-bar-label">Add Machine:</span>
-      <input class="input" id="manual-ip" type="text"
-             placeholder="192.168.1.x" style="max-width:200px;"/>
-      <button class="btn btn-primary" onclick="addManual()">⬡ Connect</button>
-      <span class="add-bar-hint">
-        Run <code style="color:var(--g300);background:var(--surface-3);
-                         padding:1px 6px;border-radius:3px;">python sentinel_agent.py</code>
-        on the target machine first
-      </span>
+      <input class="input" id="manual-ip" type="text" placeholder="192.168.1.x"
+             style="max-width:190px;" onkeydown="if(event.key==='Enter')addMachine()"/>
+      <button class="btn btn-primary"  onclick="addMachine()">⬡ Connect via Agent</button>
+      <button class="btn btn-warning"  onclick="addAgentless()">⊙ Agentless Scan</button>
+      <span style="font-family:var(--f-data);font-size:13px;" id="add-status"></span>
     </div>
 
-    <!-- Machine cards -->
+    <!-- Cards -->
     <div class="machines-grid" id="machines-grid">
-      <!-- This machine (always shown) -->
-      <div class="machine-card this" onclick="loadDetail('local')">
+      <div class="machine-card selected" onclick="selectMachine('local','agent')" id="mcard-local">
         <div class="mcard-head">
           <div style="display:flex;align-items:center;gap:12px;">
             <div class="mcard-icon">🖥️</div>
-            <div>
-              <div class="mcard-name">This Machine</div>
-              <div class="mcard-ip">localhost / 127.0.0.1</div>
-              <div class="mcard-os" id="this-os">Windows</div>
-            </div>
+            <div><div class="mcard-name">THIS MACHINE</div>
+              <div class="mcard-ip">localhost · 127.0.0.1</div>
+              <div class="mcard-type" id="this-os">Windows</div></div>
           </div>
           <div class="online-dot"></div>
         </div>
         <div class="mcard-stats">
-          <div class="mstat"><div class="mstat-val" id="this-total" style="color:var(--g300);">—</div>
-            <div class="mstat-label">Entries</div></div>
-          <div class="mstat"><div class="mstat-val" id="this-high" style="color:var(--r300);">—</div>
-            <div class="mstat-label">High</div></div>
-          <div class="mstat"><div class="mstat-val" id="this-med" style="color:var(--a300);">—</div>
-            <div class="mstat-label">Medium</div></div>
+          <div class="mstat"><div class="mstat-val" id="this-total" style="color:var(--g300);">—</div><div class="mstat-lbl">Entries</div></div>
+          <div class="mstat"><div class="mstat-val" id="this-high"  style="color:var(--r300);">—</div><div class="mstat-lbl">High</div></div>
+          <div class="mstat"><div class="mstat-val" id="this-med"   style="color:var(--a300);">—</div><div class="mstat-lbl">Medium</div></div>
         </div>
-        <div class="mcard-foot">
-          <span style="font-family:var(--f-data);font-size:12px;color:var(--tx-lo);">
-            Last scan: <span id="this-time">—</span>
-          </span>
-          <span class="btn btn-ghost btn-sm">View Details →</span>
-        </div>
+        <div class="mcard-foot"><span>Agent: Built-in</span><span class="btn btn-ghost btn-sm">Selected ✓</span></div>
       </div>
     </div>
 
     <!-- Detail panel -->
     <div class="detail-panel" id="detail-panel">
       <div class="card">
-        <div class="card-header">
-          <span class="card-title" id="detail-title">Machine Scan Results</span>
+        <div style="padding:16px 22px 0;display:flex;align-items:center;justify-content:space-between;background:var(--surface-3);">
+          <span class="card-title" id="detail-machine-name">Machine</span>
           <button class="btn btn-ghost btn-sm" onclick="closeDetail()">✕ Close</button>
         </div>
-        <div class="summary-row" id="detail-summary"></div>
-        <div style="padding:12px 22px;border-bottom:1px solid var(--border-1);
-                    font-family:var(--f-head);font-size:12px;font-weight:700;
-                    letter-spacing:2px;color:var(--tx-mid);text-transform:uppercase;">
-          Persistence Entries
+        <div class="tab-bar">
+          <button class="tab-btn active" data-tab="persistence" onclick="switchTab('persistence')">Persistence</button>
+          <button class="tab-btn" data-tab="processes" onclick="switchTab('processes')">Processes</button>
+          <button class="tab-btn" data-tab="files" onclick="switchTab('files')">Files</button>
+          <button class="tab-btn" data-tab="vulnscan" onclick="switchTab('vulnscan')">Vuln Scan</button>
+          <button class="tab-btn" data-tab="simulate" onclick="switchTab('simulate')">Attack Sim</button>
         </div>
-        <div class="detail-scroll">
-          <table class="data-table">
-            <thead><tr>
-              <th>#</th><th>Name</th><th>Path</th>
-              <th>Location</th><th style="text-align:center;">Score</th>
-              <th style="text-align:center;">Risk</th><th style="text-align:center;">Malicious</th>
-            </tr></thead>
-            <tbody id="detail-tbody">
-              <tr><td colspan="7" style="text-align:center;color:var(--tx-lo);padding:36px;
-                   font-family:var(--f-data);">Select a machine to view results</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <div style="padding:12px 22px;border-top:1px solid var(--border-1);
-                    border-bottom:1px solid var(--border-1);font-family:var(--f-head);
-                    font-size:12px;font-weight:700;letter-spacing:2px;
-                    color:var(--tx-mid);text-transform:uppercase;">
-          Top Suspicious Processes
-        </div>
-        <div class="detail-scroll">
-          <table class="data-table">
-            <thead><tr>
-              <th>PID</th><th>Name</th><th>Path</th>
-              <th>CPU</th><th style="text-align:center;">Score</th>
-              <th style="text-align:center;">Risk</th>
-            </tr></thead>
-            <tbody id="detail-procs-tbody">
-              <tr><td colspan="6" style="text-align:center;color:var(--tx-lo);
-                   padding:24px;font-family:var(--f-data);">—</td></tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
 
-    <!-- Drive scanner -->
-    <div style="margin-top:24px;">
-      <div style="font-family:var(--f-head);font-size:14px;font-weight:700;
-                  letter-spacing:2.5px;color:var(--tx-mid);margin-bottom:14px;
-                  padding-bottom:10px;border-bottom:1px solid var(--border-1);
-                  display:flex;align-items:center;gap:10px;text-transform:uppercase;">
-        <div style="width:4px;height:16px;background:var(--g400);border-radius:2px;
-                    box-shadow:0 0 8px var(--g400);"></div>
-        Full Drive Scanner
-      </div>
-      <div class="drive-toolbar">
-        <button class="btn btn-danger" onclick="startDriveScan()">⬡ Start Full Drive Scan</button>
-        <span style="font-family:var(--f-body);font-size:14px;color:var(--tx-lo);">
-          Scans all drives for suspicious executables &amp; scripts
-        </span>
-        <div class="spinner" id="drive-spinner" style="display:none;"></div>
-        <span id="drive-status" style="font-family:var(--f-data);font-size:13px;
-              color:var(--tx-lo);">Ready</span>
-      </div>
-      <div class="progress-wrap" id="progress-wrap">
-        <div style="font-family:var(--f-data);font-size:13px;color:var(--tx-lo);"
-             id="progress-text">Scanning…</div>
-        <div class="progress-bar-track">
-          <div class="progress-bar-fill" id="progress-fill"></div>
-        </div>
-      </div>
-      <div class="card" id="drive-card" style="display:none;">
-        <div class="card-header">
-          <span class="card-title">Drive Scan Results</span>
-          <span class="card-meta" id="drive-count">—</span>
-        </div>
-        <div class="detail-scroll">
-          <table class="data-table">
-            <thead><tr>
-              <th>#</th><th>File</th><th>Path</th>
-              <th style="text-align:center;">Score</th>
-              <th style="text-align:center;">Risk</th>
-              <th style="text-align:center;">Content</th>
-              <th>Signatures</th>
+        <!-- Persistence -->
+        <div class="tab-content active" id="tab-persistence">
+          <div class="summary-row" id="persist-summary"></div>
+          <div class="table-scroll">
+            <table class="data-table"><thead><tr>
+              <th>#</th><th>Name</th><th>Path</th><th>Location</th>
+              <th style="text-align:center;">Score</th><th style="text-align:center;">Risk</th>
             </tr></thead>
-            <tbody id="drive-tbody"></tbody>
-          </table>
+            <tbody id="persist-tbody"><tr><td colspan="6" style="text-align:center;color:var(--tx-lo);padding:40px;font-family:var(--f-data);">Select a machine</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Processes -->
+        <div class="tab-content" id="tab-processes">
+          <div style="margin-bottom:12px;display:flex;gap:10px;align-items:center;">
+            <button class="btn btn-primary btn-sm" id="reload-procs-btn">↺ Refresh</button>
+            <span style="font-family:var(--f-data);font-size:13px;color:var(--tx-lo);" id="procs-status"></span>
+          </div>
+          <div class="table-scroll"><table class="data-table"><thead><tr>
+            <th>PID</th><th>Process</th><th>Path</th><th>CPU</th>
+            <th style="text-align:center;">Score</th><th style="text-align:center;">Risk</th>
+            <th style="text-align:center;">Action</th>
+          </tr></thead><tbody id="procs-tbody">
+            <tr><td colspan="7" style="text-align:center;color:var(--tx-lo);padding:40px;font-family:var(--f-data);">Click Refresh to load</td></tr>
+          </tbody></table></div>
+        </div>
+
+        <!-- Files -->
+        <div class="tab-content" id="tab-files">
+          <div style="margin-bottom:12px;display:flex;gap:10px;align-items:center;">
+            <button class="btn btn-primary btn-sm" id="reload-files-btn">↺ Refresh</button>
+            <span style="font-family:var(--f-data);font-size:13px;color:var(--tx-lo);" id="files-status"></span>
+          </div>
+          <div class="table-scroll"><table class="data-table"><thead><tr>
+            <th>#</th><th>File</th><th>Path</th>
+            <th style="text-align:center;">Malicious</th><th style="text-align:center;">Score</th>
+            <th style="text-align:center;">Risk</th><th>Signatures</th>
+          </tr></thead><tbody id="files-tbody">
+            <tr><td colspan="7" style="text-align:center;color:var(--tx-lo);padding:40px;font-family:var(--f-data);">Click Refresh to scan</td></tr>
+          </tbody></table></div>
+        </div>
+
+        <!-- Vuln Scan -->
+        <div class="tab-content" id="tab-vulnscan">
+          <div style="margin-bottom:14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;">
+            <button class="btn btn-danger" id="start-vulnscan-btn">⬡ Start Vulnerability Scan</button>
+            <div class="spinner" id="vuln-spinner" style="display:none;"></div>
+            <span style="font-family:var(--f-data);font-size:13px;color:var(--tx-lo);" id="vuln-status">Ready — works on any IP, no agent needed</span>
+          </div>
+          <div class="scan-progress" id="vuln-progress" style="display:none;">
+            <div style="font-family:var(--f-data);font-size:13px;color:var(--tx-lo);" id="vuln-progress-text">Scanning…</div>
+            <div class="progress-track"><div class="progress-fill" id="vuln-progress-fill"></div></div>
+          </div>
+          <div id="vuln-summary-row" style="display:none;" class="summary-row"></div>
+          <div id="ports-section" style="display:none;">
+            <div style="font-family:var(--f-head);font-size:12px;font-weight:700;letter-spacing:2px;color:var(--tx-mid);margin:16px 0 10px;text-transform:uppercase;">Open Ports</div>
+            <div id="ports-grid" style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:18px;"></div>
+          </div>
+          <div id="vulns-section" style="display:none;">
+            <div style="font-family:var(--f-head);font-size:12px;font-weight:700;letter-spacing:2px;color:var(--tx-mid);margin-bottom:10px;text-transform:uppercase;">Vulnerability Report</div>
+            <div class="table-scroll"><table class="data-table"><thead><tr>
+              <th>Port</th><th>Service</th><th>Vulnerability</th>
+              <th style="text-align:center;">Severity</th><th>CVE</th><th>Description</th><th>Fix</th>
+            </tr></thead><tbody id="vulns-tbody"></tbody></table></div>
+          </div>
+          <div id="attack-report" style="display:none;">
+            <div style="font-family:var(--f-head);font-size:12px;font-weight:700;letter-spacing:2px;color:var(--r300);margin:18px 0 12px;text-transform:uppercase;">⚡ Potential Attack Vectors</div>
+            <div id="attack-cards"></div>
+          </div>
+        </div>
+
+        <!-- Attack Sim -->
+        <div class="tab-content" id="tab-simulate">
+          <div style="margin-bottom:14px;background:rgba(240,62,62,0.05);border:1px solid rgba(240,62,62,0.2);border-radius:var(--radius);padding:12px 16px;font-family:var(--f-body);font-size:14px;color:var(--tx-mid);">
+            ⚠ Educational demo — simulates persistence attacks on the selected remote Linux machine
+          </div>
+          <div class="sim-grid">
+            <div class="sim-box">
+              <div class="sim-box-title" style="color:var(--r300);">01 · Cron Job</div>
+              <div class="sim-box-sub">/etc/cron.d/sentinel_test</div>
+              <button class="sim-btn red"   onclick="remoteSim('cron_add')">⬡ Inject Cron Job</button>
+              <button class="sim-btn"       onclick="remoteSim('cron_remove')">✕ Remove Cron Job</button>
+            </div>
+            <div class="sim-box">
+              <div class="sim-box-title" style="color:var(--a300);">02 · Bashrc Entry</div>
+              <div class="sim-box-sub">~/.bashrc persistence</div>
+              <button class="sim-btn amber" onclick="remoteSim('bashrc_add')">⬡ Inject Bashrc</button>
+              <button class="sim-btn"       onclick="remoteSim('bashrc_remove')">✕ Remove Bashrc</button>
+            </div>
+            <div class="sim-box">
+              <div class="sim-box-title" style="color:var(--c300);">03 · Drop Malware</div>
+              <div class="sim-box-sub">/tmp/INFECTED_DO_NOT_OPEN.sh</div>
+              <button class="sim-btn cyan"  onclick="remoteSim('drop_file')">🦠 Drop Fake Malware</button>
+              <button class="sim-btn"       onclick="remoteSim('remove_file')">🧹 Remove Malware</button>
+            </div>
+          </div>
+          <div id="sim-log" style="margin-top:16px;background:var(--surface-3);border:1px solid var(--border-1);border-radius:var(--radius);padding:14px 16px;font-family:var(--f-data);font-size:13px;color:var(--tx-mid);min-height:60px;max-height:200px;overflow-y:auto;">
+            Simulation log will appear here…
+          </div>
         </div>
       </div>
     </div>
@@ -269,253 +250,331 @@
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', ()=>{
   startClock('clock-sidebar');
+  let currentIP='local', currentType='agent';
 
-  // Local machine summary
-  async function loadLocalSummary() {
-    try {
-      const data = await fetch('/api/scan').then(r=>r.json());
-      const high = data.filter(e=>e.risk_level==='High').length;
-      const med  = data.filter(e=>e.risk_level==='Medium').length;
-      document.getElementById('this-total').textContent = data.length;
-      document.getElementById('this-high').textContent  = high;
-      document.getElementById('this-med').textContent   = med;
-      document.getElementById('this-time').textContent  =
-        new Date().toLocaleTimeString('en-GB',{hour12:false});
-      updateThreatBar(high, data.length);
-    } catch(e) {}
-  }
-  loadLocalSummary();
-
-  // Local IP
-  fetch('/api/local_info').then(r=>r.json()).then(d=>{
-    document.getElementById('local-ip').textContent = d.ip||'—';
-    document.getElementById('this-os').textContent  = d.os||'Windows';
+  fetch('/api/scan').then(r=>r.json()).then(d=>{
+    const h=d.filter(e=>e.risk_level==='High').length;
+    document.getElementById('this-total').textContent=d.length;
+    document.getElementById('this-high').textContent=h;
+    document.getElementById('this-med').textContent=d.filter(e=>e.risk_level==='Medium').length;
+    updateThreatBar(h,d.length);
   }).catch(()=>{});
 
-  // ── Network machines ───────────────────────────────────────
-  const known = new Set();
-  async function refreshMachines() {
-    try {
-      const data = await fetch('/api/machines').then(r=>r.json());
-      const ips  = Object.keys(data).filter(k=>k!=='_scanning');
-      document.getElementById('disc-status').textContent =
-        ips.length > 0
-          ? `${ips.length} agent(s) discovered on network`
-          : 'Scanning network — no agents found yet';
-      document.getElementById('disc-status').style.color =
-        ips.length > 0 ? 'var(--g300)' : 'var(--tx-lo)';
-      document.getElementById('disc-spinner').style.display =
-        data._scanning ? 'inline-block' : 'none';
+  fetch('/api/local_info').then(r=>r.json()).then(d=>{
+    document.getElementById('local-ip').textContent=d.ip||'—';
+    document.getElementById('this-os').textContent=d.os||'Windows';
+  }).catch(()=>{});
 
-      ips.forEach(ip => {
-        if (!known.has(ip)) { known.add(ip); addMachineCard(ip, data[ip]); }
+  const known=new Set();
+  async function refreshMachines(){
+    try{
+      const data=await fetch('/api/machines').then(r=>r.json());
+      Object.keys(data).filter(k=>k!=='_scanning').forEach(ip=>{
+        if(!known.has(ip)){known.add(ip);addAgentCard(ip,data[ip]);}
       });
-    } catch(e) {}
+    }catch(e){}
   }
   refreshMachines();
-  setInterval(refreshMachines, 10000);
+  setInterval(refreshMachines,12000);
 
-  function addMachineCard(ip, info) {
-    const grid   = document.getElementById('machines-grid');
-    const isLinux = (info.platform||'').includes('linux');
-    const icon   = isLinux ? '🐧' : '🖥️';
-    const card   = document.createElement('div');
-    const cid    = ip.replace(/\./g,'-');
-    card.id = 'mcard-'+cid;
-    card.className = 'machine-card';
-    card.onclick = () => loadDetail(ip);
-    card.innerHTML = `
-      <div class="mcard-head">
-        <div style="display:flex;align-items:center;gap:12px;">
-          <div class="mcard-icon">${icon}</div>
-          <div>
-            <div class="mcard-name">${(info.hostname||ip).toUpperCase()}</div>
-            <div class="mcard-ip">${ip}</div>
-            <div class="mcard-os">${info.os||'Unknown'}</div>
-          </div>
-        </div>
-        <div class="online-dot" id="mdot-${cid}"></div>
-      </div>
+  function addAgentCard(ip,info){
+    const grid=document.getElementById('machines-grid');
+    const cid=ip.replace(/\./g,'-');
+    if(document.getElementById('mcard-'+cid))return;
+    const isLinux=(info.platform||'').includes('linux');
+    const card=document.createElement('div');
+    card.id='mcard-'+cid; card.className='machine-card';
+    card.onclick=()=>selectMachine(ip,'agent');
+    card.innerHTML=`<div class="mcard-head"><div style="display:flex;align-items:center;gap:12px;">
+      <div class="mcard-icon">${isLinux?'🐧':'🖥️'}</div>
+      <div><div class="mcard-name">${(info.hostname||ip).toUpperCase()}</div>
+      <div class="mcard-ip">${ip}</div><div class="mcard-type">${info.os||'Unknown'}</div></div>
+      </div><div class="online-dot"></div></div>
       <div class="mcard-stats">
-        <div class="mstat"><div class="mstat-val" id="mt-${cid}" style="color:var(--g300);">?</div>
-          <div class="mstat-label">Entries</div></div>
-        <div class="mstat"><div class="mstat-val" id="mh-${cid}" style="color:var(--r300);">?</div>
-          <div class="mstat-label">High</div></div>
-        <div class="mstat"><div class="mstat-val" id="mm-${cid}" style="color:var(--a300);">?</div>
-          <div class="mstat-label">Medium</div></div>
+        <div class="mstat"><div class="mstat-val" id="ma-t-${cid}" style="color:var(--g300);">?</div><div class="mstat-lbl">Entries</div></div>
+        <div class="mstat"><div class="mstat-val" id="ma-h-${cid}" style="color:var(--r300);">?</div><div class="mstat-lbl">High</div></div>
+        <div class="mstat"><div class="mstat-val" id="ma-m-${cid}" style="color:var(--a300);">?</div><div class="mstat-lbl">Medium</div></div>
       </div>
-      <div class="mcard-foot">
-        <span style="font-family:var(--f-data);font-size:12px;color:var(--tx-lo);">
-          Last seen: ${info.last_seen||'—'}
-        </span>
-        <span class="btn btn-ghost btn-sm">View →</span>
-      </div>`;
+      <div class="mcard-foot"><span>Agent · 5001</span><span class="btn btn-ghost btn-sm">View →</span></div>`;
     grid.appendChild(card);
-    // Fetch summary
     fetch(`/api/machine_scan/${ip}`).then(r=>r.json()).then(d=>{
-      const s = d.summary||{};
-      const el = id => document.getElementById(id);
-      if(el(`mt-${cid}`)) el(`mt-${cid}`).textContent = s.total||0;
-      if(el(`mh-${cid}`)) el(`mh-${cid}`).textContent = s.high||0;
-      if(el(`mm-${cid}`)) el(`mm-${cid}`).textContent = s.medium||0;
+      const s=d.summary||{};
+      const g=id=>document.getElementById(id);
+      if(g(`ma-t-${cid}`))g(`ma-t-${cid}`).textContent=s.total||0;
+      if(g(`ma-h-${cid}`))g(`ma-h-${cid}`).textContent=s.high||0;
+      if(g(`ma-m-${cid}`))g(`ma-m-${cid}`).textContent=s.medium||0;
     }).catch(()=>{});
   }
 
-  window.addManual = async function() {
-    const ip = document.getElementById('manual-ip').value.trim();
-    if (!ip) return;
-    try {
-      const r = await fetch('/api/machines/add', {method:'POST',
-        headers:{'Content-Type':'application/json'},body:JSON.stringify({ip})});
-      const d = await r.json();
-      showToast(d.success,
-        d.success ? `Connected: ${d.info.hostname} (${ip})` : 'Cannot reach agent',
-        d.success ? '' : `Make sure sentinel_agent.py is running on ${ip}:5001`);
-      if (d.success) refreshMachines();
-    } catch(e) { showToast(false, 'Connection failed'); }
+  function addAgentlessCard(ip){
+    const grid=document.getElementById('machines-grid');
+    const cid=ip.replace(/\./g,'-');
+    if(document.getElementById('mcard-'+cid)){selectMachine(ip,'agentless');return;}
+    const card=document.createElement('div');
+    card.id='mcard-'+cid; card.className='machine-card';
+    card.onclick=()=>selectMachine(ip,'agentless');
+    card.innerHTML=`<div class="mcard-head"><div style="display:flex;align-items:center;gap:12px;">
+      <div class="mcard-icon">🎯</div>
+      <div><div class="mcard-name">${ip}</div><div class="mcard-ip">${ip}</div>
+      <div class="mcard-type" style="color:var(--a300);">Agentless Target</div></div>
+      </div><div class="offline-dot" id="mdot-${cid}"></div></div>
+      <div class="mcard-stats">
+        <div class="mstat"><div class="mstat-val" id="mal-p-${cid}" style="color:var(--c300);">?</div><div class="mstat-lbl">Ports</div></div>
+        <div class="mstat"><div class="mstat-val" id="mal-v-${cid}" style="color:var(--r300);">?</div><div class="mstat-lbl">Vulns</div></div>
+        <div class="mstat"><div class="mstat-val" id="mal-s-${cid}" style="color:var(--a300);">?</div><div class="mstat-lbl">Score</div></div>
+      </div>
+      <div class="mcard-foot"><span>No Agent · Port Scan</span><span class="btn btn-ghost btn-sm">View →</span></div>`;
+    grid.appendChild(card);
+    selectMachine(ip,'agentless');
+  }
+
+  window.addMachine=async function(){
+    const ip=document.getElementById('manual-ip').value.trim();
+    if(!ip)return;
+    const st=document.getElementById('add-status');
+    st.textContent=`Connecting to ${ip}…`; st.style.color='var(--tx-lo)';
+    try{
+      const r=await fetch('/api/machines/add',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({ip})});
+      const d=await r.json();
+      if(d.success){
+        st.textContent=`✓ Connected: ${d.info.hostname}`; st.style.color='var(--g300)';
+        addAgentCard(ip,d.info); selectMachine(ip,'agent');
+      }else{
+        st.textContent=`✗ Agent not found on ${ip}:5001`; st.style.color='var(--r300)';
+      }
+    }catch(e){st.textContent=`✗ ${e.message}`;st.style.color='var(--r300)';}
   };
 
-  // ── Detail panel ───────────────────────────────────────────
-  window.loadDetail = async function(ip) {
-    const panel = document.getElementById('detail-panel');
-    panel.classList.add('open');
-    panel.scrollIntoView({behavior:'smooth',block:'start'});
-    document.getElementById('detail-title').textContent =
-      ip==='local' ? 'This Machine — Scan Results' : `Remote Machine — ${ip}`;
-
-    const tbody  = document.getElementById('detail-tbody');
-    const ptbody = document.getElementById('detail-procs-tbody');
-    const loading = '<tr><td colspan="7" style="text-align:center;color:var(--tx-lo);padding:30px;font-family:var(--f-data);">Loading…</td></tr>';
-    tbody.innerHTML  = loading;
-    ptbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--tx-lo);padding:20px;font-family:var(--f-data);">Loading…</td></tr>';
-
-    try {
-      const url  = ip==='local' ? '/api/scan' : `/api/machine_scan/${ip}`;
-      const data = await fetch(url).then(r=>r.json());
-      const entries = ip==='local' ? data : (data.entries||[]);
-      const procs   = ip==='local' ? [] : (data.processes||[]);
-
-      const high = entries.filter(e=>e.risk_level==='High').length;
-      const med  = entries.filter(e=>e.risk_level==='Medium').length;
-      const low  = entries.filter(e=>e.risk_level==='Low').length;
-
-      document.getElementById('detail-summary').innerHTML = `
-        <div class="sum-item"><div class="sum-val" style="color:var(--g300);">${entries.length}</div>
-          <div class="sum-label">Total</div></div>
-        <div class="sum-item"><div class="sum-val" style="color:var(--r300);">${high}</div>
-          <div class="sum-label">High</div></div>
-        <div class="sum-item"><div class="sum-val" style="color:var(--a300);">${med}</div>
-          <div class="sum-label">Medium</div></div>
-        <div class="sum-item"><div class="sum-val" style="color:var(--g400);">${low}</div>
-          <div class="sum-label">Low</div></div>`;
-
-      tbody.innerHTML = entries.length
-        ? entries.map((e,i) => {
-            const rc = riskRowClass(e.risk_level);
-            const rb = riskBadgeClass(e.risk_level);
-            const nc = riskColor(e.risk_level);
-            return `<tr class="${rc}">
-              <td style="color:var(--tx-lo);font-size:13px;">${i+1}</td>
-              <td style="font-weight:600;font-size:15px;color:${nc};">${e.name}</td>
-              <td class="path-cell" title="${e.path}">${e.path}</td>
-              <td><span class="badge badge-neutral">${e.location}</span></td>
-              <td style="text-align:center;font-family:var(--f-head);font-weight:800;
-                  font-size:18px;color:${nc};">${e.risk_score}</td>
-              <td style="text-align:center;"><span class="badge ${rb}">${e.risk_level}</span></td>
-              <td style="text-align:center;">
-                ${e.is_malicious
-                  ? '<span class="badge badge-modified">⚠ Malicious</span>'
-                  : '<span class="badge badge-ok">✓ Clean</span>'}
-              </td>
-            </tr>`;
-          }).join('')
-        : '<tr><td colspan="7" style="text-align:center;color:var(--g400);padding:30px;font-family:var(--f-data);">✓ No threats found</td></tr>';
-
-      ptbody.innerHTML = procs.length
-        ? procs.slice(0,10).map((p,i) => {
-            const rc = riskRowClass(p.risk_level);
-            const rb = riskBadgeClass(p.risk_level);
-            return `<tr class="${rc}">
-              <td style="color:var(--tx-lo);font-family:var(--f-data);font-size:13px;">${p.pid}</td>
-              <td style="font-size:15px;font-weight:600;">${p.name}</td>
-              <td class="path-cell" title="${p.path||''}">${p.path||'—'}</td>
-              <td style="font-family:var(--f-data);">${(p.cpu||0).toFixed(1)}%</td>
-              <td style="text-align:center;font-family:var(--f-head);font-weight:800;font-size:18px;">${p.risk_score||0}</td>
-              <td style="text-align:center;"><span class="badge ${rb}">${p.risk_level}</span></td>
-            </tr>`;
-          }).join('')
-        : '<tr><td colspan="6" style="text-align:center;color:var(--tx-lo);padding:20px;font-family:var(--f-data);">No process data (use Processes tab for this machine)</td></tr>';
-
-    } catch(e) {
-      tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;color:var(--r300);padding:30px;font-family:var(--f-data);">Error: ${e.message}</td></tr>`;
-    }
+  window.addAgentless=function(){
+    const ip=document.getElementById('manual-ip').value.trim();
+    if(!ip){alert('Enter an IP first');return;}
+    addAgentlessCard(ip);
   };
 
-  window.closeDetail = function() {
+  window.selectMachine=function(ip,type){
+    currentIP=ip; currentType=type;
+    document.querySelectorAll('.machine-card').forEach(c=>c.classList.remove('selected'));
+    const card=document.getElementById('mcard-'+ip.replace(/\./g,'-'))||document.getElementById('mcard-local');
+    if(card)card.classList.add('selected');
+    document.getElementById('detail-panel').classList.add('open');
+    document.getElementById('detail-panel').scrollIntoView({behavior:'smooth',block:'start'});
+    document.getElementById('detail-machine-name').textContent=ip==='local'?'This Machine (Windows)':ip;
+    const tabs=['processes','files','simulate'];
+    tabs.forEach(t=>{
+      const btn=document.querySelector(`[data-tab="${t}"]`);
+      if(btn)btn.style.display=(type==='agentless')?'none':'';
+    });
+    switchTab(type==='agentless'?'vulnscan':'persistence');
+    loadPersistence(ip,type);
+  };
+
+  window.closeDetail=()=>{
     document.getElementById('detail-panel').classList.remove('open');
+    document.querySelectorAll('.machine-card').forEach(c=>c.classList.remove('selected'));
   };
 
-  // ── Drive scanner ──────────────────────────────────────────
-  let driveInterval = null;
-  window.startDriveScan = async function() {
-    document.getElementById('drive-spinner').style.display='inline-block';
-    document.getElementById('drive-status').textContent='Starting scan…';
-    document.getElementById('progress-wrap').style.display='block';
-    document.getElementById('drive-card').style.display='none';
-    await fetch('/api/drive_scan/start', {method:'POST'});
-    driveInterval = setInterval(checkProgress, 1500);
+  window.switchTab=function(name){
+    document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+    document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));
+    const btn=document.querySelector(`[data-tab="${name}"]`);
+    if(btn)btn.classList.add('active');
+    const content=document.getElementById('tab-'+name);
+    if(content)content.classList.add('active');
+    if(name==='processes')loadProcesses(currentIP,currentType);
+    if(name==='files')loadFiles(currentIP,currentType);
   };
 
-  async function checkProgress() {
-    try {
-      const s = await fetch('/api/drive_scan/status').then(r=>r.json());
-      document.getElementById('progress-text').textContent =
-        `${s.current||'Scanning…'}  (${s.progress||0} files scanned)`;
-      const pct = Math.min((s.progress||0) / 50, 1) * 100;
-      document.getElementById('progress-fill').style.width = pct + '%';
-      if (!s.running) {
-        clearInterval(driveInterval);
-        document.getElementById('drive-spinner').style.display='none';
-        document.getElementById('drive-status').textContent = s.current||'Scan complete';
-        loadDriveResults();
-      }
-    } catch(e) {}
+  async function loadPersistence(ip,type){
+    const tbody=document.getElementById('persist-tbody');
+    tbody.innerHTML='<tr><td colspan="6" style="text-align:center;color:var(--tx-lo);padding:36px;font-family:var(--f-data);">Loading…</td></tr>';
+    try{
+      let entries=[];
+      if(ip==='local') entries=await fetch('/api/scan').then(r=>r.json());
+      else if(type==='agent'){const d=await fetch(`/api/machine_scan/${ip}`).then(r=>r.json());entries=d.entries||[];}
+      const h=entries.filter(e=>e.risk_level==='High').length;
+      const m=entries.filter(e=>e.risk_level==='Medium').length;
+      document.getElementById('persist-summary').innerHTML=`
+        <div class="sum-item"><div class="sum-val" style="color:var(--g300);">${entries.length}</div><div class="sum-label">Total</div></div>
+        <div class="sum-item"><div class="sum-val" style="color:var(--r300);">${h}</div><div class="sum-label">High</div></div>
+        <div class="sum-item"><div class="sum-val" style="color:var(--a300);">${m}</div><div class="sum-label">Medium</div></div>
+        <div class="sum-item"><div class="sum-val" style="color:var(--g400);">${entries.filter(e=>e.risk_level==='Low').length}</div><div class="sum-label">Low</div></div>
+        <div class="sum-item"><div class="sum-val" style="color:var(--tx-lo);font-size:18px;">${new Date().toLocaleTimeString('en-GB',{hour12:false})}</div><div class="sum-label">Scanned</div></div>`;
+      tbody.innerHTML=entries.length?entries.map((e,i)=>{
+        const rc=riskRowClass(e.risk_level),rb=riskBadgeClass(e.risk_level),nc=riskColor(e.risk_level);
+        return `<tr class="${rc}"><td style="color:var(--tx-lo);font-size:13px;">${i+1}</td>
+          <td style="font-weight:600;font-size:15px;color:${nc};">${e.name}</td>
+          <td class="path-cell" title="${e.path||''}">${e.path||'—'}</td>
+          <td><span class="badge badge-neutral">${e.location||'—'}</span></td>
+          <td style="text-align:center;font-family:var(--f-head);font-weight:800;font-size:18px;color:${nc};">${e.risk_score||0}</td>
+          <td style="text-align:center;"><span class="badge ${rb}">${e.risk_level}</span></td></tr>`;
+      }).join(''):'<tr><td colspan="6" style="text-align:center;color:var(--g400);padding:36px;font-family:var(--f-data);">✓ No persistence threats found</td></tr>';
+    }catch(e){tbody.innerHTML=`<tr><td colspan="6" style="text-align:center;color:var(--r300);padding:36px;font-family:var(--f-data);">Error: ${e.message}</td></tr>`;}
   }
 
-  async function loadDriveResults() {
-    try {
-      const files = await fetch('/api/drive_scan/results').then(r=>r.json());
-      document.getElementById('drive-card').style.display='block';
-      document.getElementById('drive-count').textContent = `${files.length} threats found`;
-      const tbody = document.getElementById('drive-tbody');
-      if (!files.length) {
-        tbody.innerHTML='<tr><td colspan="7" style="text-align:center;color:var(--g400);padding:36px;font-family:var(--f-data);">✓ No threats found on drives</td></tr>';
-        return;
-      }
-      tbody.innerHTML = files.map((f,i) => {
-        const rc = riskRowClass(f.risk_level);
-        const rb = riskBadgeClass(f.risk_level);
-        const nc = riskColor(f.risk_level);
-        return `<tr class="${rc}">
-          <td style="color:var(--tx-lo);font-size:13px;">${i+1}</td>
-          <td style="font-weight:600;font-size:15px;color:${nc};">${f.name}</td>
-          <td class="path-cell" title="${f.path}">${f.path}</td>
-          <td style="text-align:center;font-family:var(--f-head);font-weight:800;font-size:18px;color:${nc};">${f.risk_score}</td>
+  async function loadProcesses(ip,type){
+    const tbody=document.getElementById('procs-tbody'),st=document.getElementById('procs-status');
+    tbody.innerHTML='<tr><td colspan="7" style="text-align:center;color:var(--tx-lo);padding:36px;font-family:var(--f-data);">Loading…</td></tr>';
+    st.textContent='Fetching…';
+    try{
+      let procs=[];
+      if(ip==='local')procs=await fetch('/api/processes').then(r=>r.json());
+      else if(type==='agent')procs=await fetch(`http://${ip}:5001/processes`).then(r=>r.json());
+      else{tbody.innerHTML='<tr><td colspan="7" style="text-align:center;color:var(--tx-lo);padding:36px;font-family:var(--f-data);">Requires agent</td></tr>';return;}
+      const h=procs.filter(p=>p.risk_level==='High').length;
+      st.textContent=`${procs.length} processes · ${h} high risk`;
+      tbody.innerHTML=procs.length?procs.map(p=>{
+        const rc=riskRowClass(p.risk_level),rb=riskBadgeClass(p.risk_level),nc=riskColor(p.risk_level);
+        const kill=(ip==='local'&&p.risk_level==='High')
+          ?`<button class="btn btn-danger btn-sm" onclick="fetch('/action/kill/${p.pid}',{method:'POST'}).then(r=>r.json()).then(d=>showToast(d.success,'Kill',d.message))">Kill</button>`
+          :'<span style="color:var(--tx-lo);">—</span>';
+        return `<tr class="${rc}"><td style="color:var(--tx-lo);font-family:var(--f-data);font-size:13px;">${p.pid}</td>
+          <td style="font-weight:600;font-size:15px;color:${nc};">${p.name||'?'}</td>
+          <td class="path-cell" title="${p.path||''}">${p.path||'—'}</td>
+          <td style="font-family:var(--f-data);">${(p.cpu||0).toFixed(1)}%</td>
+          <td style="text-align:center;font-family:var(--f-head);font-weight:800;font-size:18px;color:${nc};">${p.risk_score||0}</td>
+          <td style="text-align:center;"><span class="badge ${rb}">${p.risk_level}</span></td>
+          <td style="text-align:center;">${kill}</td></tr>`;
+      }).join(''):'<tr><td colspan="7" style="text-align:center;color:var(--g400);padding:36px;font-family:var(--f-data);">✓ No suspicious processes</td></tr>';
+    }catch(e){st.textContent='Error: '+e.message;}
+  }
+  document.getElementById('reload-procs-btn').onclick=()=>loadProcesses(currentIP,currentType);
+
+  async function loadFiles(ip,type){
+    const tbody=document.getElementById('files-tbody'),st=document.getElementById('files-status');
+    tbody.innerHTML='<tr><td colspan="7" style="text-align:center;color:var(--tx-lo);padding:36px;font-family:var(--f-data);">Loading…</td></tr>';
+    st.textContent='Scanning…';
+    try{
+      let files=[];
+      if(ip==='local')files=await fetch('/api/files').then(r=>r.json());
+      else if(type==='agent')files=await fetch(`http://${ip}:5001/files`).then(r=>r.json());
+      else{tbody.innerHTML='<tr><td colspan="7" style="text-align:center;color:var(--tx-lo);padding:36px;font-family:var(--f-data);">Requires agent</td></tr>';return;}
+      const mal=files.filter(f=>f.is_malicious).length;
+      st.textContent=`${files.length} files · ${mal} malicious`;
+      tbody.innerHTML=files.length?files.map((f,i)=>{
+        const rc=riskRowClass(f.risk_level),rb=riskBadgeClass(f.risk_level),nc=riskColor(f.risk_level);
+        return `<tr class="${rc}"><td style="color:var(--tx-lo);font-size:13px;">${i+1}</td>
+          <td style="font-weight:600;font-size:15px;color:${nc};">${f.name||'?'}</td>
+          <td class="path-cell" title="${f.path||''}">${f.path||'—'}</td>
+          <td style="text-align:center;">${f.is_malicious?'<span class="badge badge-modified">⚠ Malicious</span>':'<span class="badge badge-ok">✓ Clean</span>'}</td>
+          <td style="text-align:center;font-family:var(--f-head);font-weight:800;font-size:18px;color:${nc};">${f.risk_score||0}</td>
           <td style="text-align:center;"><span class="badge ${rb}">${f.risk_level}</span></td>
-          <td style="text-align:center;">
-            ${f.is_malicious
-              ? '<span class="badge badge-modified">⚠ Malicious</span>'
-              : '<span class="badge badge-ok">✓ Clean</span>'}
-          </td>
-          <td style="font-family:var(--f-data);font-size:12px;color:var(--r300);">
-            ${(f.mal_matches||[]).join('  ·  ')||'—'}
-          </td>
-        </tr>`;
-      }).join('');
-    } catch(e) {}
+          <td style="font-family:var(--f-data);font-size:12px;color:var(--r300);">${(f.mal_matches||[]).join(' · ')||'—'}</td></tr>`;
+      }).join(''):'<tr><td colspan="7" style="text-align:center;color:var(--g400);padding:36px;font-family:var(--f-data);">✓ No malicious files</td></tr>';
+    }catch(e){st.textContent='Error: '+e.message;}
   }
+  document.getElementById('reload-files-btn').onclick=()=>loadFiles(currentIP,currentType);
+
+  // Vuln scan
+  let vulnInterval=null;
+  document.getElementById('start-vulnscan-btn').onclick=async function(){
+    const ip=currentIP==='local'?document.getElementById('local-ip').textContent:currentIP;
+    if(!ip||ip==='…'){alert('Enter an IP in the Add Machine box first');return;}
+    document.getElementById('vuln-spinner').style.display='inline-block';
+    document.getElementById('vuln-progress').style.display='block';
+    document.getElementById('vuln-summary-row').style.display='none';
+    document.getElementById('ports-section').style.display='none';
+    document.getElementById('vulns-section').style.display='none';
+    document.getElementById('attack-report').style.display='none';
+    document.getElementById('vuln-status').textContent=`Starting scan on ${ip}…`;
+    await fetch('/api/agentless/start',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({ip})});
+    vulnInterval=setInterval(()=>checkVulnProgress(ip),1200);
+  };
+
+  async function checkVulnProgress(ip){
+    try{
+      const s=await fetch(`/api/agentless/status/${ip}`).then(r=>r.json());
+      const pct=s.total>0?Math.round((s.progress/s.total)*100):0;
+      document.getElementById('vuln-progress-fill').style.width=pct+'%';
+      document.getElementById('vuln-progress-text').textContent=`Scanning ports… ${s.progress}/${s.total} (${pct}%)`;
+      document.getElementById('vuln-status').textContent=`Scanning… ${pct}%`;
+      if(!s.running&&s.done){clearInterval(vulnInterval);document.getElementById('vuln-spinner').style.display='none';document.getElementById('vuln-progress').style.display='none';loadVulnResults(ip);}
+    }catch(e){}
+  }
+
+  async function loadVulnResults(ip){
+    try{
+      const r=await fetch(`/api/agentless/result/${ip}`).then(r=>r.json());
+      if(r.error){document.getElementById('vuln-status').textContent='Error: '+r.error;return;}
+      const sc=r.summary||{};
+      const lc=r.risk_level==='Critical'?'#ff1744':r.risk_level==='High'?'var(--r300)':r.risk_level==='Medium'?'var(--a300)':'var(--g300)';
+      const cid=ip.replace(/\./g,'-');
+      const g=id=>document.getElementById(id);
+      if(g(`mal-p-${cid}`))g(`mal-p-${cid}`).textContent=sc.open_ports||0;
+      if(g(`mal-v-${cid}`))g(`mal-v-${cid}`).textContent=sc.total_vulns||0;
+      if(g(`mal-s-${cid}`))g(`mal-s-${cid}`).textContent=r.risk_score||0;
+      const dot=document.getElementById('mdot-'+cid);
+      if(dot)dot.className='online-dot';
+      document.getElementById('vuln-status').textContent=`Done · ${sc.open_ports} ports · ${sc.total_vulns} vulns · Score ${r.risk_score} (${r.risk_level})`;
+      document.getElementById('vuln-summary-row').style.display='grid';
+      document.getElementById('vuln-summary-row').innerHTML=`
+        <div class="sum-item"><div class="sum-val" style="color:var(--c300);">${sc.open_ports}</div><div class="sum-label">Open Ports</div></div>
+        <div class="sum-item"><div class="sum-val" style="color:#ff1744;">${sc.critical}</div><div class="sum-label">Critical</div></div>
+        <div class="sum-item"><div class="sum-val" style="color:var(--r300);">${sc.high}</div><div class="sum-label">High</div></div>
+        <div class="sum-item"><div class="sum-val" style="color:var(--a300);">${sc.medium}</div><div class="sum-label">Medium</div></div>
+        <div class="sum-item"><div class="sum-val" style="color:${lc};">${r.risk_score}</div><div class="sum-label">Risk Score</div></div>`;
+      document.getElementById('ports-section').style.display='block';
+      const DANGER=[23,512,513,514,1524,4444,6667];
+      document.getElementById('ports-grid').innerHTML=r.open_ports.map(p=>
+        `<span class="port-pill ${DANGER.includes(p.port)?'dangerous':''}">
+          ${DANGER.includes(p.port)?'⚠':'●'} ${p.port}/${p.service}</span>`).join('');
+      document.getElementById('vulns-section').style.display='block';
+      const SCMAP={Critical:'badge-critical',High:'badge-high',Medium:'badge-medium',Low:'badge-low',Info:'badge-neutral'};
+      const RCMAP={Critical:'vuln-row-critical',High:'vuln-row-high',Medium:'vuln-row-medium',Low:'vuln-row-low',Info:'row-low'};
+      document.getElementById('vulns-tbody').innerHTML=r.vulns.length
+        ?r.vulns.map(v=>`<tr class="${RCMAP[v.severity]||''}">
+          <td style="font-family:var(--f-data);font-weight:600;">${v.port}</td>
+          <td><span class="badge badge-neutral">${v.service}</span></td>
+          <td style="font-weight:600;font-size:14px;">${v.name}</td>
+          <td style="text-align:center;"><span class="badge ${SCMAP[v.severity]||'badge-neutral'}">${v.severity}</span></td>
+          <td style="font-family:var(--f-data);font-size:12px;color:var(--c300);">${v.cve||'N/A'}</td>
+          <td style="font-size:13px;color:var(--tx-mid);">${v.desc}</td>
+          <td style="font-size:13px;color:var(--g300);">${v.fix}</td></tr>`).join('')
+        :'<tr><td colspan="7" style="text-align:center;color:var(--g400);padding:24px;font-family:var(--f-data);">✓ No vulnerabilities detected</td></tr>';
+      const critHigh=r.vulns.filter(v=>['Critical','High'].includes(v.severity));
+      if(critHigh.length>0){
+        document.getElementById('attack-report').style.display='block';
+        const AMAP={
+          'Telnet Enabled':                {cmd:`telnet ${ip} 23`,impact:'Full shell access'},
+          'Ingreslock-Backdoor':           {cmd:`nc ${ip} 1524`,impact:'Instant root shell'},
+          'Metasploit-Handler':            {cmd:`nc ${ip} 4444`,impact:'Active backdoor'},
+          'IRC / UnrealIRCd Backdoor':     {cmd:`msf: use exploit/unix/irc/unreal_ircd_3281_backdoor`,impact:'RCE as root'},
+          'VNC Remote Desktop Open':       {cmd:`vncviewer ${ip}:5900`,impact:'Full GUI access'},
+          'RSH Remote Shell':              {cmd:`rsh ${ip}`,impact:'Unauthenticated shell'},
+          'AJP Ghostcat Vulnerability':    {cmd:`msf: use auxiliary/admin/http/tomcat_ghostcat`,impact:'File read / RCE'},
+          'MongoDB No Authentication':     {cmd:`mongo ${ip}:27017`,impact:'Full DB access'},
+          'Elasticsearch No Authentication':{cmd:`curl http://${ip}:9200/_cat/indices`,impact:'Full data access'},
+        };
+        document.getElementById('attack-cards').innerHTML=critHigh.slice(0,6).map(v=>{
+          const a=AMAP[v.name];
+          return `<div class="attack-card">
+            <div class="attack-title">⚡ ${v.name} — Port ${v.port}</div>
+            <div class="attack-desc">${v.desc}</div>
+            <div class="attack-meta">
+              <span class="badge badge-neutral">Impact: ${a?a.impact:'High risk — see CVE '+v.cve}</span>
+              ${a?`<span class="badge badge-neutral" style="font-family:var(--f-data);font-size:11px;">$ ${a.cmd}</span>`:''}
+            </div></div>`;
+        }).join('');
+      }
+    }catch(e){document.getElementById('vuln-status').textContent='Error: '+e.message;}
+  }
+
+  window.remoteSim=async function(action){
+    const log=document.getElementById('sim-log');
+    if(currentIP==='local'){log.innerHTML+='<div style="color:var(--tx-lo);">ℹ Use Dashboard for Windows simulation</div>';return;}
+    log.innerHTML+=`<div style="color:var(--tx-lo);">[${new Date().toLocaleTimeString()}] → ${action} on ${currentIP}…</div>`;
+    try{
+      const r=await fetch('/api/agent/simulate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({ip:currentIP,action})});
+      const d=await r.json();
+      log.innerHTML+=`<div style="color:${d.success?'var(--g300)':'var(--r300)'};">[${new Date().toLocaleTimeString()}] ${d.success?'✓':'✗'} ${d.message||d.error||''}</div>`;
+      log.scrollTop=log.scrollHeight;
+      showToast(d.success,d.success?'Done':'Failed',d.message||'');
+      if(d.success)setTimeout(()=>loadPersistence(currentIP,'agent'),1500);
+    }catch(e){log.innerHTML+=`<div style="color:var(--r300);">[${new Date().toLocaleTimeString()}] ✗ ${e.message}</div>`;}
+  };
+
+  selectMachine('local','agent');
 });
 </script>
 </body>
