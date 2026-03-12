@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Project Sentinel — File Scanner</title>
+  <link rel="stylesheet" href="/static/cyber.css"/>
+  <script src="/static/sentinel.js" defer></script>
+  <style>
+    .toolbar { display:flex;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap; }
+    .search-wrap { max-width:320px; }
+    /* Danger popup */
+    .danger-overlay {
+      position:fixed;inset:0;background:rgba(0,0,0,0.85);
+      z-index:99999;display:flex;align-items:center;justify-content:center;
+      animation:fadein 0.18s ease;
+    }
+    @keyframes fadein { from{opacity:0} to{opacity:1} }
+    .danger-modal {
+      background:var(--surface-2); border:1px solid rgba(240,62,62,0.5);
+      border-radius:var(--radius-lg);
+      width:580px; max-width:94vw; padding:32px;
+      box-shadow:0 0 80px rgba(240,62,62,0.18), 0 24px 64px rgba(0,0,0,0.65);
+      animation:modal-in 0.3s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    @keyframes modal-in { from{transform:scale(0.88) translateY(-18px);opacity:0} to{transform:none;opacity:1} }
+    @keyframes blink2 { 0%,100%{opacity:1} 50%{opacity:0.25} }
+    .danger-title {
+      font-family:var(--f-head);font-size:22px;font-weight:800;
+      color:var(--r300);letter-spacing:0.5px;text-align:center;
+      margin-bottom:6px;animation:blink2 1s ease infinite;
+    }
+    .danger-subtitle { text-align:center;color:var(--tx-lo);font-size:14px;margin-bottom:24px; }
+    .danger-file { background:var(--surface-3);border:1px solid var(--border-1);
+                   border-radius:var(--radius);padding:14px 16px;margin-bottom:16px; }
+    .danger-stats { display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px; }
+    .danger-stat { background:var(--surface-3);border:1px solid var(--border-1);
+                   border-radius:var(--radius);padding:14px;text-align:center; }
+    .danger-stat-label { font-family:var(--f-head);font-size:11px;font-weight:700;
+                         letter-spacing:2px;color:var(--tx-lo);margin-bottom:8px;text-transform:uppercase; }
+    .danger-stat-val { font-family:var(--f-head);font-size:38px;font-weight:800;line-height:1; }
+    .danger-reasons { background:var(--surface-3);border:1px solid rgba(240,62,62,0.18);
+                      border-radius:var(--radius);padding:14px 16px;margin-bottom:14px; }
+    .danger-reasons-title { font-family:var(--f-head);font-size:12px;font-weight:700;
+                             letter-spacing:2px;color:var(--tx-lo);margin-bottom:10px;text-transform:uppercase; }
+    .danger-action-banner { background:rgba(240,62,62,0.06);border:1px solid rgba(240,62,62,0.2);
+                            border-radius:var(--radius);padding:14px 16px;text-align:center;margin-bottom:22px; }
+    .danger-btns { display:flex;gap:10px;justify-content:center; }
+  </style>
+</head>
+<body>
+<div id="toast-box"></div>
+
+<aside class="sidebar">
+  <a href="/" class="sidebar-logo">
+    <div class="sidebar-logo-mark"><div class="sidebar-logo-icon">⬡</div>
+    <span class="sidebar-logo-name">SENTINEL</span></div>
+    <div class="sidebar-logo-sub">THREAT INTELLIGENCE</div>
+  </a>
+  <div class="sidebar-threat">
+    <div class="sidebar-threat-label">THREAT LEVEL</div>
+    <div class="threat-bar-wrap"><div class="threat-bar" id="threat-bar" style="width:0%"></div></div>
+    <div class="threat-level-txt" id="threat-level-txt" style="color:var(--g400);">STANDBY</div>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-section-label">Monitor</div>
+    <a href="/"         class="nav-item"><span class="nav-icon">◈</span><span class="nav-label">Dashboard</span></a>
+    <a href="/live"     class="nav-item"><span class="nav-icon">⊙</span><span class="nav-label">Processes</span></a>
+    <a href="/files"    class="nav-item active"><span class="nav-icon">◧</span><span class="nav-label">Files</span></a>
+    <a href="/machines" class="nav-item"><span class="nav-icon">⊞</span><span class="nav-label">Machines</span></a>
+    <div class="nav-section-label" style="margin-top:8px;">Reports</div>
+    <a href="/logs"       class="nav-item"><span class="nav-icon">≡</span><span class="nav-label">Event Logs</span></a>
+    <a href="/export/csv" class="nav-item"><span class="nav-icon">↓</span><span class="nav-label">Export CSV</span></a>
+    <a href="/export/pdf" class="nav-item"><span class="nav-icon">↓</span><span class="nav-label">Export PDF</span></a>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="live-indicator"><div class="live-dot"></div><span class="live-text">MONITORING ACTIVE</span></div>
+    <div id="clock-sidebar"></div>
+  </div>
+</aside>
+
+<div class="main">
+  <div class="topbar">
+    <div>
+      <span class="topbar-title">File Scanner</span>
+      <span class="topbar-sub">/ Open &amp; Watched Files</span>
+    </div>
+    <div class="topbar-actions">
+      <span class="blink" style="font-family:var(--f-data);font-size:13px;color:var(--r300);">
+        ● AUTO-REFRESH 10s
+      </span>
+    </div>
+  </div>
+
+  <div class="page">
+    <div class="toolbar">
+      <div class="search-wrap">
+        <input class="input" type="text" id="search-box"
+               placeholder="Search files…" oninput="filterTable()"/>
+      </div>
+      <button class="btn btn-primary" onclick="loadFiles()">↺ Rescan</button>
+      <span class="count-pill" id="file-count">Loading…</span>
+      <div class="spinner" id="spinner" style="display:none;"></div>
+      <div class="status-bar" id="status-bar"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">File Threat Analysis</span>
+        <span class="card-meta" id="scan-time">—</span>
+      </div>
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead><tr>
+            <th>#</th><th>File Name</th><th>Path</th><th>Process</th>
+            <th>Status</th><th style="text-align:center;">Content</th>
+            <th style="text-align:center;">Score</th>
+            <th style="text-align:center;">Risk</th>
+            <th style="text-align:center;">Action</th>
+          </tr></thead>
+          <tbody id="file-tbody">
+            <tr><td colspan="9" style="text-align:center;color:var(--tx-lo);padding:52px;
+                 font-family:var(--f-data);">Initializing file scanner…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  startClock('clock-sidebar');
+
+  function filterTable() {
+    const q = document.getElementById('search-box').value.toLowerCase();
+    document.querySelectorAll('#file-tbody tr').forEach(r => {
+      r.style.display = r.textContent.toLowerCase().includes(q) ? '' : 'none';
+    });
+  }
+  window.filterTable = filterTable;
+
+  function showDangerPopup(data) {
+    const ex = document.getElementById('file-danger-popup');
+    if (ex) ex.remove();
+    const lc = riskColor(data.risk_level||'High');
+    const path = data.path||'';
+    const ep = path.replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+    const reasons = (data.reasons||[]).slice(0,4);
+    const sigs = (data.mal_matches||[]).slice(0,5);
+
+    const overlay = document.createElement('div');
+    overlay.id = 'file-danger-popup';
+    overlay.className = 'danger-overlay';
+    overlay.innerHTML = `
+      <div class="danger-modal">
+        <div class="danger-title">⚠ Harmful File Detected</div>
+        <div class="danger-subtitle">Project Sentinel found a dangerous file — immediate action recommended</div>
+
+        <div class="danger-file">
+          <div style="font-family:var(--f-head);font-size:11px;font-weight:700;letter-spacing:2px;
+                      color:var(--tx-lo);margin-bottom:8px;text-transform:uppercase;">File Detected</div>
+          <div style="font-weight:700;font-size:16px;color:${lc};margin-bottom:4px;">
+            📄 ${data.name||'?'}
+          </div>
+          <div style="font-family:var(--f-data);font-size:12px;color:var(--tx-lo);word-break:break-all;">
+            ${path}
+          </div>
+        </div>
+
+        <div class="danger-stats">
+          <div class="danger-stat">
+            <div class="danger-stat-label">Risk Score</div>
+            <div class="danger-stat-val" style="color:${lc};">${data.risk_score||0}</div>
+          </div>
+          <div class="danger-stat">
+            <div class="danger-stat-label">Risk Level</div>
+            <div class="danger-stat-val" style="color:${lc};font-size:26px;">${data.risk_level||'High'}</div>
+            <div style="font-size:13px;color:${lc};margin-top:5px;">
+              ${data.is_malicious ? '⚠ Malicious Content Detected' : '⚡ Suspicious File'}
+            </div>
+          </div>
+        </div>
+
+        ${reasons.length ? `<div class="danger-reasons">
+          <div class="danger-reasons-title">⚡ Why It Is Harmful</div>
+          ${reasons.map(r=>`<div style="font-size:14px;color:var(--a300);margin:5px 0;
+                              font-family:var(--f-body);">• ${r}</div>`).join('')}
+          ${sigs.length ? `<div style="margin-top:10px;font-family:var(--f-head);font-size:11px;
+                               font-weight:700;letter-spacing:2px;color:var(--tx-lo);
+                               text-transform:uppercase;margin-bottom:6px;">
+                             Malicious Signatures Found
+                           </div>
+                           <div style="font-family:var(--f-data);font-size:12px;color:var(--r300);
+                                       word-break:break-word;">
+                             ${sigs.join('  ·  ')}
+                           </div>` : ''}
+        </div>` : ''}
+
+        <div class="danger-action-banner">
+          <div style="font-family:var(--f-head);font-size:16px;font-weight:700;
+                      color:var(--r300);margin-bottom:4px;">
+            🗑 Recommended: Delete This File Immediately
+          </div>
+          <div style="font-size:13px;color:var(--tx-lo);font-family:var(--f-body);">
+            Use the button below, or locate it in the Files table
+          </div>
+        </div>
+
+        <div class="danger-btns">
+          <button class="btn btn-danger" style="padding:11px 26px;"
+            onclick="fetch('/action/delete',{method:'POST',
+              headers:{'Content-Type':'application/json'},
+              body:JSON.stringify({path:'${ep}'})
+            }).then(r=>r.json()).then(d=>{
+              document.getElementById('file-danger-popup').remove();
+              showToast(d.success,d.success?'File Deleted':'Delete Failed',d.message);
+              setTimeout(loadFiles,800);
+            });">
+            🗑 Delete Now
+          </button>
+          <button class="btn btn-ghost"
+            onclick="document.getElementById('file-danger-popup').remove();loadFiles();">
+            View in Table
+          </button>
+          <button class="btn btn-ghost" style="color:var(--tx-lo);"
+            onclick="document.getElementById('file-danger-popup').remove();">
+            Dismiss
+          </button>
+        </div>
+
+        <div style="text-align:center;font-family:var(--f-data);font-size:11px;
+                    color:var(--tx-lo);margin-top:18px;">
+          [ Demo — This file is 100% harmless. Signatures are plain text strings only. ]
+        </div>
+      </div>`;
+    document.body.appendChild(overlay);
+  }
+  window.showDangerPopup = showDangerPopup;
+
+  function renderFiles(files) {
+    const tbody = document.getElementById('file-tbody');
+    if (!files.length) {
+      tbody.innerHTML = '<tr><td colspan="9" style="text-align:center;color:var(--tx-lo);padding:52px;font-family:var(--f-data);">No suspicious files detected</td></tr>';
+      return;
+    }
+    const mal = files.filter(f=>f.is_malicious).length;
+    updateThreatBar(mal, files.length);
+
+    tbody.innerHTML = files.map((f,i) => {
+      const rc  = riskRowClass(f.risk_level);
+      const rb  = riskBadgeClass(f.risk_level);
+      const nc  = riskColor(f.risk_level);
+      const ep  = (f.path||'').replace(/\\/g,'\\\\').replace(/'/g,"\\'");
+      const malBadge = f.is_malicious
+        ? '<span class="badge badge-modified">⚠ Malicious</span>'
+        : '<span class="badge badge-ok">✓ Clean</span>';
+      let action = '<span style="color:var(--tx-lo);font-size:13px;">—</span>';
+      if (f.is_malicious && f.risk_level==='High')
+        action = `<button class="btn btn-danger btn-sm"
+          onclick="fetch('/action/delete',{method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body:JSON.stringify({path:'${ep}'})
+          }).then(r=>r.json()).then(d=>{showToast(d.success,d.success?'Deleted':'Failed',d.message);
+            if(d.success)setTimeout(loadFiles,800);})">
+          🗑 Delete</button>`;
+      else if (f.risk_level === 'Medium')
+        action = `<button class="btn btn-warning btn-sm"
+          onclick="fetch('/action/locate',{method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body:JSON.stringify({path:'${ep}'})})">Locate</button>`;
+      return `<tr class="${rc}">
+        <td style="color:var(--tx-lo);font-size:13px;">${i+1}</td>
+        <td style="font-weight:600;font-size:15px;color:${nc};">${f.name||'?'}</td>
+        <td class="path-cell" title="${f.path||''}">${f.path||'—'}</td>
+        <td style="color:var(--tx-lo);font-size:13px;">${f.process||'—'}</td>
+        <td style="font-size:13px;color:${f.status==='⚡ Running'?'var(--a300)':'var(--tx-lo)'};">
+          ${f.status||'—'}</td>
+        <td style="text-align:center;">${malBadge}</td>
+        <td style="text-align:center;font-family:var(--f-head);font-weight:800;
+            font-size:20px;color:${nc};">${f.risk_score||0}</td>
+        <td style="text-align:center;"><span class="badge ${rb}">${f.risk_level}</span></td>
+        <td style="text-align:center;">${action}</td>
+      </tr>`;
+    }).join('');
+    filterTable();
+  }
+
+  async function loadFiles() {
+    document.getElementById('spinner').style.display = 'inline-block';
+    document.getElementById('status-bar').textContent = 'Scanning files…';
+    try {
+      const files = await fetch('/api/files').then(r=>r.json());
+      renderFiles(files);
+      const mal = files.filter(f=>f.is_malicious).length;
+      document.getElementById('file-count').textContent =
+        `${files.length} files  ·  ${mal} malicious`;
+      document.getElementById('scan-time').textContent =
+        'Scanned ' + new Date().toLocaleTimeString('en-GB',{hour12:false});
+      document.getElementById('status-bar').textContent =
+        `${files.length} files scanned  ·  ${mal} malicious detected`;
+    } catch(e) { document.getElementById('status-bar').textContent = 'Scan error'; }
+    document.getElementById('spinner').style.display = 'none';
+  }
+  window.loadFiles = loadFiles;
+
+  connectSSE(d => {
+    if (d.type==='FILE_NEW' && d.risk_score > 0) showDangerPopup(d);
+  });
+
+  loadFiles();
+  setInterval(loadFiles, 10000);
+});
+</script>
+</body>
+</html>

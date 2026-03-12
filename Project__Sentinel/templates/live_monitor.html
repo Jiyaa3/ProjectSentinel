@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Project Sentinel — Live Processes</title>
+  <link rel="stylesheet" href="/static/cyber.css"/>
+  <script src="/static/sentinel.js" defer></script>
+  <style>
+    .toolbar { display:flex;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap; }
+    .search-wrap { max-width:320px; }
+  </style>
+</head>
+<body>
+<div id="toast-box"></div>
+
+<aside class="sidebar">
+  <a href="/" class="sidebar-logo">
+    <div class="sidebar-logo-mark"><div class="sidebar-logo-icon">⬡</div>
+    <span class="sidebar-logo-name">SENTINEL</span></div>
+    <div class="sidebar-logo-sub">THREAT INTELLIGENCE</div>
+  </a>
+  <div class="sidebar-threat">
+    <div class="sidebar-threat-label">THREAT LEVEL</div>
+    <div class="threat-bar-wrap"><div class="threat-bar" id="threat-bar" style="width:0%"></div></div>
+    <div class="threat-level-txt" id="threat-level-txt" style="color:var(--g400);">STANDBY</div>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-section-label">Monitor</div>
+    <a href="/"         class="nav-item"><span class="nav-icon">◈</span><span class="nav-label">Dashboard</span></a>
+    <a href="/live"     class="nav-item active"><span class="nav-icon">⊙</span><span class="nav-label">Processes</span></a>
+    <a href="/files"    class="nav-item"><span class="nav-icon">◧</span><span class="nav-label">Files</span></a>
+    <a href="/machines" class="nav-item"><span class="nav-icon">⊞</span><span class="nav-label">Machines</span></a>
+    <div class="nav-section-label" style="margin-top:8px;">Reports</div>
+    <a href="/logs"       class="nav-item"><span class="nav-icon">≡</span><span class="nav-label">Event Logs</span></a>
+    <a href="/export/csv" class="nav-item"><span class="nav-icon">↓</span><span class="nav-label">Export CSV</span></a>
+    <a href="/export/pdf" class="nav-item"><span class="nav-icon">↓</span><span class="nav-label">Export PDF</span></a>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="live-indicator"><div class="live-dot"></div><span class="live-text">MONITORING ACTIVE</span></div>
+    <div id="clock-sidebar"></div>
+  </div>
+</aside>
+
+<div class="main">
+  <div class="topbar">
+    <div>
+      <span class="topbar-title">Live Processes</span>
+      <span class="topbar-sub">/ Real-time Risk Analysis</span>
+    </div>
+    <div class="topbar-actions">
+      <span class="blink" style="font-family:var(--f-data);font-size:13px;color:var(--r300);">
+        ● AUTO-REFRESH 8s
+      </span>
+    </div>
+  </div>
+
+  <div class="page">
+    <div class="toolbar">
+      <div class="search-wrap">
+        <input class="input" type="text" id="search-box"
+               placeholder="Search processes…" oninput="filterTable()"/>
+      </div>
+      <button class="btn btn-primary" onclick="loadProcs()">↺ Rescan</button>
+      <span class="count-pill" id="proc-count">Loading…</span>
+      <div class="spinner" id="spinner" style="display:none;"></div>
+      <div class="status-bar" id="status-bar"></div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Running Processes</span>
+        <span class="card-meta" id="scan-time">—</span>
+      </div>
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead><tr>
+            <th>PID</th><th>Process Name</th><th>Executable Path</th>
+            <th>CPU %</th><th style="text-align:center;">Score</th>
+            <th style="text-align:center;">Risk Level</th>
+            <th style="text-align:center;">Action</th>
+          </tr></thead>
+          <tbody id="proc-tbody">
+            <tr><td colspan="7" style="text-align:center;color:var(--tx-lo);
+                 padding:52px;font-family:var(--f-data);">Initializing scan…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  startClock('clock-sidebar');
+
+  function filterTable() {
+    const q = document.getElementById('search-box').value.toLowerCase();
+    document.querySelectorAll('#proc-tbody tr').forEach(r => {
+      r.style.display = r.textContent.toLowerCase().includes(q) ? '' : 'none';
+    });
+  }
+  window.filterTable = filterTable;
+
+  async function killProc(pid, name) {
+    if (!confirm(`Terminate process?\n\nName: ${name}\nPID: ${pid}`)) return;
+    try {
+      const r = await fetch(`/action/kill/${pid}`, {method:'POST'});
+      const d = await r.json();
+      showToast(d.success, d.success ? 'Process Terminated' : 'Failed', d.message);
+      if (d.success) setTimeout(loadProcs, 1000);
+    } catch(e) { showToast(false, 'Request failed'); }
+  }
+  window.killProc = killProc;
+
+  async function locateFile(path) {
+    await fetch('/action/locate', {method:'POST',
+      headers:{'Content-Type':'application/json'}, body:JSON.stringify({path})});
+  }
+  window.locateFile = locateFile;
+
+  function renderProcs(procs) {
+    const tbody = document.getElementById('proc-tbody');
+    if (!procs.length) {
+      tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;color:var(--tx-lo);padding:52px;font-family:var(--f-data);">No processes found</td></tr>';
+      return;
+    }
+    const high = procs.filter(p=>p.risk_level==='High').length;
+    updateThreatBar(high, procs.length);
+
+    tbody.innerHTML = procs.map(p => {
+      const rc = riskRowClass(p.risk_level);
+      const rb = riskBadgeClass(p.risk_level);
+      const nc = riskColor(p.risk_level);
+      const cpuColor = (p.cpu||0) > 20 ? 'var(--a300)' : (p.cpu||0) > 5 ? 'var(--tx-hi)' : 'var(--tx-lo)';
+      const action = p.risk_level === 'High'
+        ? `<button class="btn btn-danger btn-sm"
+             onclick="killProc(${p.pid},'${(p.name||'').replace(/'/g,"\\'")}')">Kill</button>`
+        : p.risk_level === 'Medium'
+        ? `<button class="btn btn-warning btn-sm"
+             onclick="locateFile('${(p.path||'').replace(/\\/g,'\\\\').replace(/'/g,"\\'")}')">Locate</button>`
+        : '<span style="color:var(--tx-lo);font-size:14px;">—</span>';
+      return `<tr class="${rc}">
+        <td style="color:var(--tx-lo);font-size:13px;font-family:var(--f-data);">${p.pid}</td>
+        <td style="font-weight:600;font-size:15px;color:${nc};">${p.name||'?'}</td>
+        <td class="path-cell" title="${p.path||''}">${p.path||'—'}</td>
+        <td style="font-family:var(--f-data);font-size:14px;color:${cpuColor};">
+          ${(p.cpu||0).toFixed(1)}%</td>
+        <td style="text-align:center;font-family:var(--f-head);font-weight:800;
+            font-size:20px;color:${nc};">${p.risk_score||0}</td>
+        <td style="text-align:center;"><span class="badge ${rb}">${p.risk_level}</span></td>
+        <td style="text-align:center;">${action}</td>
+      </tr>`;
+    }).join('');
+    filterTable();
+  }
+
+  async function loadProcs() {
+    document.getElementById('spinner').style.display = 'inline-block';
+    document.getElementById('status-bar').textContent = 'Scanning processes…';
+    try {
+      const procs = await fetch('/api/processes').then(r=>r.json());
+      renderProcs(procs);
+      const high = procs.filter(p=>p.risk_level==='High').length;
+      document.getElementById('proc-count').textContent =
+        `${procs.length} processes  ·  ${high} high risk`;
+      document.getElementById('scan-time').textContent =
+        'Scanned ' + new Date().toLocaleTimeString('en-GB',{hour12:false});
+      document.getElementById('status-bar').textContent =
+        `${procs.length} processes  ·  ${high} flagged`;
+    } catch(e) { document.getElementById('status-bar').textContent = 'Scan error'; }
+    document.getElementById('spinner').style.display = 'none';
+  }
+  window.loadProcs = loadProcs;
+  loadProcs();
+  setInterval(loadProcs, 8000);
+});
+</script>
+</body>
+</html>

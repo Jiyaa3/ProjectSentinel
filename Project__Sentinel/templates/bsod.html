@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>:( BSOD</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      background-color: #0078D7;
+      color: #ffffff;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+
+    .screen {
+      width: 100%;
+      min-height: 100vh;
+      background-color: #0078D7;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 10vw;
+    }
+
+    .sad {
+      font-size: 120px;
+      font-weight: 100;
+      color: white;
+      margin-bottom: 30px;
+      display: block;
+    }
+
+    h1 {
+      font-size: 36px;
+      font-weight: 400;
+      color: white;
+      margin-bottom: 30px;
+      max-width: 600px;
+      line-height: 1.4;
+    }
+
+    p {
+      font-size: 18px;
+      color: white;
+      margin-bottom: 15px;
+      max-width: 550px;
+      line-height: 1.6;
+    }
+
+    .stop-code {
+      margin-top: 40px;
+      font-size: 16px;
+      color: white;
+      line-height: 2;
+    }
+
+    .progress-section {
+      margin-top: 50px;
+    }
+
+    .progress-text {
+      font-size: 16px;
+      color: white;
+      margin-bottom: 10px;
+    }
+
+    .bar-bg {
+      width: 350px;
+      height: 8px;
+      background: rgba(255,255,255,0.3);
+      border-radius: 4px;
+    }
+
+    .bar-fill {
+      height: 8px;
+      width: 0%;
+      background: white;
+      border-radius: 4px;
+      transition: width 0.1s linear;
+    }
+
+    .safe-note {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: rgba(0,0,0,0.3);
+      color: white;
+      padding: 10px 20px;
+      font-size: 13px;
+      border: 1px solid rgba(255,255,255,0.4);
+      border-radius: 4px;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 40px;
+      color: white;
+      font-size: 15px;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="screen">
+
+    <span class="sad">:(</span>
+
+    <h1>Your PC ran into a problem and needs to restart.</h1>
+
+    <p>A persistence threat was detected on your system.</p>
+    <p>An unauthorized program attempted to install itself into your Windows startup registry.</p>
+
+    <div class="stop-code">
+      Stop code: &nbsp;<strong>MALWARE_PERSISTENCE_DETECTED</strong><br/>
+      Failed module: &nbsp;<strong>virus.exe</strong><br/>
+      Location: &nbsp;<strong>HKCU\Software\Microsoft\Windows\CurrentVersion\Run</strong>
+    </div>
+
+    <div class="progress-section">
+      <div class="progress-text">Collecting error info... <span id="pct">0%</span></div>
+      <div class="bar-bg">
+        <div class="bar-fill" id="bar"></div>
+      </div>
+    </div>
+
+    <a class="back-link" href="http://127.0.0.1:5000">← Return to Sentinel Dashboard</a>
+
+  </div>
+
+  <div class="safe-note">✅ SAFE DEMO — Project Sentinel Educational Tool</div>
+
+  <script>
+    var pct = 0;
+    var bar = document.getElementById('bar');
+    var label = document.getElementById('pct');
+
+    var timer = setInterval(function() {
+      pct++;
+      bar.style.width = pct + '%';
+      label.textContent = pct + '%';
+      if (pct >= 100) clearInterval(timer);
+    }, 40);
+  </script>
+
+</body>
+</html>

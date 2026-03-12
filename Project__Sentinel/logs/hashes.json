@@ -1,0 +1,2234 @@
+{
+  "\\Microsoft\\Windows\\SoftwareProtectionPlatform\\SvcRestartTask|COM handler": {
+    "name": "\\Microsoft\\Windows\\SoftwareProtectionPlatform\\SvcRestartTask",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\WOF\\WIM-Hash-Management|COM handler": {
+    "name": "\\Microsoft\\Windows\\WOF\\WIM-Hash-Management",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:01",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\SoftwareProtectionPlatform\\SvcRestartTaskLogon|COM handler": {
+    "name": "\\Microsoft\\Windows\\SoftwareProtectionPlatform\\SvcRestartTaskLogon",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\SoftwareProtectionPlatform\\SvcRestartTaskNetwork|COM handler": {
+    "name": "\\Microsoft\\Windows\\SoftwareProtectionPlatform\\SvcRestartTaskNetwork",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\WOF\\WIM-Hash-Validation|COM handler": {
+    "name": "\\Microsoft\\Windows\\WOF\\WIM-Hash-Validation",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:01",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\SpacePort\\SpaceAgentTask|%windir%\\system32\\SpaceAgent.exe": {
+    "name": "\\Microsoft\\Windows\\SpacePort\\SpaceAgentTask",
+    "path": "%windir%\\system32\\SpaceAgent.exe",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Work Folders\\Work Folders Logon Synchronization|COM handler": {
+    "name": "\\Microsoft\\Windows\\Work Folders\\Work Folders Logon Synchronization",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:01",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Work Folders\\Work Folders Maintenance Work|COM handler": {
+    "name": "\\Microsoft\\Windows\\Work Folders\\Work Folders Maintenance Work",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:01",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Workplace Join\\Automatic-Device-Join|%SystemRoot%\\System32\\dsregcmd.exe $(Arg0) $(Arg1) $(Arg2)": {
+    "name": "\\Microsoft\\Windows\\Workplace Join\\Automatic-Device-Join",
+    "path": "%SystemRoot%\\System32\\dsregcmd.exe $(Arg0) $(Arg1) $(Arg2)",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:01",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\SpacePort\\SpaceManagerTask|%windir%\\system32\\spaceman.exe /Work": {
+    "name": "\\Microsoft\\Windows\\SpacePort\\SpaceManagerTask",
+    "path": "%windir%\\system32\\spaceman.exe /Work",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Workplace Join\\Device-Sync|COM handler": {
+    "name": "\\Microsoft\\Windows\\Workplace Join\\Device-Sync",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:01",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Speech\\SpeechModelDownloadTask|%windir%\\system32\\speech_onecore\\common\\SpeechModelDownload.exe": {
+    "name": "\\Microsoft\\Windows\\Speech\\SpeechModelDownloadTask",
+    "path": "%windir%\\system32\\speech_onecore\\common\\SpeechModelDownload.exe",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Workplace Join\\Recovery-Check|%SystemRoot%\\System32\\dsregcmd.exe /checkrecovery": {
+    "name": "\\Microsoft\\Windows\\Workplace Join\\Recovery-Check",
+    "path": "%SystemRoot%\\System32\\dsregcmd.exe /checkrecovery",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:01",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\StateRepository\\MaintenanceTasks|%windir%\\system32\\rundll32.exe %windir%\\system32\\Windows.StateRepositoryClient.dll,StateRepositoryDoMaintenanceTasks": {
+    "name": "\\Microsoft\\Windows\\StateRepository\\MaintenanceTasks",
+    "path": "%windir%\\system32\\rundll32.exe %windir%\\system32\\Windows.StateRepositoryClient.dll,StateRepositoryDoMaintenanceTasks",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\WwanSvc\\NotificationTask|%SystemRoot%\\System32\\WiFiTask.exe wwan": {
+    "name": "\\Microsoft\\Windows\\WwanSvc\\NotificationTask",
+    "path": "%SystemRoot%\\System32\\WiFiTask.exe wwan",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:01",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Storage Tiers Management\\Storage Tiers Management Initialization|COM handler": {
+    "name": "\\Microsoft\\Windows\\Storage Tiers Management\\Storage Tiers Management Initialization",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\WwanSvc\\OobeDiscovery|COM handler": {
+    "name": "\\Microsoft\\Windows\\WwanSvc\\OobeDiscovery",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:01",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Storage Tiers Management\\Storage Tiers Optimization|%windir%\\system32\\defrag.exe -c -h -g -# -m 8 -i 13500": {
+    "name": "\\Microsoft\\Windows\\Storage Tiers Management\\Storage Tiers Optimization",
+    "path": "%windir%\\system32\\defrag.exe -c -h -g -# -m 8 -i 13500",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Subscription\\EnableLicenseAcquisition|%SystemRoot%\\system32\\ClipRenew.exe -e": {
+    "name": "\\Microsoft\\Windows\\Subscription\\EnableLicenseAcquisition",
+    "path": "%SystemRoot%\\system32\\ClipRenew.exe -e",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\XblGameSave\\XblGameSaveTask|%windir%\\System32\\XblGameSaveTask.exe standby": {
+    "name": "\\Microsoft\\XblGameSave\\XblGameSaveTask",
+    "path": "%windir%\\System32\\XblGameSaveTask.exe standby",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:01",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Subscription\\LicenseAcquisition|%SystemRoot%\\system32\\ClipRenew.exe": {
+    "name": "\\Microsoft\\Windows\\Subscription\\LicenseAcquisition",
+    "path": "%SystemRoot%\\system32\\ClipRenew.exe",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Sustainability\\PowerGridForecastTask|COM handler": {
+    "name": "\\Microsoft\\Windows\\Sustainability\\PowerGridForecastTask",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Sustainability\\SustainabilityTelemetry|COM handler": {
+    "name": "\\Microsoft\\Windows\\Sustainability\\SustainabilityTelemetry",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Sysmain\\HybridDriveCachePrepopulate|COM handler": {
+    "name": "\\Microsoft\\Windows\\Sysmain\\HybridDriveCachePrepopulate",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Sysmain\\HybridDriveCacheRebalance|COM handler": {
+    "name": "\\Microsoft\\Windows\\Sysmain\\HybridDriveCacheRebalance",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Sysmain\\ResPriStaticDbSync|COM handler": {
+    "name": "\\Microsoft\\Windows\\Sysmain\\ResPriStaticDbSync",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Sysmain\\WsSwapAssessmentTask|%windir%\\system32\\rundll32.exe sysmain.dll,PfSvWsSwapAssessmentTask": {
+    "name": "\\Microsoft\\Windows\\Sysmain\\WsSwapAssessmentTask",
+    "path": "%windir%\\system32\\rundll32.exe sysmain.dll,PfSvWsSwapAssessmentTask",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\SystemRestore\\SR|%windir%\\system32\\srtasks.exe ExecuteScheduledSPPCreation": {
+    "name": "\\Microsoft\\Windows\\SystemRestore\\SR",
+    "path": "%windir%\\system32\\srtasks.exe ExecuteScheduledSPPCreation",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Task Manager\\Interactive|COM handler": {
+    "name": "\\Microsoft\\Windows\\Task Manager\\Interactive",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\TextServicesFramework\\MsCtfMonitor|COM handler": {
+    "name": "\\Microsoft\\Windows\\TextServicesFramework\\MsCtfMonitor",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Time Synchronization\\ForceSynchronizeTime|COM handler": {
+    "name": "\\Microsoft\\Windows\\Time Synchronization\\ForceSynchronizeTime",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Time Synchronization\\SynchronizeTime|%windir%\\system32\\sc.exe start w32time task_started": {
+    "name": "\\Microsoft\\Windows\\Time Synchronization\\SynchronizeTime",
+    "path": "%windir%\\system32\\sc.exe start w32time task_started",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Time Zone\\SynchronizeTimeZone|%windir%\\system32\\tzsync.exe": {
+    "name": "\\Microsoft\\Windows\\Time Zone\\SynchronizeTimeZone",
+    "path": "%windir%\\system32\\tzsync.exe",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\TPM\\Tpm-HASCertRetr|COM handler": {
+    "name": "\\Microsoft\\Windows\\TPM\\Tpm-HASCertRetr",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\TPM\\Tpm-Maintenance|COM handler": {
+    "name": "\\Microsoft\\Windows\\TPM\\Tpm-Maintenance",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\TPM\\Tpm-PreAttestationHealthCheck|COM handler": {
+    "name": "\\Microsoft\\Windows\\TPM\\Tpm-PreAttestationHealthCheck",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\UpdateOrchestrator\\Report policies|%systemroot%\\system32\\usoclient.exe ReportPolicies": {
+    "name": "\\Microsoft\\Windows\\UpdateOrchestrator\\Report policies",
+    "path": "%systemroot%\\system32\\usoclient.exe ReportPolicies",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\UpdateOrchestrator\\Schedule Maintenance Work|%systemroot%\\system32\\usoclient.exe StartMaintenanceWork": {
+    "name": "\\Microsoft\\Windows\\UpdateOrchestrator\\Schedule Maintenance Work",
+    "path": "%systemroot%\\system32\\usoclient.exe StartMaintenanceWork",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\UpdateOrchestrator\\Schedule Scan|%systemroot%\\system32\\usoclient.exe StartScan": {
+    "name": "\\Microsoft\\Windows\\UpdateOrchestrator\\Schedule Scan",
+    "path": "%systemroot%\\system32\\usoclient.exe StartScan",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\UpdateOrchestrator\\Schedule Scan Static Task|%systemroot%\\system32\\usoclient.exe StartScan": {
+    "name": "\\Microsoft\\Windows\\UpdateOrchestrator\\Schedule Scan Static Task",
+    "path": "%systemroot%\\system32\\usoclient.exe StartScan",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\UpdateOrchestrator\\Schedule Wake To Work|%systemroot%\\system32\\usoclient.exe StartWork": {
+    "name": "\\Microsoft\\Windows\\UpdateOrchestrator\\Schedule Wake To Work",
+    "path": "%systemroot%\\system32\\usoclient.exe StartWork",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\UpdateOrchestrator\\Schedule Work|%systemroot%\\system32\\usoclient.exe StartWork": {
+    "name": "\\Microsoft\\Windows\\UpdateOrchestrator\\Schedule Work",
+    "path": "%systemroot%\\system32\\usoclient.exe StartWork",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\UpdateOrchestrator\\Start Oobe Expedite Work|%systemroot%\\system32\\usoclient.exe StartWork": {
+    "name": "\\Microsoft\\Windows\\UpdateOrchestrator\\Start Oobe Expedite Work",
+    "path": "%systemroot%\\system32\\usoclient.exe StartWork",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\UpdateOrchestrator\\StartOobeAppsScanAfterUpdate|%systemroot%\\system32\\usoclient.exe StartOobeAppsScanAfterUpdate": {
+    "name": "\\Microsoft\\Windows\\UpdateOrchestrator\\StartOobeAppsScanAfterUpdate",
+    "path": "%systemroot%\\system32\\usoclient.exe StartOobeAppsScanAfterUpdate",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\UpdateOrchestrator\\StartOobeAppsScan_LicenseAccepted|%systemroot%\\system32\\usoclient.exe StartOobeAppsScan": {
+    "name": "\\Microsoft\\Windows\\UpdateOrchestrator\\StartOobeAppsScan_LicenseAccepted",
+    "path": "%systemroot%\\system32\\usoclient.exe StartOobeAppsScan",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\UpdateOrchestrator\\UIEOrchestrator|%systemroot%\\system32\\UIEOrchestratorStub.exe /SendHeartbeat": {
+    "name": "\\Microsoft\\Windows\\UpdateOrchestrator\\UIEOrchestrator",
+    "path": "%systemroot%\\system32\\UIEOrchestratorStub.exe /SendHeartbeat",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\UpdateOrchestrator\\USO_UxBroker|%systemroot%\\system32\\MusNotification.exe": {
+    "name": "\\Microsoft\\Windows\\UpdateOrchestrator\\USO_UxBroker",
+    "path": "%systemroot%\\system32\\MusNotification.exe",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\UpdateOrchestrator\\UUS Failover Task|%windir%\\System32\\MLEngineStub.exe HandleUusFailoverEvaluationSignalFromWnf": {
+    "name": "\\Microsoft\\Windows\\UpdateOrchestrator\\UUS Failover Task",
+    "path": "%windir%\\System32\\MLEngineStub.exe HandleUusFailoverEvaluationSignalFromWnf",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\UPnP\\UPnPHostConfig|sc.exe config upnphost start= auto": {
+    "name": "\\Microsoft\\Windows\\UPnP\\UPnPHostConfig",
+    "path": "sc.exe config upnphost start= auto",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\UsageAndQualityInsights\\UsageAndQualityInsights-MaintenanceTask|C:\\Windows\\System32\\Microsoft.Data.UsageAndQualityInsights.MaintenanceTask.exe": {
+    "name": "\\Microsoft\\Windows\\UsageAndQualityInsights\\UsageAndQualityInsights-MaintenanceTask",
+    "path": "C:\\Windows\\System32\\Microsoft.Data.UsageAndQualityInsights.MaintenanceTask.exe",
+    "hash": "7fd549096c036216b40588ff995227d77822c95badc6f1b1eaa64ea12c0a0c64",
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\USB\\Usb-Notifications|COM handler": {
+    "name": "\\Microsoft\\Windows\\USB\\Usb-Notifications",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:01",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\User Profile Service\\HiveUploadTask|COM handler": {
+    "name": "\\Microsoft\\Windows\\User Profile Service\\HiveUploadTask",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:01",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\WaaSMedic\\PerformRemediation|COM handler": {
+    "name": "\\Microsoft\\Windows\\WaaSMedic\\PerformRemediation",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:01",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\WCM\\WiFiTask|%SystemRoot%\\System32\\WiFiTask.exe": {
+    "name": "\\Microsoft\\Windows\\WCM\\WiFiTask",
+    "path": "%SystemRoot%\\System32\\WiFiTask.exe",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:01",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\WDI\\ResolutionHost|COM handler": {
+    "name": "\\Microsoft\\Windows\\WDI\\ResolutionHost",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:01",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Windows Defender\\Windows Defender Cache Maintenance|C:\\ProgramData\\Microsoft\\Windows Defender\\Platform\\4.18.26010.5-0\\MpCmdRun.exe -IdleTask -TaskName WdCacheMaintenance": {
+    "name": "\\Microsoft\\Windows\\Windows Defender\\Windows Defender Cache Maintenance",
+    "path": "C:\\ProgramData\\Microsoft\\Windows Defender\\Platform\\4.18.26010.5-0\\MpCmdRun.exe -IdleTask -TaskName WdCacheMaintenance",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:01",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Windows Defender\\Windows Defender Cleanup|C:\\ProgramData\\Microsoft\\Windows Defender\\Platform\\4.18.26010.5-0\\MpCmdRun.exe -IdleTask -TaskName WdCleanup": {
+    "name": "\\Microsoft\\Windows\\Windows Defender\\Windows Defender Cleanup",
+    "path": "C:\\ProgramData\\Microsoft\\Windows Defender\\Platform\\4.18.26010.5-0\\MpCmdRun.exe -IdleTask -TaskName WdCleanup",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:01",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Windows Defender\\Windows Defender Scheduled Scan|C:\\ProgramData\\Microsoft\\Windows Defender\\Platform\\4.18.26010.5-0\\MpCmdRun.exe Scan -ScheduleJob -ScanTrigger 55 -IdleScheduledJob": {
+    "name": "\\Microsoft\\Windows\\Windows Defender\\Windows Defender Scheduled Scan",
+    "path": "C:\\ProgramData\\Microsoft\\Windows Defender\\Platform\\4.18.26010.5-0\\MpCmdRun.exe Scan -ScheduleJob -ScanTrigger 55 -IdleScheduledJob",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:01",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Windows Defender\\Windows Defender Verification|C:\\ProgramData\\Microsoft\\Windows Defender\\Platform\\4.18.26010.5-0\\MpCmdRun.exe -IdleTask -TaskName WdVerification": {
+    "name": "\\Microsoft\\Windows\\Windows Defender\\Windows Defender Verification",
+    "path": "C:\\ProgramData\\Microsoft\\Windows Defender\\Platform\\4.18.26010.5-0\\MpCmdRun.exe -IdleTask -TaskName WdVerification",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:01",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Windows Error Reporting\\QueueReporting|%windir%\\system32\\wermgr.exe -upload": {
+    "name": "\\Microsoft\\Windows\\Windows Error Reporting\\QueueReporting",
+    "path": "%windir%\\system32\\wermgr.exe -upload",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:01",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Windows Filtering Platform\\BfeOnServiceStartTypeChange|%windir%\\system32\\rundll32.exe bfe.dll,BfeOnServiceStartTypeChange": {
+    "name": "\\Microsoft\\Windows\\Windows Filtering Platform\\BfeOnServiceStartTypeChange",
+    "path": "%windir%\\system32\\rundll32.exe bfe.dll,BfeOnServiceStartTypeChange",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:01",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Windows Media Sharing\\UpdateLibrary|\"%ProgramFiles%\\Windows Media Player\\wmpnscfg.exe\"": {
+    "name": "\\Microsoft\\Windows\\Windows Media Sharing\\UpdateLibrary",
+    "path": "\"%ProgramFiles%\\Windows Media Player\\wmpnscfg.exe\"",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:01",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\WindowsAI\\Recall\\InitialConfiguration|COM handler": {
+    "name": "\\Microsoft\\Windows\\WindowsAI\\Recall\\InitialConfiguration",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:01",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\WindowsAI\\Recall\\PolicyConfiguration|COM handler": {
+    "name": "\\Microsoft\\Windows\\WindowsAI\\Recall\\PolicyConfiguration",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:01",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\WindowsAI\\Settings\\InitialConfiguration|COM handler": {
+    "name": "\\Microsoft\\Windows\\WindowsAI\\Settings\\InitialConfiguration",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:01",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\WindowsColorSystem\\Calibration Loader|COM handler": {
+    "name": "\\Microsoft\\Windows\\WindowsColorSystem\\Calibration Loader",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:01",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\WindowsUpdate\\Refresh Group Policy Cache|COM handler": {
+    "name": "\\Microsoft\\Windows\\WindowsUpdate\\Refresh Group Policy Cache",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:01",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\WindowsUpdate\\Scheduled Start|%systemroot%\\System32\\sc.exe start wuauserv": {
+    "name": "\\Microsoft\\Windows\\WindowsUpdate\\Scheduled Start",
+    "path": "%systemroot%\\System32\\sc.exe start wuauserv",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:01",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Wininet\\CacheTask|COM handler": {
+    "name": "\\Microsoft\\Windows\\Wininet\\CacheTask",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:01",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\WlanSvc\\CDSSync|COM handler": {
+    "name": "\\Microsoft\\Windows\\WlanSvc\\CDSSync",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:01",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\WlanSvc\\MoProfileManagement|COM handler": {
+    "name": "\\Microsoft\\Windows\\WlanSvc\\MoProfileManagement",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 10:24:03",
+    "last_seen": "2026-03-12 12:32:01",
+    "modified": false
+  },
+  "OneDrive|\"C:\\Program Files\\Microsoft OneDrive\\OneDrive.exe\" /background": {
+    "name": "OneDrive",
+    "path": "\"C:\\Program Files\\Microsoft OneDrive\\OneDrive.exe\" /background",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:08",
+    "last_seen": "2026-03-12 12:31:54",
+    "modified": false
+  },
+  "packet-m|C:\\Users\\Asus\\AppData\\Local\\packet-m\\packet-m.exe": {
+    "name": "packet-m",
+    "path": "C:\\Users\\Asus\\AppData\\Local\\packet-m\\packet-m.exe",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:08",
+    "last_seen": "2026-03-12 12:31:54",
+    "modified": false
+  },
+  "Bright VPN|\"C:\\Program Files (x86)\\Bright VPN\\Bright VPN.exe\" --silent": {
+    "name": "Bright VPN",
+    "path": "\"C:\\Program Files (x86)\\Bright VPN\\Bright VPN.exe\" --silent",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:08",
+    "last_seen": "2026-03-12 12:31:54",
+    "modified": false
+  },
+  "SentinelTest_virus|C:\\Windows\\System32\\calc.exe": {
+    "name": "SentinelTest_virus",
+    "path": "C:\\Windows\\System32\\calc.exe",
+    "hash": "81bd48985fa1753e9e2158a7cf969141edddbd050e976801bb477e24a2a06b2a",
+    "first_seen": "2026-03-11 13:56:08",
+    "last_seen": "2026-03-12 12:31:54",
+    "modified": false
+  },
+  "SecurityHealth|%windir%\\system32\\SecurityHealthSystray.exe": {
+    "name": "SecurityHealth",
+    "path": "%windir%\\system32\\SecurityHealthSystray.exe",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:08",
+    "last_seen": "2026-03-12 12:31:54",
+    "modified": false
+  },
+  "desktop.ini|C:\\Users\\Asus\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\desktop.ini": {
+    "name": "desktop.ini",
+    "path": "C:\\Users\\Asus\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\desktop.ini",
+    "hash": "cdb11958506a5ba5478e22ed472fa3ae422fe9916d674f290207e1fc29ae5a76",
+    "first_seen": "2026-03-11 13:56:08",
+    "last_seen": "2026-03-12 12:31:54",
+    "modified": false
+  },
+  "\\MyASUS Update Messenger|C:\\Users\\Asus\\AppData\\Local\\MyASUS Update Messenger\\UpdateMessenger.exe /task": {
+    "name": "\\MyASUS Update Messenger",
+    "path": "C:\\Users\\Asus\\AppData\\Local\\MyASUS Update Messenger\\UpdateMessenger.exe /task",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:15",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\OneDrive Per-Machine Standalone Update Task|C:\\Program Files\\Microsoft OneDrive\\OneDriveStandaloneUpdater.exe": {
+    "name": "\\OneDrive Per-Machine Standalone Update Task",
+    "path": "C:\\Program Files\\Microsoft OneDrive\\OneDriveStandaloneUpdater.exe",
+    "hash": "fd1915ee3a731edbbef6d6ffca381c00553ae47777a3509efaace226e52aea36",
+    "first_seen": "2026-03-11 13:56:15",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\OneDrive Reporting Task-S-1-5-21-1811251766-4121720781-3796746868-1001|C:\\Program Files\\Microsoft OneDrive\\OneDriveStandaloneUpdater.exe /reporting": {
+    "name": "\\OneDrive Reporting Task-S-1-5-21-1811251766-4121720781-3796746868-1001",
+    "path": "C:\\Program Files\\Microsoft OneDrive\\OneDriveStandaloneUpdater.exe /reporting",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:15",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\OneDrive Startup Task-S-1-5-21-1811251766-4121720781-3796746868-1001|C:\\Program Files\\Microsoft OneDrive\\26.026.0209.0004\\OneDriveLauncher.exe /startInstances": {
+    "name": "\\OneDrive Startup Task-S-1-5-21-1811251766-4121720781-3796746868-1001",
+    "path": "C:\\Program Files\\Microsoft OneDrive\\26.026.0209.0004\\OneDriveLauncher.exe /startInstances",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:15",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\Opera scheduled assistant Autoupdate 1767939302|C:\\Users\\Asus\\AppData\\Local\\Programs\\Opera\\autoupdate\\opera_autoupdate.exe --scheduledtask --productiscomponent --installdir=\"C:\\Users\\Asus\\AppData\\Local\\Programs\\Opera\\assistant\" --producttype=assistant $(Arg0)": {
+    "name": "\\Opera scheduled assistant Autoupdate 1767939302",
+    "path": "C:\\Users\\Asus\\AppData\\Local\\Programs\\Opera\\autoupdate\\opera_autoupdate.exe --scheduledtask --productiscomponent --installdir=\"C:\\Users\\Asus\\AppData\\Local\\Programs\\Opera\\assistant\" --producttype=assistant $(Arg0)",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:15",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\Opera scheduled Autoupdate 1767939302|C:\\Users\\Asus\\AppData\\Local\\Programs\\Opera\\autoupdate\\opera_autoupdate.exe --scheduledtask $(Arg0)": {
+    "name": "\\Opera scheduled Autoupdate 1767939302",
+    "path": "C:\\Users\\Asus\\AppData\\Local\\Programs\\Opera\\autoupdate\\opera_autoupdate.exe --scheduledtask $(Arg0)",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:15",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\RtkAudUService64_BG|\"\"C:\\Windows\\System32\\DriverStore\\FileRepository\\realtekservice.inf_amd64_04ff63d068f8c626\\RtkAudUService64.exe\"\" -background": {
+    "name": "\\RtkAudUService64_BG",
+    "path": "\"\"C:\\Windows\\System32\\DriverStore\\FileRepository\\realtekservice.inf_amd64_04ff63d068f8c626\\RtkAudUService64.exe\"\" -background",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:15",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\ZoomUpdateTaskUser-S-1-5-21-1811251766-4121720781-3796746868-1001|\"C:\\Users\\Asus\\AppData\\Roaming\\Zoom\\bin\\Zoom.exe\" --action=UpdateSchedule": {
+    "name": "\\ZoomUpdateTaskUser-S-1-5-21-1811251766-4121720781-3796746868-1001",
+    "path": "\"C:\\Users\\Asus\\AppData\\Roaming\\Zoom\\bin\\Zoom.exe\" --action=UpdateSchedule",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:15",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\McAfee\\wps\\McAfee Windows Notification Token|\"\\\\?\\C:\\Program Files\\McAfee\\wps\\1.35.148.1\\mc-wns-client\\mc-wns-client.exe\" /mc_wns_task": {
+    "name": "\\McAfee\\wps\\McAfee Windows Notification Token",
+    "path": "\"\\\\?\\C:\\Program Files\\McAfee\\wps\\1.35.148.1\\mc-wns-client\\mc-wns-client.exe\" /mc_wns_task",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:15",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\Microsoft\\Office\\Office Actions Server|C:\\Program Files\\Microsoft Office\\root\\VFS\\ProgramFilesCommonX64\\Microsoft Shared\\Office16\\ActionsServer\\ActionsServer.exe availabilitycheck": {
+    "name": "\\Microsoft\\Office\\Office Actions Server",
+    "path": "C:\\Program Files\\Microsoft Office\\root\\VFS\\ProgramFilesCommonX64\\Microsoft Shared\\Office16\\ActionsServer\\ActionsServer.exe availabilitycheck",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\Microsoft\\Office\\Office Automatic Updates 2.0|C:\\Program Files\\Common Files\\Microsoft Shared\\ClickToRun\\OfficeC2RClient.exe /frequentupdate SCHEDULEDTASK displaylevel=False": {
+    "name": "\\Microsoft\\Office\\Office Automatic Updates 2.0",
+    "path": "C:\\Program Files\\Common Files\\Microsoft Shared\\ClickToRun\\OfficeC2RClient.exe /frequentupdate SCHEDULEDTASK displaylevel=False",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\Microsoft\\Office\\Office Background Push Maintenance|C:\\Program Files\\Microsoft Office\\root\\vfs\\ProgramFilesCommonx64\\Microsoft Shared\\Office16\\opushutil.exe /pushregistration": {
+    "name": "\\Microsoft\\Office\\Office Background Push Maintenance",
+    "path": "C:\\Program Files\\Microsoft Office\\root\\vfs\\ProgramFilesCommonx64\\Microsoft Shared\\Office16\\opushutil.exe /pushregistration",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\Microsoft\\Office\\Office ClickToRun Service Monitor|C:\\Program Files\\Common Files\\Microsoft Shared\\ClickToRun\\OfficeC2RClient.exe /WatchService": {
+    "name": "\\Microsoft\\Office\\Office ClickToRun Service Monitor",
+    "path": "C:\\Program Files\\Common Files\\Microsoft Shared\\ClickToRun\\OfficeC2RClient.exe /WatchService",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\Microsoft\\Office\\Office Feature Updates|C:\\Program Files\\Microsoft Office\\root\\Office16\\sdxhelper.exe": {
+    "name": "\\Microsoft\\Office\\Office Feature Updates",
+    "path": "C:\\Program Files\\Microsoft Office\\root\\Office16\\sdxhelper.exe",
+    "hash": "0fd7a73b7d64a52b02d1948a6f2e03b06b7df9193075b0f9ece1a126a94eb926",
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\Microsoft\\Office\\Office Feature Updates Logon|C:\\Program Files\\Microsoft Office\\root\\Office16\\sdxhelper.exe /onlogon": {
+    "name": "\\Microsoft\\Office\\Office Feature Updates Logon",
+    "path": "C:\\Program Files\\Microsoft Office\\root\\Office16\\sdxhelper.exe /onlogon",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\Microsoft\\Office\\Office Performance Monitor|C:\\Program Files\\Microsoft Office\\root\\VFS\\ProgramFilesCommonX64\\Microsoft Shared\\Office16\\operfmon.exe": {
+    "name": "\\Microsoft\\Office\\Office Performance Monitor",
+    "path": "C:\\Program Files\\Microsoft Office\\root\\VFS\\ProgramFilesCommonX64\\Microsoft Shared\\Office16\\operfmon.exe",
+    "hash": "dc349f43d8447b9a030990f533a91ce7454483f5b3b9eb817e8384dc3760241a",
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\Microsoft\\Office\\Office Startup Maintenance|C:\\Program Files\\Microsoft Office\\root\\VFS\\ProgramFilesCommonX64\\Microsoft Shared\\Office16\\ActionsServer\\ActionsServer.exe wacheck": {
+    "name": "\\Microsoft\\Office\\Office Startup Maintenance",
+    "path": "C:\\Program Files\\Microsoft Office\\root\\VFS\\ProgramFilesCommonX64\\Microsoft Shared\\Office16\\ActionsServer\\ActionsServer.exe wacheck",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\.NET Framework\\.NET Framework NGEN v4.0.30319|COM handler": {
+    "name": "\\Microsoft\\Windows\\.NET Framework\\.NET Framework NGEN v4.0.30319",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\.NET Framework\\.NET Framework NGEN v4.0.30319 64|COM handler": {
+    "name": "\\Microsoft\\Windows\\.NET Framework\\.NET Framework NGEN v4.0.30319 64",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\.NET Framework\\.NET Framework NGEN v4.0.30319 64 Critical|COM handler": {
+    "name": "\\Microsoft\\Windows\\.NET Framework\\.NET Framework NGEN v4.0.30319 64 Critical",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\.NET Framework\\.NET Framework NGEN v4.0.30319 Critical|COM handler": {
+    "name": "\\Microsoft\\Windows\\.NET Framework\\.NET Framework NGEN v4.0.30319 Critical",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\AccountHealth\\RecoverabilityToastTask|COM handler": {
+    "name": "\\Microsoft\\Windows\\AccountHealth\\RecoverabilityToastTask",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Active Directory Rights Management Services Client\\AD RMS Rights Policy Template Management (Automated)|COM handler": {
+    "name": "\\Microsoft\\Windows\\Active Directory Rights Management Services Client\\AD RMS Rights Policy Template Management (Automated)",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Active Directory Rights Management Services Client\\AD RMS Rights Policy Template Management (Manual)|COM handler": {
+    "name": "\\Microsoft\\Windows\\Active Directory Rights Management Services Client\\AD RMS Rights Policy Template Management (Manual)",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\AppID\\PolicyConverter|%windir%\\system32\\appidpolicyconverter.exe": {
+    "name": "\\Microsoft\\Windows\\AppID\\PolicyConverter",
+    "path": "%windir%\\system32\\appidpolicyconverter.exe",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\AppID\\VerifiedPublisherCertStoreCheck|%windir%\\system32\\appidcertstorecheck.exe": {
+    "name": "\\Microsoft\\Windows\\AppID\\VerifiedPublisherCertStoreCheck",
+    "path": "%windir%\\system32\\appidcertstorecheck.exe",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Application Experience\\MareBackup|Multiple actions": {
+    "name": "\\Microsoft\\Windows\\Application Experience\\MareBackup",
+    "path": "Multiple actions",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Application Experience\\Microsoft Compatibility Appraiser Exp|%windir%\\system32\\compattelrunner.exe -m:appraiser.dll -f:DoScheduledTelemetryRun express": {
+    "name": "\\Microsoft\\Windows\\Application Experience\\Microsoft Compatibility Appraiser Exp",
+    "path": "%windir%\\system32\\compattelrunner.exe -m:appraiser.dll -f:DoScheduledTelemetryRun express",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Application Experience\\PcaPatchDbTask|%windir%\\system32\\rundll32.exe %windir%\\system32\\PcaSvc.dll,PcaPatchSdbTask": {
+    "name": "\\Microsoft\\Windows\\Application Experience\\PcaPatchDbTask",
+    "path": "%windir%\\system32\\rundll32.exe %windir%\\system32\\PcaSvc.dll,PcaPatchSdbTask",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Application Experience\\SdbinstMergeDbTask|%windir%\\system32\\sdbinst.exe -mm": {
+    "name": "\\Microsoft\\Windows\\Application Experience\\SdbinstMergeDbTask",
+    "path": "%windir%\\system32\\sdbinst.exe -mm",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Application Experience\\StartupAppTask|%windir%\\system32\\rundll32.exe Startupscan.dll,SusRunTask": {
+    "name": "\\Microsoft\\Windows\\Application Experience\\StartupAppTask",
+    "path": "%windir%\\system32\\rundll32.exe Startupscan.dll,SusRunTask",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\ApplicationData\\appuriverifierdaily|%windir%\\system32\\AppHostRegistrationVerifier.exe": {
+    "name": "\\Microsoft\\Windows\\ApplicationData\\appuriverifierdaily",
+    "path": "%windir%\\system32\\AppHostRegistrationVerifier.exe",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\ApplicationData\\appuriverifierinstall|%windir%\\system32\\AppHostRegistrationVerifier.exe": {
+    "name": "\\Microsoft\\Windows\\ApplicationData\\appuriverifierinstall",
+    "path": "%windir%\\system32\\AppHostRegistrationVerifier.exe",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\ApplicationData\\CleanupTemporaryState|%windir%\\system32\\rundll32.exe Windows.Storage.ApplicationData.dll,CleanupTemporaryState": {
+    "name": "\\Microsoft\\Windows\\ApplicationData\\CleanupTemporaryState",
+    "path": "%windir%\\system32\\rundll32.exe Windows.Storage.ApplicationData.dll,CleanupTemporaryState",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\ApplicationData\\DsSvcCleanup|%windir%\\system32\\dstokenclean.exe": {
+    "name": "\\Microsoft\\Windows\\ApplicationData\\DsSvcCleanup",
+    "path": "%windir%\\system32\\dstokenclean.exe",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\AppListBackup\\Backup|COM handler": {
+    "name": "\\Microsoft\\Windows\\AppListBackup\\Backup",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\AppListBackup\\BackupNonMaintenance|COM handler": {
+    "name": "\\Microsoft\\Windows\\AppListBackup\\BackupNonMaintenance",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\AppxDeploymentClient\\Pre-staged app cleanup|%windir%\\system32\\rundll32.exe %windir%\\system32\\AppxDeploymentClient.dll,AppxPreStageCleanupRunTask": {
+    "name": "\\Microsoft\\Windows\\AppxDeploymentClient\\Pre-staged app cleanup",
+    "path": "%windir%\\system32\\rundll32.exe %windir%\\system32\\AppxDeploymentClient.dll,AppxPreStageCleanupRunTask",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Autochk\\Proxy|%windir%\\system32\\rundll32.exe /d acproxy.dll,PerformAutochkOperations": {
+    "name": "\\Microsoft\\Windows\\Autochk\\Proxy",
+    "path": "%windir%\\system32\\rundll32.exe /d acproxy.dll,PerformAutochkOperations",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\BitLocker\\BitLocker Encrypt All Drives|COM handler": {
+    "name": "\\Microsoft\\Windows\\BitLocker\\BitLocker Encrypt All Drives",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\BitLocker\\BitLocker MDM policy Refresh|COM handler": {
+    "name": "\\Microsoft\\Windows\\BitLocker\\BitLocker MDM policy Refresh",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Bluetooth\\UninstallDeviceTask|BthUdTask.exe $(Arg0)": {
+    "name": "\\Microsoft\\Windows\\Bluetooth\\UninstallDeviceTask",
+    "path": "BthUdTask.exe $(Arg0)",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\BrokerInfrastructure\\BgTaskRegistrationMaintenanceTask|COM handler": {
+    "name": "\\Microsoft\\Windows\\BrokerInfrastructure\\BgTaskRegistrationMaintenanceTask",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\capabilityaccessmanager\\maintenancetasks|%windir%\\system32\\rundll32.exe %windir%\\system32\\CapabilityAccessManager.dll,CapabilityAccessManagerDoStoreMaintenance": {
+    "name": "\\Microsoft\\Windows\\capabilityaccessmanager\\maintenancetasks",
+    "path": "%windir%\\system32\\rundll32.exe %windir%\\system32\\CapabilityAccessManager.dll,CapabilityAccessManagerDoStoreMaintenance",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\CertificateServicesClient\\UserTask|COM handler": {
+    "name": "\\Microsoft\\Windows\\CertificateServicesClient\\UserTask",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\CertificateServicesClient\\UserTask-Roam|COM handler": {
+    "name": "\\Microsoft\\Windows\\CertificateServicesClient\\UserTask-Roam",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Chkdsk\\ProactiveScan|COM handler": {
+    "name": "\\Microsoft\\Windows\\Chkdsk\\ProactiveScan",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Chkdsk\\SyspartRepair|%windir%\\system32\\bcdboot.exe %windir% /sysrepair": {
+    "name": "\\Microsoft\\Windows\\Chkdsk\\SyspartRepair",
+    "path": "%windir%\\system32\\bcdboot.exe %windir% /sysrepair",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\CloudExperienceHost\\CreateObjectTask|COM handler": {
+    "name": "\\Microsoft\\Windows\\CloudExperienceHost\\CreateObjectTask",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\CloudRestore\\Backup|COM handler": {
+    "name": "\\Microsoft\\Windows\\CloudRestore\\Backup",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\CloudRestore\\Restore|COM handler": {
+    "name": "\\Microsoft\\Windows\\CloudRestore\\Restore",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\ConsentUX\\UnifiedConsent\\UnifiedConsentSyncTask|COM handler": {
+    "name": "\\Microsoft\\Windows\\ConsentUX\\UnifiedConsent\\UnifiedConsentSyncTask",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Customer Experience Improvement Program\\Consolidator|%SystemRoot%\\System32\\wsqmcons.exe": {
+    "name": "\\Microsoft\\Windows\\Customer Experience Improvement Program\\Consolidator",
+    "path": "%SystemRoot%\\System32\\wsqmcons.exe",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Customer Experience Improvement Program\\UsbCeip|COM handler": {
+    "name": "\\Microsoft\\Windows\\Customer Experience Improvement Program\\UsbCeip",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Data Integrity Scan\\Data Integrity Check And Scan|COM handler": {
+    "name": "\\Microsoft\\Windows\\Data Integrity Scan\\Data Integrity Check And Scan",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Data Integrity Scan\\Data Integrity Scan|COM handler": {
+    "name": "\\Microsoft\\Windows\\Data Integrity Scan\\Data Integrity Scan",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Data Integrity Scan\\Data Integrity Scan for Crash Recovery|COM handler": {
+    "name": "\\Microsoft\\Windows\\Data Integrity Scan\\Data Integrity Scan for Crash Recovery",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Defrag\\ScheduledDefrag|%windir%\\system32\\defrag.exe -c -h -o -$": {
+    "name": "\\Microsoft\\Windows\\Defrag\\ScheduledDefrag",
+    "path": "%windir%\\system32\\defrag.exe -c -h -o -$",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Device Information\\Device|%windir%\\system32\\devicecensus.exe SystemCxt": {
+    "name": "\\Microsoft\\Windows\\Device Information\\Device",
+    "path": "%windir%\\system32\\devicecensus.exe SystemCxt",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Device Information\\Device User|%windir%\\system32\\devicecensus.exe UserCxt": {
+    "name": "\\Microsoft\\Windows\\Device Information\\Device User",
+    "path": "%windir%\\system32\\devicecensus.exe UserCxt",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Device Setup\\Driver Recovery on Reboot|COM handler": {
+    "name": "\\Microsoft\\Windows\\Device Setup\\Driver Recovery on Reboot",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Diagnosis\\RecommendedTroubleshootingScanner|COM handler": {
+    "name": "\\Microsoft\\Windows\\Diagnosis\\RecommendedTroubleshootingScanner",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:16",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Diagnosis\\Scheduled|COM handler": {
+    "name": "\\Microsoft\\Windows\\Diagnosis\\Scheduled",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Diagnosis\\UnexpectedCodepath|%windir%\\system32\\UCConfigTask.exe": {
+    "name": "\\Microsoft\\Windows\\Diagnosis\\UnexpectedCodepath",
+    "path": "%windir%\\system32\\UCConfigTask.exe",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\DirectX\\DirectXDatabaseUpdater|%windir%\\system32\\directxdatabaseupdater.exe": {
+    "name": "\\Microsoft\\Windows\\DirectX\\DirectXDatabaseUpdater",
+    "path": "%windir%\\system32\\directxdatabaseupdater.exe",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\DirectX\\DXGIAdapterCache|%windir%\\system32\\dxgiadaptercache.exe": {
+    "name": "\\Microsoft\\Windows\\DirectX\\DXGIAdapterCache",
+    "path": "%windir%\\system32\\dxgiadaptercache.exe",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\DiskCleanup\\SilentCleanup|%windir%\\system32\\cleanmgr.exe /autocleanstoragesense /d %systemdrive%": {
+    "name": "\\Microsoft\\Windows\\DiskCleanup\\SilentCleanup",
+    "path": "%windir%\\system32\\cleanmgr.exe /autocleanstoragesense /d %systemdrive%",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\DiskDiagnostic\\Microsoft-Windows-DiskDiagnosticDataCollector|%windir%\\system32\\rundll32.exe dfdts.dll,DfdGetDefaultPolicyAndSMART": {
+    "name": "\\Microsoft\\Windows\\DiskDiagnostic\\Microsoft-Windows-DiskDiagnosticDataCollector",
+    "path": "%windir%\\system32\\rundll32.exe dfdts.dll,DfdGetDefaultPolicyAndSMART",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\DiskDiagnostic\\Microsoft-Windows-DiskDiagnosticResolver|%windir%\\system32\\DFDWiz.exe": {
+    "name": "\\Microsoft\\Windows\\DiskDiagnostic\\Microsoft-Windows-DiskDiagnosticResolver",
+    "path": "%windir%\\system32\\DFDWiz.exe",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\DiskFootprint\\Diagnostics|%windir%\\system32\\disksnapshot.exe -z": {
+    "name": "\\Microsoft\\Windows\\DiskFootprint\\Diagnostics",
+    "path": "%windir%\\system32\\disksnapshot.exe -z",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\DiskFootprint\\StorageSense|COM handler": {
+    "name": "\\Microsoft\\Windows\\DiskFootprint\\StorageSense",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\DUSM\\dusmtask|%SystemRoot%\\System32\\dusmtask.exe": {
+    "name": "\\Microsoft\\Windows\\DUSM\\dusmtask",
+    "path": "%SystemRoot%\\System32\\dusmtask.exe",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\EDP\\EDP App Launch Task|COM handler": {
+    "name": "\\Microsoft\\Windows\\EDP\\EDP App Launch Task",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\EDP\\EDP Auth Task|COM handler": {
+    "name": "\\Microsoft\\Windows\\EDP\\EDP Auth Task",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\EDP\\EDP Inaccessible Credentials Task|COM handler": {
+    "name": "\\Microsoft\\Windows\\EDP\\EDP Inaccessible Credentials Task",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\EDP\\StorageCardEncryption Task|COM handler": {
+    "name": "\\Microsoft\\Windows\\EDP\\StorageCardEncryption Task",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\ExploitGuard\\ExploitGuard MDM policy Refresh|COM handler": {
+    "name": "\\Microsoft\\Windows\\ExploitGuard\\ExploitGuard MDM policy Refresh",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Feedback\\Siuf\\DmClient|%windir%\\system32\\dmclient.exe": {
+    "name": "\\Microsoft\\Windows\\Feedback\\Siuf\\DmClient",
+    "path": "%windir%\\system32\\dmclient.exe",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Feedback\\Siuf\\DmClientOnScenarioDownload|%windir%\\system32\\dmclient.exe utcwnf": {
+    "name": "\\Microsoft\\Windows\\Feedback\\Siuf\\DmClientOnScenarioDownload",
+    "path": "%windir%\\system32\\dmclient.exe utcwnf",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\FileHistory\\File History (maintenance mode)|COM handler": {
+    "name": "\\Microsoft\\Windows\\FileHistory\\File History (maintenance mode)",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Flighting\\FeatureConfig\\BootstrapUsageDataReporting|COM handler": {
+    "name": "\\Microsoft\\Windows\\Flighting\\FeatureConfig\\BootstrapUsageDataReporting",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Flighting\\FeatureConfig\\GovernedFeatureUsageProcessing|COM handler": {
+    "name": "\\Microsoft\\Windows\\Flighting\\FeatureConfig\\GovernedFeatureUsageProcessing",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Flighting\\FeatureConfig\\ReconcileConfigs|COM handler": {
+    "name": "\\Microsoft\\Windows\\Flighting\\FeatureConfig\\ReconcileConfigs",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Flighting\\FeatureConfig\\ReconcileFeatures|COM handler": {
+    "name": "\\Microsoft\\Windows\\Flighting\\FeatureConfig\\ReconcileFeatures",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Flighting\\FeatureConfig\\UsageDataFlushing|COM handler": {
+    "name": "\\Microsoft\\Windows\\Flighting\\FeatureConfig\\UsageDataFlushing",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Flighting\\FeatureConfig\\UsageDataReceiver|COM handler": {
+    "name": "\\Microsoft\\Windows\\Flighting\\FeatureConfig\\UsageDataReceiver",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Flighting\\FeatureConfig\\UsageDataReporting|COM handler": {
+    "name": "\\Microsoft\\Windows\\Flighting\\FeatureConfig\\UsageDataReporting",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Flighting\\OneSettings\\RefreshCache|COM handler": {
+    "name": "\\Microsoft\\Windows\\Flighting\\OneSettings\\RefreshCache",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Hotpatch\\Monitoring|%systemroot%\\system32\\cmd.exe /d /c %systemroot%\\system32\\hpatchmonTask.cmd": {
+    "name": "\\Microsoft\\Windows\\Hotpatch\\Monitoring",
+    "path": "%systemroot%\\system32\\cmd.exe /d /c %systemroot%\\system32\\hpatchmonTask.cmd",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\input\\InputSettingsRestoreDataAvailable|COM handler": {
+    "name": "\\Microsoft\\Windows\\input\\InputSettingsRestoreDataAvailable",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\input\\LocalUserSyncDataAvailable|COM handler": {
+    "name": "\\Microsoft\\Windows\\input\\LocalUserSyncDataAvailable",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\input\\MouseSyncDataAvailable|COM handler": {
+    "name": "\\Microsoft\\Windows\\input\\MouseSyncDataAvailable",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\input\\PenSyncDataAvailable|COM handler": {
+    "name": "\\Microsoft\\Windows\\input\\PenSyncDataAvailable",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\input\\RemoteMouseSyncDataAvailable|COM handler": {
+    "name": "\\Microsoft\\Windows\\input\\RemoteMouseSyncDataAvailable",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\input\\RemotePenSyncDataAvailable|COM handler": {
+    "name": "\\Microsoft\\Windows\\input\\RemotePenSyncDataAvailable",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\input\\RemoteTouchpadSyncDataAvailable|COM handler": {
+    "name": "\\Microsoft\\Windows\\input\\RemoteTouchpadSyncDataAvailable",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\input\\syncpensettings|COM handler": {
+    "name": "\\Microsoft\\Windows\\input\\syncpensettings",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\input\\TouchpadSyncDataAvailable|COM handler": {
+    "name": "\\Microsoft\\Windows\\input\\TouchpadSyncDataAvailable",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\InstallService\\RestoreDevice|COM handler": {
+    "name": "\\Microsoft\\Windows\\InstallService\\RestoreDevice",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\InstallService\\ScanForUpdates|COM handler": {
+    "name": "\\Microsoft\\Windows\\InstallService\\ScanForUpdates",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\InstallService\\ScanForUpdatesAsUser|COM handler": {
+    "name": "\\Microsoft\\Windows\\InstallService\\ScanForUpdatesAsUser",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\InstallService\\WakeUpAndContinueUpdates|COM handler": {
+    "name": "\\Microsoft\\Windows\\InstallService\\WakeUpAndContinueUpdates",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\InstallService\\WakeUpAndScanForUpdates|COM handler": {
+    "name": "\\Microsoft\\Windows\\InstallService\\WakeUpAndScanForUpdates",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\International\\Synchronize Language Settings|COM handler": {
+    "name": "\\Microsoft\\Windows\\International\\Synchronize Language Settings",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Kernel\\La57Cleanup|%windir%\\system32\\la57setup.exe": {
+    "name": "\\Microsoft\\Windows\\Kernel\\La57Cleanup",
+    "path": "%windir%\\system32\\la57setup.exe",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\LanguageComponentsInstaller\\Installation|COM handler": {
+    "name": "\\Microsoft\\Windows\\LanguageComponentsInstaller\\Installation",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\LanguageComponentsInstaller\\ReconcileLanguageResources|COM handler": {
+    "name": "\\Microsoft\\Windows\\LanguageComponentsInstaller\\ReconcileLanguageResources",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Location\\WindowsActionDialog|%windir%\\System32\\WindowsActionDialog.exe": {
+    "name": "\\Microsoft\\Windows\\Location\\WindowsActionDialog",
+    "path": "%windir%\\System32\\WindowsActionDialog.exe",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Maintenance\\WinSAT|COM handler": {
+    "name": "\\Microsoft\\Windows\\Maintenance\\WinSAT",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Management\\Autopilot\\DetectHardwareChange|COM handler": {
+    "name": "\\Microsoft\\Windows\\Management\\Autopilot\\DetectHardwareChange",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Management\\Autopilot\\RemediateHardwareChange|COM handler": {
+    "name": "\\Microsoft\\Windows\\Management\\Autopilot\\RemediateHardwareChange",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Management\\Provisioning\\Cellular|%windir%\\system32\\ProvTool.exe /turn 7 /source CellStateChangeTask": {
+    "name": "\\Microsoft\\Windows\\Management\\Provisioning\\Cellular",
+    "path": "%windir%\\system32\\ProvTool.exe /turn 7 /source CellStateChangeTask",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Management\\Provisioning\\Logon|%windir%\\system32\\ProvTool.exe /turn 5 /source LogonIdleTask": {
+    "name": "\\Microsoft\\Windows\\Management\\Provisioning\\Logon",
+    "path": "%windir%\\system32\\ProvTool.exe /turn 5 /source LogonIdleTask",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Management\\Provisioning\\MdmDiagnosticsCleanup|%windir%\\system32\\MdmDiagnosticsTool.exe /clean": {
+    "name": "\\Microsoft\\Windows\\Management\\Provisioning\\MdmDiagnosticsCleanup",
+    "path": "%windir%\\system32\\MdmDiagnosticsTool.exe /clean",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Management\\Provisioning\\Retry|%windir%\\system32\\ProvTool.exe /turn 5 /source ProvRetryTask": {
+    "name": "\\Microsoft\\Windows\\Management\\Provisioning\\Retry",
+    "path": "%windir%\\system32\\ProvTool.exe /turn 5 /source ProvRetryTask",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Management\\Provisioning\\RunOnReboot|%windir%\\system32\\ProvTool.exe /turn 5 /source ContinueSessionTask": {
+    "name": "\\Microsoft\\Windows\\Management\\Provisioning\\RunOnReboot",
+    "path": "%windir%\\system32\\ProvTool.exe /turn 5 /source ContinueSessionTask",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Maps\\MapsToastTask|COM handler": {
+    "name": "\\Microsoft\\Windows\\Maps\\MapsToastTask",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Maps\\MapsUpdateTask|COM handler": {
+    "name": "\\Microsoft\\Windows\\Maps\\MapsUpdateTask",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\MemoryDiagnostic\\AutomaticOfflineMemoryDiagnostic|COM handler": {
+    "name": "\\Microsoft\\Windows\\MemoryDiagnostic\\AutomaticOfflineMemoryDiagnostic",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\MemoryDiagnostic\\ProcessMemoryDiagnosticEvents|COM handler": {
+    "name": "\\Microsoft\\Windows\\MemoryDiagnostic\\ProcessMemoryDiagnosticEvents",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\MemoryDiagnostic\\RunFullMemoryDiagnostic|COM handler": {
+    "name": "\\Microsoft\\Windows\\MemoryDiagnostic\\RunFullMemoryDiagnostic",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\MUI\\LPRemove|%windir%\\system32\\lpremove.exe": {
+    "name": "\\Microsoft\\Windows\\MUI\\LPRemove",
+    "path": "%windir%\\system32\\lpremove.exe",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\MUI\\Mcbuilder|C:\\Windows\\System32\\mcbuilder.exe": {
+    "name": "\\Microsoft\\Windows\\MUI\\Mcbuilder",
+    "path": "C:\\Windows\\System32\\mcbuilder.exe",
+    "hash": "7f6058a0c4fefa5e1abcc3fc92326c49500384188870f7ddad7e6f210e5620ef",
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Multimedia\\SystemSoundsService|COM handler": {
+    "name": "\\Microsoft\\Windows\\Multimedia\\SystemSoundsService",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Network Connectivity Status Indicator\\NcsiIdentifyUserProxies|COM handler": {
+    "name": "\\Microsoft\\Windows\\Network Connectivity Status Indicator\\NcsiIdentifyUserProxies",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\NlaSvc\\WiFiTask|%SystemRoot%\\System32\\WiFiTask.exe nla": {
+    "name": "\\Microsoft\\Windows\\NlaSvc\\WiFiTask",
+    "path": "%SystemRoot%\\System32\\WiFiTask.exe nla",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\PCRPF\\PCR Prediction Framework Firmware Update Task|%windir%\\system32\\rundll32.exe %windir%\\system32\\pcrpf.dll,NotifyFirmwareUpdateStaged": {
+    "name": "\\Microsoft\\Windows\\PCRPF\\PCR Prediction Framework Firmware Update Task",
+    "path": "%windir%\\system32\\rundll32.exe %windir%\\system32\\pcrpf.dll,NotifyFirmwareUpdateStaged",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\PerformanceTrace\\RequestTrace|COM handler": {
+    "name": "\\Microsoft\\Windows\\PerformanceTrace\\RequestTrace",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\PerformanceTrace\\WhesvcToast|COM handler": {
+    "name": "\\Microsoft\\Windows\\PerformanceTrace\\WhesvcToast",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Plug and Play\\Device Install Group Policy|COM handler": {
+    "name": "\\Microsoft\\Windows\\Plug and Play\\Device Install Group Policy",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Plug and Play\\Device Install Reboot Required|COM handler": {
+    "name": "\\Microsoft\\Windows\\Plug and Play\\Device Install Reboot Required",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Plug and Play\\Sysprep Generalize Drivers|%SystemRoot%\\System32\\drvinst.exe 6": {
+    "name": "\\Microsoft\\Windows\\Plug and Play\\Sysprep Generalize Drivers",
+    "path": "%SystemRoot%\\System32\\drvinst.exe 6",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Power Efficiency Diagnostics\\AnalyzeSystem|COM handler": {
+    "name": "\\Microsoft\\Windows\\Power Efficiency Diagnostics\\AnalyzeSystem",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Printing\\EduPrintProv|%windir%\\system32\\eduprintprov.exe": {
+    "name": "\\Microsoft\\Windows\\Printing\\EduPrintProv",
+    "path": "%windir%\\system32\\eduprintprov.exe",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Printing\\PrinterCleanupTask|COM handler": {
+    "name": "\\Microsoft\\Windows\\Printing\\PrinterCleanupTask",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Printing\\PrintJobCleanupTask|COM handler": {
+    "name": "\\Microsoft\\Windows\\Printing\\PrintJobCleanupTask",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\RecoveryEnvironment\\VerifyWinRE|COM handler": {
+    "name": "\\Microsoft\\Windows\\RecoveryEnvironment\\VerifyWinRE",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\ReFsDedupSvc\\Initialization|COM handler": {
+    "name": "\\Microsoft\\Windows\\ReFsDedupSvc\\Initialization",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:17",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Registry\\RegIdleBackup|COM handler": {
+    "name": "\\Microsoft\\Windows\\Registry\\RegIdleBackup",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:18",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Servicing\\OOBEFodSetup|%windir%\\system32\\OOBEFodSetup.exe": {
+    "name": "\\Microsoft\\Windows\\Servicing\\OOBEFodSetup",
+    "path": "%windir%\\system32\\OOBEFodSetup.exe",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:18",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Servicing\\StartComponentCleanup|COM handler": {
+    "name": "\\Microsoft\\Windows\\Servicing\\StartComponentCleanup",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:18",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Setup\\PITRTask|COM handler": {
+    "name": "\\Microsoft\\Windows\\Setup\\PITRTask",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:18",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\SharedPC\\Account Cleanup|COM handler": {
+    "name": "\\Microsoft\\Windows\\SharedPC\\Account Cleanup",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:18",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Shell\\CreateObjectTask|COM handler": {
+    "name": "\\Microsoft\\Windows\\Shell\\CreateObjectTask",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:18",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Shell\\FamilySafetyMonitor|%windir%\\System32\\wpcmon.exe": {
+    "name": "\\Microsoft\\Windows\\Shell\\FamilySafetyMonitor",
+    "path": "%windir%\\System32\\wpcmon.exe",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:18",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Shell\\FamilySafetyRefreshTask|COM handler": {
+    "name": "\\Microsoft\\Windows\\Shell\\FamilySafetyRefreshTask",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:18",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Shell\\IndexerAutomaticMaintenance|COM handler": {
+    "name": "\\Microsoft\\Windows\\Shell\\IndexerAutomaticMaintenance",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:18",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Shell\\ThemesSyncedImageDownload|COM handler": {
+    "name": "\\Microsoft\\Windows\\Shell\\ThemesSyncedImageDownload",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:18",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Shell\\UpdateUserPictureTask|COM handler": {
+    "name": "\\Microsoft\\Windows\\Shell\\UpdateUserPictureTask",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:18",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Shell\\UpdateUserPictureTaskContained|COM handler": {
+    "name": "\\Microsoft\\Windows\\Shell\\UpdateUserPictureTaskContained",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 13:56:18",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\ASUS Optimization 36D18D69AFC3|\"C:\\Windows\\System32\\DriverStore\\FileRepository\\asussci2.inf_amd64_d5b92bc7afd7593a\\ASUSOptimization\\AsusHotkey.exe\" -CancelShutdown": {
+    "name": "\\ASUS Optimization 36D18D69AFC3",
+    "path": "\"C:\\Windows\\System32\\DriverStore\\FileRepository\\asussci2.inf_amd64_d5b92bc7afd7593a\\ASUSOptimization\\AsusHotkey.exe\" -CancelShutdown",
+    "hash": null,
+    "first_seen": "2026-03-11 20:07:05",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\ASUS Update Checker 2.0|\"C:\\Windows\\System32\\DriverStore\\FileRepository\\asussci2.inf_amd64_d5b92bc7afd7593a\\ASUSSoftwareManager\\AsusUpdateChecker.exe\"": {
+    "name": "\\ASUS Update Checker 2.0",
+    "path": "\"C:\\Windows\\System32\\DriverStore\\FileRepository\\asussci2.inf_amd64_d5b92bc7afd7593a\\ASUSSoftwareManager\\AsusUpdateChecker.exe\"",
+    "hash": null,
+    "first_seen": "2026-03-11 20:07:05",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\AsusSystemAnalysis_754F3273-0563-4F20-B12F-826510B07474|\"C:\\Windows\\System32\\DriverStore\\FileRepository\\asussci2.inf_amd64_d5b92bc7afd7593a\\ASUSSystemAnalysis\\AsusSystemAnalysis.exe\" -j0": {
+    "name": "\\AsusSystemAnalysis_754F3273-0563-4F20-B12F-826510B07474",
+    "path": "\"C:\\Windows\\System32\\DriverStore\\FileRepository\\asussci2.inf_amd64_d5b92bc7afd7593a\\ASUSSystemAnalysis\\AsusSystemAnalysis.exe\" -j0",
+    "hash": null,
+    "first_seen": "2026-03-11 20:07:05",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\AsusSystemDiagnosis_DriverQuality|\"C:\\Windows\\System32\\DriverStore\\FileRepository\\asussci2.inf_amd64_d5b92bc7afd7593a\\ASUSSystemDiagnosis\\AsusSystemDiagnosis.exe\" -datacollection": {
+    "name": "\\AsusSystemDiagnosis_DriverQuality",
+    "path": "\"C:\\Windows\\System32\\DriverStore\\FileRepository\\asussci2.inf_amd64_d5b92bc7afd7593a\\ASUSSystemDiagnosis\\AsusSystemDiagnosis.exe\" -datacollection",
+    "hash": null,
+    "first_seen": "2026-03-11 20:07:05",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\MicrosoftEdgeUpdateTaskMachineCore{B4F9B819-5FE5-4569-B480-F6E769BB84D1}|C:\\Program Files (x86)\\Microsoft\\EdgeUpdate\\MicrosoftEdgeUpdate.exe /c": {
+    "name": "\\MicrosoftEdgeUpdateTaskMachineCore{B4F9B819-5FE5-4569-B480-F6E769BB84D1}",
+    "path": "C:\\Program Files (x86)\\Microsoft\\EdgeUpdate\\MicrosoftEdgeUpdate.exe /c",
+    "hash": null,
+    "first_seen": "2026-03-11 20:07:05",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\MicrosoftEdgeUpdateTaskMachineUA{EB696D97-F67E-401A-A7BF-3C2FC4B97999}|C:\\Program Files (x86)\\Microsoft\\EdgeUpdate\\MicrosoftEdgeUpdate.exe /ua /installsource scheduler": {
+    "name": "\\MicrosoftEdgeUpdateTaskMachineUA{EB696D97-F67E-401A-A7BF-3C2FC4B97999}",
+    "path": "C:\\Program Files (x86)\\Microsoft\\EdgeUpdate\\MicrosoftEdgeUpdate.exe /ua /installsource scheduler",
+    "hash": null,
+    "first_seen": "2026-03-11 20:07:05",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\GoogleSystem\\GoogleUpdater\\GoogleUpdaterTaskSystem147.0.7703.0{37B279C9-5960-458D-A41D-6DDD445A7E8E}|\"C:\\Program Files (x86)\\Google\\GoogleUpdater\\147.0.7703.0\\updater.exe\" --wake --system": {
+    "name": "\\GoogleSystem\\GoogleUpdater\\GoogleUpdaterTaskSystem147.0.7703.0{37B279C9-5960-458D-A41D-6DDD445A7E8E}",
+    "path": "\"C:\\Program Files (x86)\\Google\\GoogleUpdater\\147.0.7703.0\\updater.exe\" --wake --system",
+    "hash": null,
+    "first_seen": "2026-03-11 20:07:05",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\McAfee\\wps\\McAfee Anti-tracker notification|COM handler": {
+    "name": "\\McAfee\\wps\\McAfee Anti-tracker notification",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 20:07:05",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\McAfee\\wps\\McAfee Anti-Tracker Scanner|COM handler": {
+    "name": "\\McAfee\\wps\\McAfee Anti-Tracker Scanner",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 20:07:05",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\McAfee\\wps\\McAfee Cloud Configuration Check|COM handler": {
+    "name": "\\McAfee\\wps\\McAfee Cloud Configuration Check",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 20:07:05",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\McAfee\\wps\\McAfee Fake Alert Blocker|COM handler": {
+    "name": "\\McAfee\\wps\\McAfee Fake Alert Blocker",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 20:07:05",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\McAfee\\wps\\McAfee Health Check|\"C:\\Program Files\\McAfee\\wps\\1.35.148.1\\sustainability\\mc-sustainability.exe\"": {
+    "name": "\\McAfee\\wps\\McAfee Health Check",
+    "path": "\"C:\\Program Files\\McAfee\\wps\\1.35.148.1\\sustainability\\mc-sustainability.exe\"",
+    "hash": null,
+    "first_seen": "2026-03-11 20:07:05",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\McAfee\\wps\\McAfee Hotfix|\"C:\\Program Files\\McAfee\\wps\\1.35.148.1\\dad\\mc-dad.exe\"": {
+    "name": "\\McAfee\\wps\\McAfee Hotfix",
+    "path": "\"C:\\Program Files\\McAfee\\wps\\1.35.148.1\\dad\\mc-dad.exe\"",
+    "hash": null,
+    "first_seen": "2026-03-11 20:07:05",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\McAfee\\wps\\McAfee Message Check|COM handler": {
+    "name": "\\McAfee\\wps\\McAfee Message Check",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 20:07:05",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\McAfee\\wps\\McAfee PC Optimizer Task|COM handler": {
+    "name": "\\McAfee\\wps\\McAfee PC Optimizer Task",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 20:07:05",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\McAfee\\wps\\McAfee restart of PC|COM handler": {
+    "name": "\\McAfee\\wps\\McAfee restart of PC",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 20:07:05",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\McAfee\\wps\\McAfee Scheduled AV Scan|COM handler": {
+    "name": "\\McAfee\\wps\\McAfee Scheduled AV Scan",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 20:07:05",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\McAfee\\wps\\McAfee Scheduled Tracker Remover|COM handler": {
+    "name": "\\McAfee\\wps\\McAfee Scheduled Tracker Remover",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 20:07:05",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\McAfee\\wps\\McAfee Subscription Check|\\\\?\\C:\\Program Files\\McAfee\\wps\\SubscriptionJob\\mc-oem-subjob.exe": {
+    "name": "\\McAfee\\wps\\McAfee Subscription Check",
+    "path": "\\\\?\\C:\\Program Files\\McAfee\\wps\\SubscriptionJob\\mc-oem-subjob.exe",
+    "hash": "4c7bf1567b4343781308750337bbf32e067bb1c59f2648981e8a2c71d36752e4",
+    "first_seen": "2026-03-11 20:07:05",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\McAfee\\wps\\McAfee Updater|COM handler": {
+    "name": "\\McAfee\\wps\\McAfee Updater",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 20:07:05",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\McAfee\\wps\\McAfee Virus Definition Update|COM handler": {
+    "name": "\\McAfee\\wps\\McAfee Virus Definition Update",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 20:07:05",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\AppID\\EDP Policy Manager|COM handler": {
+    "name": "\\Microsoft\\Windows\\AppID\\EDP Policy Manager",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 20:07:06",
+    "last_seen": "2026-03-12 12:31:57",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\AppxDeploymentClient\\UCPD velocity|%windir%\\system32\\UCPDMgr.exe": {
+    "name": "\\Microsoft\\Windows\\AppxDeploymentClient\\UCPD velocity",
+    "path": "%windir%\\system32\\UCPDMgr.exe",
+    "hash": null,
+    "first_seen": "2026-03-11 20:07:06",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\CertificateServicesClient\\AikCertEnrollTask|COM handler": {
+    "name": "\\Microsoft\\Windows\\CertificateServicesClient\\AikCertEnrollTask",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 20:07:06",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\CertificateServicesClient\\CryptoPolicyTask|COM handler": {
+    "name": "\\Microsoft\\Windows\\CertificateServicesClient\\CryptoPolicyTask",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 20:07:06",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\CertificateServicesClient\\KeyPreGenTask|COM handler": {
+    "name": "\\Microsoft\\Windows\\CertificateServicesClient\\KeyPreGenTask",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 20:07:06",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\CertificateServicesClient\\SystemTask|COM handler": {
+    "name": "\\Microsoft\\Windows\\CertificateServicesClient\\SystemTask",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 20:07:07",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Clip\\License Validation|%SystemRoot%\\system32\\ClipUp.exe -p -s -o": {
+    "name": "\\Microsoft\\Windows\\Clip\\License Validation",
+    "path": "%SystemRoot%\\system32\\ClipUp.exe -p -s -o",
+    "hash": null,
+    "first_seen": "2026-03-11 20:07:07",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Device Setup\\Metadata Refresh|COM handler": {
+    "name": "\\Microsoft\\Windows\\Device Setup\\Metadata Refresh",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 20:07:07",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\DeviceDirectoryClient\\HandleCommand|COM handler": {
+    "name": "\\Microsoft\\Windows\\DeviceDirectoryClient\\HandleCommand",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 20:07:07",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\DeviceDirectoryClient\\HandleWnsCommand|COM handler": {
+    "name": "\\Microsoft\\Windows\\DeviceDirectoryClient\\HandleWnsCommand",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 20:07:07",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\DeviceDirectoryClient\\IntegrityCheck|COM handler": {
+    "name": "\\Microsoft\\Windows\\DeviceDirectoryClient\\IntegrityCheck",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 20:07:07",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\DeviceDirectoryClient\\LocateCommandUserSession|COM handler": {
+    "name": "\\Microsoft\\Windows\\DeviceDirectoryClient\\LocateCommandUserSession",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 20:07:07",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\DeviceDirectoryClient\\RegisterDeviceAccountChange|COM handler": {
+    "name": "\\Microsoft\\Windows\\DeviceDirectoryClient\\RegisterDeviceAccountChange",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 20:07:07",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\DeviceDirectoryClient\\RegisterDeviceLocationRightsChange|COM handler": {
+    "name": "\\Microsoft\\Windows\\DeviceDirectoryClient\\RegisterDeviceLocationRightsChange",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 20:07:07",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\DeviceDirectoryClient\\RegisterDevicePeriodic24|COM handler": {
+    "name": "\\Microsoft\\Windows\\DeviceDirectoryClient\\RegisterDevicePeriodic24",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 20:07:07",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\DeviceDirectoryClient\\RegisterDevicePolicyChange|COM handler": {
+    "name": "\\Microsoft\\Windows\\DeviceDirectoryClient\\RegisterDevicePolicyChange",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 20:07:07",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\DeviceDirectoryClient\\RegisterDeviceProtectionStateChanged|COM handler": {
+    "name": "\\Microsoft\\Windows\\DeviceDirectoryClient\\RegisterDeviceProtectionStateChanged",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 20:07:07",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\DeviceDirectoryClient\\RegisterDeviceSettingChange|COM handler": {
+    "name": "\\Microsoft\\Windows\\DeviceDirectoryClient\\RegisterDeviceSettingChange",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 20:07:07",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\DeviceDirectoryClient\\RegisterDeviceWnsFallback|COM handler": {
+    "name": "\\Microsoft\\Windows\\DeviceDirectoryClient\\RegisterDeviceWnsFallback",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 20:07:07",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\DeviceDirectoryClient\\RegisterUserDevice|COM handler": {
+    "name": "\\Microsoft\\Windows\\DeviceDirectoryClient\\RegisterUserDevice",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 20:07:07",
+    "last_seen": "2026-03-12 12:31:58",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\InstallService\\SmartRetry|COM handler": {
+    "name": "\\Microsoft\\Windows\\InstallService\\SmartRetry",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 20:07:08",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\LanguageComponentsInstaller\\Uninstallation|COM handler": {
+    "name": "\\Microsoft\\Windows\\LanguageComponentsInstaller\\Uninstallation",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 20:07:08",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\License Manager\\TempSignedLicenseExchange|COM handler": {
+    "name": "\\Microsoft\\Windows\\License Manager\\TempSignedLicenseExchange",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 20:07:08",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\PI\\Secure-Boot-Update|COM handler": {
+    "name": "\\Microsoft\\Windows\\PI\\Secure-Boot-Update",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 20:07:09",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\PI\\Sqm-Tasks|COM handler": {
+    "name": "\\Microsoft\\Windows\\PI\\Sqm-Tasks",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 20:07:09",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Pluton\\Pluton-Ksp-Provisioning|COM handler": {
+    "name": "\\Microsoft\\Windows\\Pluton\\Pluton-Ksp-Provisioning",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 20:07:09",
+    "last_seen": "2026-03-12 12:31:59",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\PushToInstall\\LoginCheck|%windir%\\system32\\sc.exe start pushtoinstall login": {
+    "name": "\\Microsoft\\Windows\\PushToInstall\\LoginCheck",
+    "path": "%windir%\\system32\\sc.exe start pushtoinstall login",
+    "hash": null,
+    "first_seen": "2026-03-11 20:07:09",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\PushToInstall\\Registration|%windir%\\system32\\sc.exe start pushtoinstall registration": {
+    "name": "\\Microsoft\\Windows\\PushToInstall\\Registration",
+    "path": "%windir%\\system32\\sc.exe start pushtoinstall registration",
+    "hash": null,
+    "first_seen": "2026-03-11 20:07:09",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Ras\\MobilityManager|COM handler": {
+    "name": "\\Microsoft\\Windows\\Ras\\MobilityManager",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 20:07:09",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\RemoteAssistance\\RemoteAssistanceTask|%windir%\\system32\\RAServer.exe /offerraupdate": {
+    "name": "\\Microsoft\\Windows\\RemoteAssistance\\RemoteAssistanceTask",
+    "path": "%windir%\\system32\\RAServer.exe /offerraupdate",
+    "hash": null,
+    "first_seen": "2026-03-11 20:07:09",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  },
+  "\\Microsoft\\Windows\\Shell\\ThemeAssetTask_SyncFODState|COM handler": {
+    "name": "\\Microsoft\\Windows\\Shell\\ThemeAssetTask_SyncFODState",
+    "path": "COM handler",
+    "hash": null,
+    "first_seen": "2026-03-11 20:07:09",
+    "last_seen": "2026-03-12 12:32:00",
+    "modified": false
+  }
+}

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sentinel — Process Map</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet"/>
+  <style>
+    body  { background:#0d1117; color:#c9d1d9; font-family:'Segoe UI',sans-serif; }
+    .navbar { background:#161b22; border-bottom:1px solid #30363d; }
+    .card   { background:#161b22; border:1px solid #30363d; }
+    .table-dark { --bs-table-bg:#161b22; --bs-table-border-color:#30363d; }
+    .row-high   td { background:rgba(220,53,69,0.18) !important; border-left:4px solid #dc3545; }
+    .row-medium td { background:rgba(255,193,7,0.12) !important; border-left:4px solid #ffc107; }
+    .pid-badge { font-family:monospace; font-size:11px;
+                 background:#21262d; border:1px solid #30363d;
+                 padding:2px 6px; border-radius:4px; margin:1px; display:inline-block; }
+  </style>
+</head>
+<body>
+<nav class="navbar navbar-dark px-4 py-3 d-flex justify-content-between">
+  <span class="navbar-brand fw-bold fs-4">
+    <i class="bi bi-shield-lock-fill text-danger me-2"></i>Project Sentinel
+  </span>
+  <div class="d-flex gap-3">
+    <a href="/" class="btn btn-sm btn-outline-secondary">← Dashboard</a>
+    <a href="/logs" class="btn btn-sm btn-outline-info">📜 Logs</a>
+    <a href="/export/csv" class="btn btn-sm btn-outline-success">⬇️ CSV</a>
+    <a href="/export/pdf" class="btn btn-sm btn-outline-danger">⬇️ PDF</a>
+  </div>
+</nav>
+
+<div class="container-fluid px-4 py-4">
+
+  <!-- Suspicious running processes -->
+  {% if suspicious %}
+  <div class="card mb-4 border-danger">
+    <div class="card-header border-danger py-3">
+      <h5 class="mb-0 text-danger">
+        <i class="bi bi-exclamation-octagon-fill me-2"></i>
+        Suspicious Processes Running RIGHT NOW ({{ suspicious|length }})
+      </h5>
+    </div>
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-dark table-hover table-bordered mb-0">
+          <thead class="table-secondary text-dark">
+            <tr><th>PID</th><th>Name</th><th>Executable</th><th>User</th><th>Reason</th></tr>
+          </thead>
+          <tbody>
+            {% for p in suspicious %}
+            <tr style="border-left:4px solid #dc3545">
+              <td class="font-monospace text-warning">{{ p.pid }}</td>
+              <td class="fw-bold text-danger">{{ p.name }}</td>
+              <td class="text-secondary" style="font-size:12px;font-family:monospace">{{ p.exe[:60] }}</td>
+              <td class="text-secondary small">{{ p.username }}</td>
+              <td class="text-secondary small">{{ p.reason }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+  <!-- Persistence entries with process info -->
+  <div class="card">
+    <div class="card-header border-0 py-3">
+      <h5 class="mb-0">
+        <i class="bi bi-diagram-3 me-2"></i>Persistence Entries — Process Map
+        <span class="text-secondary small ms-2">(shows which entries are actively running)</span>
+      </h5>
+    </div>
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-dark table-hover table-bordered mb-0 align-middle">
+          <thead class="table-secondary text-dark">
+            <tr>
+              <th>#</th><th>Name</th><th>Location</th>
+              <th class="text-center">Score</th>
+              <th class="text-center">Level</th>
+              <th class="text-center">Running?</th>
+              <th>PIDs</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for entry in entries %}
+            <tr class="{% if entry.risk_level=='High' %}row-high{% elif entry.risk_level=='Medium' %}row-medium{% endif %}">
+              <td class="text-secondary">{{ loop.index }}</td>
+              <td class="fw-semibold">{{ entry.name }}</td>
+              <td><span class="badge
+                {% if 'HKCU' in entry.location %}bg-primary
+                {% elif 'HKLM' in entry.location %}bg-info text-dark
+                {% elif 'Startup' in entry.location %}bg-warning text-dark
+                {% else %}bg-secondary{% endif %}">
+                {{ entry.location }}</span>
+              </td>
+              <td class="text-center fw-bold">{{ entry.risk_score }}</td>
+              <td class="text-center">
+                <span class="badge
+                  {% if entry.risk_level=='High' %}bg-danger
+                  {% elif entry.risk_level=='Medium' %}bg-warning text-dark
+                  {% else %}bg-success{% endif %}">
+                  {{ entry.risk_level }}
+                </span>
+              </td>
+              <td class="text-center">
+                {% if entry.is_running %}
+                  <span class="badge bg-danger">⚡ ACTIVE</span>
+                {% else %}
+                  <span class="badge bg-secondary">Idle</span>
+                {% endif %}
+              </td>
+              <td>
+                {% for pid in entry.pids %}
+                  <span class="pid-badge">{{ pid }}</span>
+                {% endfor %}
+              </td>
+              <td class="text-secondary small">{{ entry.running_note }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="text-secondary small text-center mt-4 pb-4">
+    Project Sentinel — Process Map &nbsp;|&nbsp; Refreshes on page reload
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Project Sentinel — Logs</title>
+  <link rel="stylesheet" href="/static/cyber.css"/>
+  <script src="/static/sentinel.js" defer></script>
+  <style>
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+    .mini-card {
+      background:var(--surface-2); border:1px solid var(--border-1);
+      border-radius:var(--radius); padding:16px 14px;
+      text-align:center; transition:border-color 0.2s;
+    }
+    .mini-card:hover { border-color:var(--border-2); }
+    .mini-label {
+      font-family:var(--f-head); font-size:11px; font-weight:700;
+      letter-spacing:2px; color:var(--tx-lo);
+      text-transform:uppercase; margin-bottom:8px;
+    }
+    .mini-val {
+      font-family:var(--f-head); font-size:30px; font-weight:800; line-height:1;
+    }
+    .log-stream { max-height:calc(100vh - 350px); overflow-y:auto; }
+    .log-row {
+      display:grid; grid-template-columns:175px 85px 80px 1fr;
+      gap:14px; align-items:center;
+      padding:12px 20px;
+      border-bottom:1px solid var(--border-1);
+      transition:background 0.12s;
+      font-family:var(--f-data);
+    }
+    .log-row:hover { background:var(--glass-h); }
+    .log-name  { font-weight:600; font-size:15px; color:var(--tx-hi); }
+    .log-reason{ font-size:13px; color:var(--tx-lo); overflow:hidden;
+                 text-overflow:ellipsis; white-space:nowrap; }
+    .log-time  { font-size:12px; color:var(--tx-lo); }
+    .log-header-row {
+      display:grid; grid-template-columns:175px 85px 80px 1fr;
+      gap:14px; padding:11px 20px;
+      background:var(--surface-3);
+      border-bottom:1px solid var(--border-2);
+      font-family:var(--f-head); font-size:12px; font-weight:700;
+      letter-spacing:1.5px; color:var(--tx-mid); text-transform:uppercase;
+    }
+    .toolbar { display:flex;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap; }
+    .search-wrap { max-width:300px; }
+    @media (max-width:900px) { .stats-row { grid-template-columns:repeat(3,1fr); } }
+  </style>
+</head>
+<body>
+<div id="toast-box"></div>
+
+<aside class="sidebar">
+  <a href="/" class="sidebar-logo">
+    <div class="sidebar-logo-mark"><div class="sidebar-logo-icon">⬡</div>
+    <span class="sidebar-logo-name">SENTINEL</span></div>
+    <div class="sidebar-logo-sub">THREAT INTELLIGENCE</div>
+  </a>
+  <div class="sidebar-threat">
+    <div class="sidebar-threat-label">THREAT LEVEL</div>
+    <div class="threat-bar-wrap"><div class="threat-bar" id="threat-bar" style="width:0%"></div></div>
+    <div class="threat-level-txt" id="threat-level-txt" style="color:var(--g400);">STANDBY</div>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-section-label">Monitor</div>
+    <a href="/"         class="nav-item"><span class="nav-icon">◈</span><span class="nav-label">Dashboard</span></a>
+    <a href="/live"     class="nav-item"><span class="nav-icon">⊙</span><span class="nav-label">Processes</span></a>
+    <a href="/files"    class="nav-item"><span class="nav-icon">◧</span><span class="nav-label">Files</span></a>
+    <a href="/machines" class="nav-item"><span class="nav-icon">⊞</span><span class="nav-label">Machines</span></a>
+    <div class="nav-section-label" style="margin-top:8px;">Reports</div>
+    <a href="/logs"       class="nav-item active"><span class="nav-icon">≡</span><span class="nav-label">Event Logs</span></a>
+    <a href="/export/csv" class="nav-item"><span class="nav-icon">↓</span><span class="nav-label">Export CSV</span></a>
+    <a href="/export/pdf" class="nav-item"><span class="nav-icon">↓</span><span class="nav-label">Export PDF</span></a>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="live-indicator"><div class="live-dot"></div><span class="live-text">MONITORING ACTIVE</span></div>
+    <div id="clock-sidebar"></div>
+  </div>
+</aside>
+
+<div class="main">
+  <div class="topbar">
+    <div>
+      <span class="topbar-title">Event Logs</span>
+      <span class="topbar-sub">/ Detection History</span>
+    </div>
+    <div class="topbar-actions">
+      <span style="font-family:var(--f-data);font-size:13px;color:var(--tx-lo);">
+        {{ logs|length }} events recorded
+      </span>
+    </div>
+  </div>
+
+  <div class="page">
+    <!-- Stat row -->
+    <div class="stats-row">
+      <div class="mini-card">
+        <div class="mini-label">Total</div>
+        <div class="mini-val" style="color:var(--g300);">{{ stats.total }}</div>
+      </div>
+      <div class="mini-card">
+        <div class="mini-label">High</div>
+        <div class="mini-val" style="color:var(--r300);">{{ stats.high }}</div>
+      </div>
+      <div class="mini-card">
+        <div class="mini-label">Medium</div>
+        <div class="mini-val" style="color:var(--a300);">{{ stats.medium }}</div>
+      </div>
+      <div class="mini-card">
+        <div class="mini-label">Low</div>
+        <div class="mini-val" style="color:var(--g400);">{{ stats.low }}</div>
+      </div>
+      <div class="mini-card">
+        <div class="mini-label">New</div>
+        <div class="mini-val" style="color:var(--c300);">{{ stats.new }}</div>
+      </div>
+      <div class="mini-card">
+        <div class="mini-label">Removed</div>
+        <div class="mini-val" style="color:var(--tx-lo);">{{ stats.removed }}</div>
+      </div>
+    </div>
+
+    <!-- Toolbar -->
+    <div class="toolbar">
+      <div class="search-wrap">
+        <input class="input" type="text" id="search-log"
+               placeholder="Search logs…" oninput="filterLogs()"/>
+      </div>
+      <form method="POST" action="/logs/clear" onsubmit="return confirm('Clear all logs?')">
+        <button class="btn btn-danger" style="padding:9px 18px;font-size:14px;">
+          ✕ Clear Logs
+        </button>
+      </form>
+    </div>
+
+    <!-- Log stream -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Detection Events</span>
+        <span class="card-meta">{{ logs|length }} events · most recent first</span>
+      </div>
+      <div class="log-header-row">
+        <span>Timestamp</span>
+        <span>Risk</span>
+        <span>Type</span>
+        <span>Entry / Reason</span>
+      </div>
+      <div class="log-stream" id="log-stream">
+        {% if logs %}
+          {% for log in logs|reverse %}
+          <div class="log-row {{ 'row-high' if log.risk_level=='High' else 'row-med' if log.risk_level=='Medium' else 'row-low' }}"
+               data-search="{{ log.name|lower }} {{ log.reason|lower }} {{ log.type|lower }}">
+            <span class="log-time">{{ log.timestamp }}</span>
+            <span>
+              <span class="badge {{ 'badge-high' if log.risk_level=='High' else 'badge-medium' if log.risk_level=='Medium' else 'badge-low' }}">
+                {{ log.risk_level }}
+              </span>
+            </span>
+            <span>
+              <span class="badge {{ 'badge-modified' if log.type=='NEW' else 'badge-ok' }}">
+                {{ log.type }}
+              </span>
+            </span>
+            <div>
+              <div class="log-name">{{ log.name }}</div>
+              <div class="log-reason">{{ log.reason }}</div>
+            </div>
+          </div>
+          {% endfor %}
+        {% else %}
+          <div style="text-align:center;padding:64px;color:var(--tx-lo);font-family:var(--f-data);font-size:14px;">
+            No detection events logged yet.<br/>
+            <span style="font-size:13px;">Run a scan or inject a simulation entry to generate events.</span>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</div>
+
+<script id="stats-json" type="application/json">
+  {{ stats | tojson | safe }}
+</script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  startClock('clock-sidebar');
+  const statsEl = document.getElementById('stats-json');
+  const stats = statsEl ? JSON.parse(statsEl.textContent || '{}') : {high:0,total:0};
+  const high = stats.high || 0;
+  const total = stats.total || 0;
+  updateThreatBar(high, total);
+});
+function filterLogs() {
+  const q = document.getElementById('search-log').value.toLowerCase();
+  document.querySelectorAll('.log-row').forEach(r => {
+    r.style.display = (r.dataset.search||'').includes(q) ? '' : 'none';
+  });
+}
+</script>
+</body>
+</html>

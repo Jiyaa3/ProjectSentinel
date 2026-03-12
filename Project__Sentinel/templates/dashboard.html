@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Project Sentinel — Dashboard</title>
+  <link rel="stylesheet" href="/static/cyber.css"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="/static/sentinel.js" defer></script>
+  <style>
+    .sim-grid { display:grid; grid-template-columns:repeat(3,1fr); }
+    .sim-col  { padding:18px 20px; border-right:1px solid var(--border-1); }
+    .sim-col:last-child { border-right:none; }
+    .sim-col-title { font-family:var(--f-head); font-size:17px; font-weight:700;
+                     letter-spacing:0.5px; margin-bottom:4px; }
+    .sim-col-path  { font-family:var(--f-data); font-size:12px; color:var(--tx-lo);
+                     margin-bottom:14px; padding-bottom:12px;
+                     border-bottom:1px solid var(--border-1); }
+    .sim-footer { padding:14px 20px; border-top:1px solid var(--border-1);
+                  display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+    .sim-status-row { display:flex; align-items:center; gap:10px;
+                      margin-top:12px; font-family:var(--f-data); font-size:13px;
+                      color:var(--tx-lo); }
+    .text-risk-high { color: var(--r300); }
+    .text-risk-medium { color: var(--a300); }
+    .text-risk-low { color: var(--g300); }
+    .text-risk-high-strong { color: var(--r300); }
+    .text-risk-medium-strong { color: var(--a300); }
+    .text-risk-low-strong { color: var(--g400); }
+  </style>
+</head>
+<body>
+<div id="toast-box"></div>
+
+<!-- ═══ SIDEBAR ══════════════════════════════════════════════════ -->
+<aside class="sidebar">
+  <a href="/" class="sidebar-logo">
+    <div class="sidebar-logo-mark">
+      <div class="sidebar-logo-icon">⬡</div>
+      <span class="sidebar-logo-name">SENTINEL</span>
+    </div>
+    <div class="sidebar-logo-sub">THREAT INTELLIGENCE</div>
+  </a>
+
+  <div class="sidebar-threat">
+    <div class="sidebar-threat-label">THREAT LEVEL</div>
+    <div class="threat-bar-wrap">
+      <div class="threat-bar" id="threat-bar" style="width:0%"></div>
+    </div>
+    <div class="threat-level-txt" id="threat-level-txt" style="color:var(--g400);">CALCULATING…</div>
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="nav-section-label">Monitor</div>
+    <a href="/"         class="nav-item active">
+      <span class="nav-icon">◈</span>
+      <span class="nav-label">Dashboard</span>
+    </a>
+    <a href="/live"     class="nav-item">
+      <span class="nav-icon">⊙</span>
+      <span class="nav-label">Processes</span>
+    </a>
+    <a href="/files"    class="nav-item">
+      <span class="nav-icon">◧</span>
+      <span class="nav-label">Files</span>
+    </a>
+    <a href="/machines" class="nav-item">
+      <span class="nav-icon">⊞</span>
+      <span class="nav-label">Machines</span>
+    </a>
+
+    <div class="nav-section-label" style="margin-top:8px;">Reports</div>
+    <a href="/logs"       class="nav-item">
+      <span class="nav-icon">≡</span>
+      <span class="nav-label">Event Logs</span>
+    </a>
+    <a href="/export/csv" class="nav-item">
+      <span class="nav-icon">↓</span>
+      <span class="nav-label">Export CSV</span>
+    </a>
+    <a href="/export/pdf" class="nav-item">
+      <span class="nav-icon">↓</span>
+      <span class="nav-label">Export PDF</span>
+    </a>
+  </nav>
+
+  <div class="sidebar-footer">
+    <div class="live-indicator">
+      <div class="live-dot"></div>
+      <span class="live-text">MONITORING ACTIVE</span>
+    </div>
+    <div id="clock-sidebar"></div>
+  </div>
+</aside>
+
+<!-- ═══ MAIN ══════════════════════════════════════════════════════ -->
+<div class="main">
+  <div class="topbar">
+    <div>
+      <span class="topbar-title">Dashboard</span>
+      <span class="topbar-sub">/ Persistence Overview</span>
+    </div>
+    <div class="topbar-actions">
+      <span class="blink" style="font-family:var(--f-data);font-size:13px;
+            color:var(--r300);letter-spacing:1px;">● AUTO-REFRESH 5s</span>
+      <span id="last-scan" style="font-family:var(--f-data);font-size:12px;color:var(--tx-lo);"></span>
+    </div>
+  </div>
+
+  <div class="page">
+
+    <!-- Flash messages -->
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for cat, msg in messages %}
+          <div class="alert alert-{{ 'danger' if cat=='danger' else 'success' }}">
+            <span class="alert-icon">{{ '⚠' if cat=='danger' else '✓' }}</span>
+            <span>{{ msg }}</span>
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <!-- Stat cards -->
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-label">Total Entries</div>
+        <div class="stat-value">{{ total }}</div>
+        <div class="stat-delta">Persistence vectors found</div>
+      </div>
+      <div class="stat-card danger">
+        <div class="stat-label">High Risk</div>
+        <div class="stat-value">{{ high_risk }}</div>
+        <div class="stat-delta">Immediate attention required</div>
+      </div>
+      <div class="stat-card warning">
+        <div class="stat-label">Medium Risk</div>
+        <div class="stat-value">{{ medium_risk }}</div>
+        <div class="stat-delta">Requires investigation</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Low Risk</div>
+        <div class="stat-value">{{ low_risk }}</div>
+        <div class="stat-delta">Known-safe entries</div>
+      </div>
+    </div>
+
+    <!-- Charts row -->
+    <div class="charts-row">
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Persistence Location Heatmap</span>
+          <span class="card-meta">By registry key / folder / task</span>
+        </div>
+        <div class="chart-pad"><canvas id="locationChart" height="160"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-header"><span class="card-title">Risk Distribution</span></div>
+        <div class="chart-pad"><canvas id="riskChart" height="160"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Hash Integrity</span>
+          <form method="POST" action="/hashes/clear" style="display:inline;">
+            <button class="btn btn-ghost btn-sm">↺ Reset</button>
+          </form>
+        </div>
+        <div class="chart-pad"><canvas id="hashChart" height="140"></canvas></div>
+      </div>
+    </div>
+
+    <!-- Simulation panel -->
+    <div class="card" style="margin-bottom:24px;">
+      <div class="card-header">
+        <span class="card-title">⚡ Attack Simulation</span>
+        <span class="card-meta">Controlled demo — 3 persistence types</span>
+      </div>
+      <div class="sim-grid">
+        <!-- Registry -->
+        <div class="sim-col">
+          <div class="sim-col-title" style="color:var(--r300);">01 · Registry Run Key</div>
+          <div class="sim-col-path">HKCU\…\CurrentVersion\Run</div>
+          <form method="POST" action="/simulate/add">
+            <button class="sim-btn red">⬡ Inject Registry Entry</button>
+          </form>
+          <form method="POST" action="/simulate/remove">
+            <button class="sim-btn">✕ Remove Registry Entry</button>
+          </form>
+          <form method="POST" action="/simulate/launch">
+            <button class="sim-btn red">☠ Full Attack Demo</button>
+          </form>
+          <a href="/hacked" target="_blank" class="sim-btn" style="color:#882233;border-color:rgba(120,0,30,0.25);">
+            🩸 Open Hacked Page
+          </a>
+          <a href="/bsod" target="_blank" class="sim-btn" style="color:var(--c300);border-color:rgba(34,184,207,0.22);">
+            💀 Open Fake BSOD
+          </a>
+        </div>
+        <!-- Startup -->
+        <div class="sim-col">
+          <div class="sim-col-title" style="color:var(--a300);">02 · Startup Folder</div>
+          <div class="sim-col-path">AppData\Roaming\…\Startup\</div>
+          <form method="POST" action="/simulate/startup/add">
+            <button class="sim-btn amber">⬡ Inject Startup Entry</button>
+          </form>
+          <form method="POST" action="/simulate/startup/remove">
+            <button class="sim-btn">✕ Remove Startup Entry</button>
+          </form>
+          <div class="sim-status-row">
+            Status: <span id="startup-status" class="pill pill-clean">● Clean</span>
+          </div>
+        </div>
+        <!-- Task -->
+        <div class="sim-col">
+          <div class="sim-col-title" style="color:var(--c300);">03 · Scheduled Task</div>
+          <div class="sim-col-path">Task Scheduler → On Logon</div>
+          <form method="POST" action="/simulate/task/add">
+            <button class="sim-btn cyan">⬡ Inject Scheduled Task</button>
+          </form>
+          <form method="POST" action="/simulate/task/remove">
+            <button class="sim-btn">✕ Remove Scheduled Task</button>
+          </form>
+          <div class="sim-status-row">
+            Status: <span id="task-status" class="pill pill-clean">● Clean</span>
+          </div>
+        </div>
+      </div>
+      <div class="sim-footer">
+        <form method="POST" action="/simulate/drop_fake">
+          <button class="sim-btn purple" style="margin-bottom:0;">🦠 Drop Fake Malware Files → Temp</button>
+        </form>
+        <form method="POST" action="/simulate/remove_fake">
+          <button class="sim-btn" style="margin-bottom:0;">🧹 Remove Fake Malware Files</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Entries table -->
+    <div class="card">
+      <div class="card-header">
+        <span class="card-title">Persistence Entries</span>
+        <span class="card-meta" id="entry-count">
+          {{ entries | length }} entries detected
+        </span>
+      </div>
+      <div class="table-scroll">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Entry Name</th>
+              <th>Executable Path</th>
+              <th>Location</th>
+              <th style="text-align:center;">Score</th>
+              <th style="text-align:center;">Risk</th>
+              <th style="text-align:center;">Hash</th>
+              <th>First Seen</th>
+              <th>Reason</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for e in entries %}
+            <tr class="{{ 'row-high' if e.risk_level=='High' else 'row-med' if e.risk_level=='Medium' else 'row-low' }}">
+              <td style="color:var(--tx-lo);font-size:13px;">{{ loop.index }}</td>
+              <td>
+                <span class="entry-name {{ 'text-risk-high' if e.risk_level=='High' else 'text-risk-medium' if e.risk_level=='Medium' else 'text-risk-low' }}" style="font-weight:600;font-size:15px;">
+                  {{ e.name }}
+                </span>
+              </td>
+              <td class="path-cell" title="{{ e.path }}">{{ e.path }}</td>
+              <td><span class="badge badge-neutral">{{ e.location }}</span></td>
+              <td style="text-align:center;">
+                <span class="{{ 'text-risk-high-strong' if e.risk_level=='High' else 'text-risk-medium-strong' if e.risk_level=='Medium' else 'text-risk-low-strong' }}" style="font-family:var(--f-head);font-weight:800;font-size:18px;">
+                  {{ e.risk_score }}
+                </span>
+              </td>
+              <td style="text-align:center;">
+                <span class="badge {{ 'badge-high' if e.risk_level=='High' else 'badge-medium' if e.risk_level=='Medium' else 'badge-low' }}">
+                  {{ e.risk_level }}
+                </span>
+              </td>
+              <td style="text-align:center;">
+                {% set hs = e.get('hash_status','?') %}
+                <span class="badge {{ 'badge-modified' if hs=='MODIFIED' else 'badge-ok' if hs=='Unchanged' else 'badge-new' if hs=='New' else 'badge-neutral' }}">
+                  {{ '⚠ Modified' if hs=='MODIFIED' else '✓ OK' if hs=='Unchanged' else 'New' if hs=='New' else '—' }}
+                </span>
+              </td>
+              <td style="font-size:13px;color:var(--tx-lo);">{{ e.get('first_seen','—') }}</td>
+              <td style="font-size:13px;color:var(--tx-lo);max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
+                {{ e.reasons[0] if e.reasons else '—' }}
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div style="text-align:center;padding:28px 0;font-family:var(--f-data);
+                font-size:12px;color:var(--tx-lo);letter-spacing:1.5px;">
+      PROJECT SENTINEL · WINDOWS PERSISTENCE ANALYZER · EDUCATIONAL USE ONLY
+    </div>
+  </div><!-- /page -->
+</div><!-- /main -->
+
+<script id="entries-json" type="application/json">{{ entries | tojson | safe }}</script>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  startClock('clock-sidebar');
+
+  const entriesData = document.getElementById('entries-json');
+  const entries = entriesData ? JSON.parse(entriesData.textContent || '[]') : [];
+  const high = entries.filter(e=>e.risk_level==='High').length;
+  updateThreatBar(high, entries.length);
+  document.getElementById('last-scan').textContent =
+    'Last scan: ' + new Date().toLocaleTimeString('en-GB',{hour12:false});
+
+  /* ── Charts ────────────────────────────────────────────── */
+  Chart.defaults.color = '#3d5c42';
+  Chart.defaults.font.family = 'IBM Plex Mono';
+  Chart.defaults.font.size = 12;
+
+  const locs = {};
+  entries.forEach(e => { const l=e.location||'Other'; locs[l]=(locs[l]||0)+1; });
+  const lk = Object.keys(locs);
+  new Chart(document.getElementById('locationChart'), {
+    type: 'bar',
+    data: {
+      labels: lk,
+      datasets: [{
+        data: lk.map(k=>locs[k]),
+        backgroundColor: lk.map(k =>
+          k.includes('HKCU')    ? 'rgba(0,200,83,0.45)'    :
+          k.includes('HKLM')    ? 'rgba(34,184,207,0.45)'  :
+          k.includes('Startup') ? 'rgba(245,159,0,0.45)'   :
+          k.includes('Task')    ? 'rgba(170,100,255,0.45)' : 'rgba(90,114,96,0.4)'),
+        borderColor: lk.map(k =>
+          k.includes('HKCU')    ? '#00c853' :
+          k.includes('HKLM')    ? '#22b8cf' :
+          k.includes('Startup') ? '#f59f00' :
+          k.includes('Task')    ? '#aa64ff' : '#5a7260'),
+        borderWidth: 1,
+        borderRadius: 4,
+      }]
+    },
+    options: {
+      plugins: { legend:{ display:false }, tooltip:{callbacks:{label:c=>' '+c.raw+' entries'}}},
+      scales: {
+        x: { ticks:{color:'#8fb8a0',font:{size:13}}, grid:{color:'rgba(0,200,83,0.05)'} },
+        y: { ticks:{color:'#8fb8a0',stepSize:1,font:{size:13}}, grid:{color:'rgba(0,200,83,0.05)'}, beginAtZero:true }
+      }
+    }
+  });
+
+  const h = entries.filter(e=>e.risk_level==='High').length;
+  const m = entries.filter(e=>e.risk_level==='Medium').length;
+  const l = entries.filter(e=>e.risk_level==='Low').length;
+  new Chart(document.getElementById('riskChart'), {
+    type: 'doughnut',
+    data: {
+      labels: ['High','Medium','Low'],
+      datasets: [{
+        data: [h,m,l],
+        backgroundColor: ['rgba(240,62,62,0.7)','rgba(245,159,0,0.65)','rgba(0,200,83,0.5)'],
+        borderColor: ['#f03e3e','#f59f00','#00c853'],
+        borderWidth: 1,
+      }]
+    },
+    options: { plugins:{ legend:{ labels:{color:'#8fb8a0',font:{size:15,weight:'600'},boxWidth:14,padding:14}}}, cutout:'70%' }
+  });
+
+  const mod = entries.filter(e=>e.hash_status==='MODIFIED').length;
+  const unc = entries.filter(e=>e.hash_status==='Unchanged').length;
+  const nw  = entries.filter(e=>e.hash_status==='New').length;
+  const unk = entries.length - mod - unc - nw;
+  new Chart(document.getElementById('hashChart'), {
+    type: 'doughnut',
+    data: {
+      labels: ['Modified','OK','New','Unknown'],
+      datasets: [{
+        data: [mod,unc,nw,unk],
+        backgroundColor: ['rgba(240,62,62,0.7)','rgba(0,200,83,0.5)','rgba(34,184,207,0.6)','rgba(80,90,80,0.4)'],
+        borderColor: ['#f03e3e','#00c853','#22b8cf','#556055'],
+        borderWidth: 1,
+      }]
+    },
+    options: { plugins:{ legend:{ labels:{color:'#8fb8a0',font:{size:14,weight:'600'},boxWidth:12,padding:12}}}, cutout:'65%' }
+  });
+
+  /* ── Sim status ─────────────────────────────────────────── */
+  async function refreshSim() {
+    try {
+      const d = await fetch('/api/sim_status').then(r=>r.json());
+      ['startup','task'].forEach(k => {
+        const el = document.getElementById(k+'-status');
+        if (!el) return;
+        el.textContent = d[k] ? '● Active' : '● Clean';
+        el.className = 'pill ' + (d[k] ? 'pill-active' : 'pill-clean');
+      });
+    } catch(e) {}
+  }
+  refreshSim();
+  setInterval(refreshSim, 5000);
+
+  /* ── SSE toasts ─────────────────────────────────────────── */
+  connectSSE(d => {
+    if (d.type==='NEW')
+      showToast(false, 'New Threat: ' + (d.name||''), (d.reasons||[])[0]||'');
+    else if (d.type==='REMOVED')
+      showToast(true, 'Entry Removed: ' + (d.name||''));
+  });
+});
+</script>
+</body>
+</html>

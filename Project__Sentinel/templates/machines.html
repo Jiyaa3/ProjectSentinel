@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Project Sentinel — Machines</title>
+  <link rel="stylesheet" href="/static/cyber.css"/>
+  <script src="/static/sentinel.js" defer></script>
+  <style>
+    .machines-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+                     gap:14px;margin-bottom:24px; }
+    .machine-card {
+      background:var(--surface-2); border:1px solid var(--border-1);
+      border-radius:var(--radius-lg); overflow:hidden;
+      transition:border-color 0.25s, box-shadow 0.25s, transform 0.2s;
+      cursor:pointer;
+    }
+    .machine-card:hover { border-color:var(--border-2); transform:translateY(-2px);
+                          box-shadow:0 8px 32px rgba(0,0,0,0.3); }
+    .machine-card.this { border-color:var(--border-2); }
+    .machine-card.offline { opacity:0.55; }
+    .mcard-head { padding:16px 18px;border-bottom:1px solid var(--border-1);
+                  display:flex;align-items:center;justify-content:space-between; }
+    .mcard-icon { width:42px;height:42px;border:1px solid var(--border-2);
+                  border-radius:var(--radius);display:flex;align-items:center;
+                  justify-content:center;font-size:20px;flex-shrink:0;
+                  background:var(--glass); }
+    .mcard-name { font-family:var(--f-head);font-size:16px;font-weight:700;
+                  color:var(--tx-hi);letter-spacing:0.5px; }
+    .mcard-ip   { font-family:var(--f-data);font-size:12px;color:var(--tx-lo);margin-top:2px; }
+    .mcard-os   { font-family:var(--f-data);font-size:12px;color:var(--tx-lo); }
+    .mcard-stats { display:grid;grid-template-columns:repeat(3,1fr);padding:14px 18px;gap:8px; }
+    .mstat { text-align:center; }
+    .mstat-val { font-family:var(--f-head);font-size:24px;font-weight:800;line-height:1; }
+    .mstat-label { font-family:var(--f-head);font-size:11px;font-weight:600;
+                   letter-spacing:1.5px;color:var(--tx-lo);margin-top:4px;text-transform:uppercase; }
+    .mcard-foot { padding:10px 18px;border-top:1px solid var(--border-1);
+                  display:flex;align-items:center;justify-content:space-between; }
+    .online-dot  { width:9px;height:9px;border-radius:50%;background:var(--g400);
+                   box-shadow:0 0 7px var(--g400); }
+    .offline-dot { width:9px;height:9px;border-radius:50%;background:var(--r400); }
+
+    /* Add machine form */
+    .add-bar { background:var(--surface-2);border:1px solid var(--border-1);
+               border-radius:var(--radius-lg);padding:16px 20px;
+               display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:20px; }
+    .add-bar-label { font-family:var(--f-head);font-size:13px;font-weight:600;
+                     letter-spacing:1px;color:var(--tx-lo);text-transform:uppercase;white-space:nowrap; }
+    .add-bar .input { max-width:220px; }
+    .add-bar-hint { font-family:var(--f-data);font-size:12px;color:var(--tx-lo); }
+
+    /* Drive scanner */
+    .drive-toolbar { display:flex;align-items:center;gap:12px;
+                     background:var(--surface-2);border:1px solid var(--border-1);
+                     border-radius:var(--radius-lg);padding:16px 20px;
+                     margin-bottom:14px; }
+    .progress-wrap { background:var(--surface-2);border:1px solid var(--border-1);
+                     border-radius:var(--radius);padding:12px 18px;margin-bottom:14px;display:none; }
+    .progress-bar-track { background:var(--n700);height:5px;border-radius:3px;margin-top:8px; }
+    .progress-bar-fill { height:5px;border-radius:3px;background:var(--g400);
+                         width:0%;transition:width 0.6s ease;
+                         box-shadow:0 0 8px var(--g400); }
+
+    /* Detail panel */
+    .detail-panel { display:none;margin-top:4px; }
+    .detail-panel.open { display:block; }
+    .detail-scroll { overflow-x:auto;max-height:400px;overflow-y:auto; }
+    .summary-row { display:grid;grid-template-columns:repeat(4,1fr);
+                   padding:16px 22px;gap:12px;border-bottom:1px solid var(--border-1); }
+    .sum-item { text-align:center; }
+    .sum-val { font-family:var(--f-head);font-size:28px;font-weight:800; }
+    .sum-label { font-family:var(--f-head);font-size:11px;font-weight:600;
+                 letter-spacing:1.5px;color:var(--tx-lo);text-transform:uppercase;margin-top:3px; }
+    .disc-bar { background:var(--surface-2);border:1px solid var(--border-1);
+                border-radius:var(--radius);padding:10px 16px;margin-bottom:14px;
+                display:flex;align-items:center;gap:10px;font-family:var(--f-data);font-size:13px; }
+  </style>
+</head>
+<body>
+<div id="toast-box"></div>
+
+<aside class="sidebar">
+  <a href="/" class="sidebar-logo">
+    <div class="sidebar-logo-mark"><div class="sidebar-logo-icon">⬡</div>
+    <span class="sidebar-logo-name">SENTINEL</span></div>
+    <div class="sidebar-logo-sub">THREAT INTELLIGENCE</div>
+  </a>
+  <div class="sidebar-threat">
+    <div class="sidebar-threat-label">THREAT LEVEL</div>
+    <div class="threat-bar-wrap"><div class="threat-bar" id="threat-bar" style="width:0%"></div></div>
+    <div class="threat-level-txt" id="threat-level-txt" style="color:var(--g400);">STANDBY</div>
+  </div>
+  <nav class="sidebar-nav">
+    <div class="nav-section-label">Monitor</div>
+    <a href="/"         class="nav-item"><span class="nav-icon">◈</span><span class="nav-label">Dashboard</span></a>
+    <a href="/live"     class="nav-item"><span class="nav-icon">⊙</span><span class="nav-label">Processes</span></a>
+    <a href="/files"    class="nav-item"><span class="nav-icon">◧</span><span class="nav-label">Files</span></a>
+    <a href="/machines" class="nav-item active"><span class="nav-icon">⊞</span><span class="nav-label">Machines</span></a>
+    <div class="nav-section-label" style="margin-top:8px;">Reports</div>
+    <a href="/logs"       class="nav-item"><span class="nav-icon">≡</span><span class="nav-label">Event Logs</span></a>
+    <a href="/export/csv" class="nav-item"><span class="nav-icon">↓</span><span class="nav-label">Export CSV</span></a>
+    <a href="/export/pdf" class="nav-item"><span class="nav-icon">↓</span><span class="nav-label">Export PDF</span></a>
+  </nav>
+  <div class="sidebar-footer">
+    <div class="live-indicator"><div class="live-dot"></div><span class="live-text">MONITORING ACTIVE</span></div>
+    <div id="clock-sidebar"></div>
+  </div>
+</aside>
+
+<div class="main">
+  <div class="topbar">
+    <div>
+      <span class="topbar-title">Machines</span>
+      <span class="topbar-sub">/ Multi-Host Network Scan</span>
+    </div>
+    <div class="topbar-actions">
+      <span style="font-family:var(--f-data);font-size:12px;color:var(--tx-lo);">
+        Agent port: 5001 &nbsp;·&nbsp; Local IP:
+        <span id="local-ip" style="color:var(--g400);">…</span>
+      </span>
+    </div>
+  </div>
+
+  <div class="page">
+    <!-- Discovery status -->
+    <div class="disc-bar">
+      <div class="spinner" id="disc-spinner"></div>
+      <span id="disc-status" style="color:var(--tx-lo);">Scanning network for agents…</span>
+    </div>
+
+    <!-- Add machine -->
+    <div class="add-bar">
+      <span class="add-bar-label">Add Machine:</span>
+      <input class="input" id="manual-ip" type="text"
+             placeholder="192.168.1.x" style="max-width:200px;"/>
+      <button class="btn btn-primary" onclick="addManual()">⬡ Connect</button>
+      <span class="add-bar-hint">
+        Run <code style="color:var(--g300);background:var(--surface-3);
+                         padding:1px 6px;border-radius:3px;">python sentinel_agent.py</code>
+        on the target machine first
+      </span>
+    </div>
+
+    <!-- Machine cards -->
+    <div class="machines-grid" id="machines-grid">
+      <!-- This machine (always shown) -->
+      <div class="machine-card this" onclick="loadDetail('local')">
+        <div class="mcard-head">
+          <div style="display:flex;align-items:center;gap:12px;">
+            <div class="mcard-icon">🖥️</div>
+            <div>
+              <div class="mcard-name">This Machine</div>
+              <div class="mcard-ip">localhost / 127.0.0.1</div>
+              <div class="mcard-os" id="this-os">Windows</div>
+            </div>
+          </div>
+          <div class="online-dot"></div>
+        </div>
+        <div class="mcard-stats">
+          <div class="mstat"><div class="mstat-val" id="this-total" style="color:var(--g300);">—</div>
+            <div class="mstat-label">Entries</div></div>
+          <div class="mstat"><div class="mstat-val" id="this-high" style="color:var(--r300);">—</div>
+            <div class="mstat-label">High</div></div>
+          <div class="mstat"><div class="mstat-val" id="this-med" style="color:var(--a300);">—</div>
+            <div class="mstat-label">Medium</div></div>
+        </div>
+        <div class="mcard-foot">
+          <span style="font-family:var(--f-data);font-size:12px;color:var(--tx-lo);">
+            Last scan: <span id="this-time">—</span>
+          </span>
+          <span class="btn btn-ghost btn-sm">View Details →</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Detail panel -->
+    <div class="detail-panel" id="detail-panel">
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title" id="detail-title">Machine Scan Results</span>
+          <button class="btn btn-ghost btn-sm" onclick="closeDetail()">✕ Close</button>
+        </div>
+        <div class="summary-row" id="detail-summary"></div>
+        <div style="padding:12px 22px;border-bottom:1px solid var(--border-1);
+                    font-family:var(--f-head);font-size:12px;font-weight:700;
+                    letter-spacing:2px;color:var(--tx-mid);text-transform:uppercase;">
+          Persistence Entries
+        </div>
+        <div class="detail-scroll">
+          <table class="data-table">
+            <thead><tr>
+              <th>#</th><th>Name</th><th>Path</th>
+              <th>Location</th><th style="text-align:center;">Score</th>
+              <th style="text-align:center;">Risk</th><th style="text-align:center;">Malicious</th>
+            </tr></thead>
+            <tbody id="detail-tbody">
+              <tr><td colspan="7" style="text-align:center;color:var(--tx-lo);padding:36px;
+                   font-family:var(--f-data);">Select a machine to view results</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="padding:12px 22px;border-top:1px solid var(--border-1);
+                    border-bottom:1px solid var(--border-1);font-family:var(--f-head);
+                    font-size:12px;font-weight:700;letter-spacing:2px;
+                    color:var(--tx-mid);text-transform:uppercase;">
+          Top Suspicious Processes
+        </div>
+        <div class="detail-scroll">
+          <table class="data-table">
+            <thead><tr>
+              <th>PID</th><th>Name</th><th>Path</th>
+              <th>CPU</th><th style="text-align:center;">Score</th>
+              <th style="text-align:center;">Risk</th>
+            </tr></thead>
+            <tbody id="detail-procs-tbody">
+              <tr><td colspan="6" style="text-align:center;color:var(--tx-lo);
+                   padding:24px;font-family:var(--f-data);">—</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Drive scanner -->
+    <div style="margin-top:24px;">
+      <div style="font-family:var(--f-head);font-size:14px;font-weight:700;
+                  letter-spacing:2.5px;color:var(--tx-mid);margin-bottom:14px;
+                  padding-bottom:10px;border-bottom:1px solid var(--border-1);
+                  display:flex;align-items:center;gap:10px;text-transform:uppercase;">
+        <div style="width:4px;height:16px;background:var(--g400);border-radius:2px;
+                    box-shadow:0 0 8px var(--g400);"></div>
+        Full Drive Scanner
+      </div>
+      <div class="drive-toolbar">
+        <button class="btn btn-danger" onclick="startDriveScan()">⬡ Start Full Drive Scan</button>
+        <span style="font-family:var(--f-body);font-size:14px;color:var(--tx-lo);">
+          Scans all drives for suspicious executables &amp; scripts
+        </span>
+        <div class="spinner" id="drive-spinner" style="display:none;"></div>
+        <span id="drive-status" style="font-family:var(--f-data);font-size:13px;
+              color:var(--tx-lo);">Ready</span>
+      </div>
+      <div class="progress-wrap" id="progress-wrap">
+        <div style="font-family:var(--f-data);font-size:13px;color:var(--tx-lo);"
+             id="progress-text">Scanning…</div>
+        <div class="progress-bar-track">
+          <div class="progress-bar-fill" id="progress-fill"></div>
+        </div>
+      </div>
+      <div class="card" id="drive-card" style="display:none;">
+        <div class="card-header">
+          <span class="card-title">Drive Scan Results</span>
+          <span class="card-meta" id="drive-count">—</span>
+        </div>
+        <div class="detail-scroll">
+          <table class="data-table">
+            <thead><tr>
+              <th>#</th><th>File</th><th>Path</th>
+              <th style="text-align:center;">Score</th>
+              <th style="text-align:center;">Risk</th>
+              <th style="text-align:center;">Content</th>
+              <th>Signatures</th>
+            </tr></thead>
+            <tbody id="drive-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  startClock('clock-sidebar');
+
+  // Local machine summary
+  async function loadLocalSummary() {
+    try {
+      const data = await fetch('/api/scan').then(r=>r.json());
+      const high = data.filter(e=>e.risk_level==='High').length;
+      const med  = data.filter(e=>e.risk_level==='Medium').length;
+      document.getElementById('this-total').textContent = data.length;
+      document.getElementById('this-high').textContent  = high;
+      document.getElementById('this-med').textContent   = med;
+      document.getElementById('this-time').textContent  =
+        new Date().toLocaleTimeString('en-GB',{hour12:false});
+      updateThreatBar(high, data.length);
+    } catch(e) {}
+  }
+  loadLocalSummary();
+
+  // Local IP
+  fetch('/api/local_info').then(r=>r.json()).then(d=>{
+    document.getElementById('local-ip').textContent = d.ip||'—';
+    document.getElementById('this-os').textContent  = d.os||'Windows';
+  }).catch(()=>{});
+
+  // ── Network machines ───────────────────────────────────────
+  const known = new Set();
+  async function refreshMachines() {
+    try {
+      const data = await fetch('/api/machines').then(r=>r.json());
+      const ips  = Object.keys(data).filter(k=>k!=='_scanning');
+      document.getElementById('disc-status').textContent =
+        ips.length > 0
+          ? `${ips.length} agent(s) discovered on network`
+          : 'Scanning network — no agents found yet';
+      document.getElementById('disc-status').style.color =
+        ips.length > 0 ? 'var(--g300)' : 'var(--tx-lo)';
+      document.getElementById('disc-spinner').style.display =
+        data._scanning ? 'inline-block' : 'none';
+
+      ips.forEach(ip => {
+        if (!known.has(ip)) { known.add(ip); addMachineCard(ip, data[ip]); }
+      });
+    } catch(e) {}
+  }
+  refreshMachines();
+  setInterval(refreshMachines, 10000);
+
+  function addMachineCard(ip, info) {
+    const grid   = document.getElementById('machines-grid');
+    const isLinux = (info.platform||'').includes('linux');
+    const icon   = isLinux ? '🐧' : '🖥️';
+    const card   = document.createElement('div');
+    const cid    = ip.replace(/\./g,'-');
+    card.id = 'mcard-'+cid;
+    card.className = 'machine-card';
+    card.onclick = () => loadDetail(ip);
+    card.innerHTML = `
+      <div class="mcard-head">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div class="mcard-icon">${icon}</div>
+          <div>
+            <div class="mcard-name">${(info.hostname||ip).toUpperCase()}</div>
+            <div class="mcard-ip">${ip}</div>
+            <div class="mcard-os">${info.os||'Unknown'}</div>
+          </div>
+        </div>
+        <div class="online-dot" id="mdot-${cid}"></div>
+      </div>
+      <div class="mcard-stats">
+        <div class="mstat"><div class="mstat-val" id="mt-${cid}" style="color:var(--g300);">?</div>
+          <div class="mstat-label">Entries</div></div>
+        <div class="mstat"><div class="mstat-val" id="mh-${cid}" style="color:var(--r300);">?</div>
+          <div class="mstat-label">High</div></div>
+        <div class="mstat"><div class="mstat-val" id="mm-${cid}" style="color:var(--a300);">?</div>
+          <div class="mstat-label">Medium</div></div>
+      </div>
+      <div class="mcard-foot">
+        <span style="font-family:var(--f-data);font-size:12px;color:var(--tx-lo);">
+          Last seen: ${info.last_seen||'—'}
+        </span>
+        <span class="btn btn-ghost btn-sm">View →</span>
+      </div>`;
+    grid.appendChild(card);
+    // Fetch summary
+    fetch(`/api/machine_scan/${ip}`).then(r=>r.json()).then(d=>{
+      const s = d.summary||{};
+      const el = id => document.getElementById(id);
+      if(el(`mt-${cid}`)) el(`mt-${cid}`).textContent = s.total||0;
+      if(el(`mh-${cid}`)) el(`mh-${cid}`).textContent = s.high||0;
+      if(el(`mm-${cid}`)) el(`mm-${cid}`).textContent = s.medium||0;
+    }).catch(()=>{});
+  }
+
+  window.addManual = async function() {
+    const ip = document.getElementById('manual-ip').value.trim();
+    if (!ip) return;
+    try {
+      const r = await fetch('/api/machines/add', {method:'POST',
+        headers:{'Content-Type':'application/json'},body:JSON.stringify({ip})});
+      const d = await r.json();
+      showToast(d.success,
+        d.success ? `Connected: ${d.info.hostname} (${ip})` : 'Cannot reach agent',
+        d.success ? '' : `Make sure sentinel_agent.py is running on ${ip}:5001`);
+      if (d.success) refreshMachines();
+    } catch(e) { showToast(false, 'Connection failed'); }
+  };
+
+  // ── Detail panel ───────────────────────────────────────────
+  window.loadDetail = async function(ip) {
+    const panel = document.getElementById('detail-panel');
+    panel.classList.add('open');
+    panel.scrollIntoView({behavior:'smooth',block:'start'});
+    document.getElementById('detail-title').textContent =
+      ip==='local' ? 'This Machine — Scan Results' : `Remote Machine — ${ip}`;
+
+    const tbody  = document.getElementById('detail-tbody');
+    const ptbody = document.getElementById('detail-procs-tbody');
+    const loading = '<tr><td colspan="7" style="text-align:center;color:var(--tx-lo);padding:30px;font-family:var(--f-data);">Loading…</td></tr>';
+    tbody.innerHTML  = loading;
+    ptbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--tx-lo);padding:20px;font-family:var(--f-data);">Loading…</td></tr>';
+
+    try {
+      const url  = ip==='local' ? '/api/scan' : `/api/machine_scan/${ip}`;
+      const data = await fetch(url).then(r=>r.json());
+      const entries = ip==='local' ? data : (data.entries||[]);
+      const procs   = ip==='local' ? [] : (data.processes||[]);
+
+      const high = entries.filter(e=>e.risk_level==='High').length;
+      const med  = entries.filter(e=>e.risk_level==='Medium').length;
+      const low  = entries.filter(e=>e.risk_level==='Low').length;
+
+      document.getElementById('detail-summary').innerHTML = `
+        <div class="sum-item"><div class="sum-val" style="color:var(--g300);">${entries.length}</div>
+          <div class="sum-label">Total</div></div>
+        <div class="sum-item"><div class="sum-val" style="color:var(--r300);">${high}</div>
+          <div class="sum-label">High</div></div>
+        <div class="sum-item"><div class="sum-val" style="color:var(--a300);">${med}</div>
+          <div class="sum-label">Medium</div></div>
+        <div class="sum-item"><div class="sum-val" style="color:var(--g400);">${low}</div>
+          <div class="sum-label">Low</div></div>`;
+
+      tbody.innerHTML = entries.length
+        ? entries.map((e,i) => {
+            const rc = riskRowClass(e.risk_level);
+            const rb = riskBadgeClass(e.risk_level);
+            const nc = riskColor(e.risk_level);
+            return `<tr class="${rc}">
+              <td style="color:var(--tx-lo);font-size:13px;">${i+1}</td>
+              <td style="font-weight:600;font-size:15px;color:${nc};">${e.name}</td>
+              <td class="path-cell" title="${e.path}">${e.path}</td>
+              <td><span class="badge badge-neutral">${e.location}</span></td>
+              <td style="text-align:center;font-family:var(--f-head);font-weight:800;
+                  font-size:18px;color:${nc};">${e.risk_score}</td>
+              <td style="text-align:center;"><span class="badge ${rb}">${e.risk_level}</span></td>
+              <td style="text-align:center;">
+                ${e.is_malicious
+                  ? '<span class="badge badge-modified">⚠ Malicious</span>'
+                  : '<span class="badge badge-ok">✓ Clean</span>'}
+              </td>
+            </tr>`;
+          }).join('')
+        : '<tr><td colspan="7" style="text-align:center;color:var(--g400);padding:30px;font-family:var(--f-data);">✓ No threats found</td></tr>';
+
+      ptbody.innerHTML = procs.length
+        ? procs.slice(0,10).map((p,i) => {
+            const rc = riskRowClass(p.risk_level);
+            const rb = riskBadgeClass(p.risk_level);
+            return `<tr class="${rc}">
+              <td style="color:var(--tx-lo);font-family:var(--f-data);font-size:13px;">${p.pid}</td>
+              <td style="font-size:15px;font-weight:600;">${p.name}</td>
+              <td class="path-cell" title="${p.path||''}">${p.path||'—'}</td>
+              <td style="font-family:var(--f-data);">${(p.cpu||0).toFixed(1)}%</td>
+              <td style="text-align:center;font-family:var(--f-head);font-weight:800;font-size:18px;">${p.risk_score||0}</td>
+              <td style="text-align:center;"><span class="badge ${rb}">${p.risk_level}</span></td>
+            </tr>`;
+          }).join('')
+        : '<tr><td colspan="6" style="text-align:center;color:var(--tx-lo);padding:20px;font-family:var(--f-data);">No process data (use Processes tab for this machine)</td></tr>';
+
+    } catch(e) {
+      tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;color:var(--r300);padding:30px;font-family:var(--f-data);">Error: ${e.message}</td></tr>`;
+    }
+  };
+
+  window.closeDetail = function() {
+    document.getElementById('detail-panel').classList.remove('open');
+  };
+
+  // ── Drive scanner ──────────────────────────────────────────
+  let driveInterval = null;
+  window.startDriveScan = async function() {
+    document.getElementById('drive-spinner').style.display='inline-block';
+    document.getElementById('drive-status').textContent='Starting scan…';
+    document.getElementById('progress-wrap').style.display='block';
+    document.getElementById('drive-card').style.display='none';
+    await fetch('/api/drive_scan/start', {method:'POST'});
+    driveInterval = setInterval(checkProgress, 1500);
+  };
+
+  async function checkProgress() {
+    try {
+      const s = await fetch('/api/drive_scan/status').then(r=>r.json());
+      document.getElementById('progress-text').textContent =
+        `${s.current||'Scanning…'}  (${s.progress||0} files scanned)`;
+      const pct = Math.min((s.progress||0) / 50, 1) * 100;
+      document.getElementById('progress-fill').style.width = pct + '%';
+      if (!s.running) {
+        clearInterval(driveInterval);
+        document.getElementById('drive-spinner').style.display='none';
+        document.getElementById('drive-status').textContent = s.current||'Scan complete';
+        loadDriveResults();
+      }
+    } catch(e) {}
+  }
+
+  async function loadDriveResults() {
+    try {
+      const files = await fetch('/api/drive_scan/results').then(r=>r.json());
+      document.getElementById('drive-card').style.display='block';
+      document.getElementById('drive-count').textContent = `${files.length} threats found`;
+      const tbody = document.getElementById('drive-tbody');
+      if (!files.length) {
+        tbody.innerHTML='<tr><td colspan="7" style="text-align:center;color:var(--g400);padding:36px;font-family:var(--f-data);">✓ No threats found on drives</td></tr>';
+        return;
+      }
+      tbody.innerHTML = files.map((f,i) => {
+        const rc = riskRowClass(f.risk_level);
+        const rb = riskBadgeClass(f.risk_level);
+        const nc = riskColor(f.risk_level);
+        return `<tr class="${rc}">
+          <td style="color:var(--tx-lo);font-size:13px;">${i+1}</td>
+          <td style="font-weight:600;font-size:15px;color:${nc};">${f.name}</td>
+          <td class="path-cell" title="${f.path}">${f.path}</td>
+          <td style="text-align:center;font-family:var(--f-head);font-weight:800;font-size:18px;color:${nc};">${f.risk_score}</td>
+          <td style="text-align:center;"><span class="badge ${rb}">${f.risk_level}</span></td>
+          <td style="text-align:center;">
+            ${f.is_malicious
+              ? '<span class="badge badge-modified">⚠ Malicious</span>'
+              : '<span class="badge badge-ok">✓ Clean</span>'}
+          </td>
+          <td style="font-family:var(--f-data);font-size:12px;color:var(--r300);">
+            ${(f.mal_matches||[]).join('  ·  ')||'—'}
+          </td>
+        </tr>`;
+      }).join('');
+    } catch(e) {}
+  }
+});
+</script>
+</body>
+</html>

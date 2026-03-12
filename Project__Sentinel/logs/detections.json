@@ -1,0 +1,300 @@
+[
+  {
+    "timestamp": "2026-03-04 18:43:31",
+    "type": "NEW",
+    "name": "SentinelTest",
+    "path": "C:\\JIYAA\\Project_Sentinel 2\\simulation\\virus.exe",
+    "location": "HKCU Run",
+    "risk_score": 18,
+    "risk_level": "High",
+    "reasons": [
+      "Suspicious keyword detected: virus",
+      "Suspicious keyword detected: sentineltest",
+      "Multiple risk indicators — elevated threat"
+    ],
+    "message": "NEW persistence entry: SentinelTest — High risk (score 18)"
+  },
+  {
+    "timestamp": "2026-03-04 18:43:48",
+    "type": "REMOVED",
+    "name": "SentinelTest",
+    "path": "C:\\JIYAA\\Project_Sentinel 2\\simulation\\virus.exe",
+    "location": "HKCU Run",
+    "risk_score": 18,
+    "risk_level": "High",
+    "reasons": [
+      "Suspicious keyword detected: virus",
+      "Suspicious keyword detected: sentineltest",
+      "Multiple risk indicators — elevated threat"
+    ],
+    "message": "Entry removed: SentinelTest from HKCU Run"
+  },
+  {
+    "timestamp": "2026-03-04 18:45:02",
+    "type": "NEW",
+    "name": "SentinelTest",
+    "path": "C:\\JIYAA\\Project_Sentinel 2\\simulation\\virus.exe",
+    "location": "HKCU Run",
+    "risk_score": 18,
+    "risk_level": "High",
+    "reasons": [
+      "Suspicious keyword detected: virus",
+      "Suspicious keyword detected: sentineltest",
+      "Multiple risk indicators — elevated threat"
+    ],
+    "message": "NEW persistence entry: SentinelTest — High risk (score 18)"
+  },
+  {
+    "timestamp": "2026-03-04 18:45:14",
+    "type": "REMOVED",
+    "name": "SentinelTest",
+    "path": "C:\\JIYAA\\Project_Sentinel 2\\simulation\\virus.exe",
+    "location": "HKCU Run",
+    "risk_score": 18,
+    "risk_level": "High",
+    "reasons": [
+      "Suspicious keyword detected: virus",
+      "Suspicious keyword detected: sentineltest",
+      "Multiple risk indicators — elevated threat"
+    ],
+    "message": "Entry removed: SentinelTest from HKCU Run"
+  },
+  {
+    "timestamp": "2026-03-04 19:03:38",
+    "type": "NEW",
+    "name": "SentinelTest",
+    "path": "C:\\JIYAA\\Project_Sentinel 2\\simulation\\virus.exe",
+    "location": "HKCU Run",
+    "risk_score": 18,
+    "risk_level": "High",
+    "reasons": [
+      "Suspicious keyword detected: virus",
+      "Suspicious keyword detected: sentineltest",
+      "Multiple risk indicators — elevated threat"
+    ],
+    "message": "NEW persistence entry: SentinelTest — High risk (score 18)"
+  },
+  {
+    "timestamp": "2026-03-04 19:04:05",
+    "type": "REMOVED",
+    "name": "SentinelTest",
+    "path": "C:\\JIYAA\\Project_Sentinel 2\\simulation\\virus.exe",
+    "location": "HKCU Run",
+    "risk_score": 18,
+    "risk_level": "High",
+    "reasons": [
+      "Suspicious keyword detected: virus",
+      "Suspicious keyword detected: sentineltest",
+      "Multiple risk indicators — elevated threat"
+    ],
+    "message": "Entry removed: SentinelTest from HKCU Run"
+  },
+  {
+    "timestamp": "2026-03-04 19:04:41",
+    "type": "NEW",
+    "name": "SentinelTest",
+    "path": "C:\\JIYAA\\Project_Sentinel 2\\simulation\\virus.exe",
+    "location": "HKCU Run",
+    "risk_score": 18,
+    "risk_level": "High",
+    "reasons": [
+      "Suspicious keyword detected: virus",
+      "Suspicious keyword detected: sentineltest",
+      "Multiple risk indicators — elevated threat"
+    ],
+    "message": "NEW persistence entry: SentinelTest — High risk (score 18)"
+  },
+  {
+    "timestamp": "2026-03-04 19:04:53",
+    "type": "REMOVED",
+    "name": "SentinelTest",
+    "path": "C:\\JIYAA\\Project_Sentinel 2\\simulation\\virus.exe",
+    "location": "HKCU Run",
+    "risk_score": 18,
+    "risk_level": "High",
+    "reasons": [
+      "Suspicious keyword detected: virus",
+      "Suspicious keyword detected: sentineltest",
+      "Multiple risk indicators — elevated threat"
+    ],
+    "message": "Entry removed: SentinelTest from HKCU Run"
+  },
+  {
+    "timestamp": "2026-03-04 19:17:38",
+    "type": "NEW",
+    "name": "SentinelTest",
+    "path": "C:\\JIYAA\\Project_Sentinel 2\\simulation\\virus.exe",
+    "location": "HKCU Run",
+    "risk_score": 18,
+    "risk_level": "High",
+    "reasons": [
+      "Suspicious keyword detected: virus",
+      "Suspicious keyword detected: sentineltest",
+      "Multiple risk indicators — elevated threat"
+    ],
+    "message": "NEW persistence entry: SentinelTest — High risk (score 18)"
+  },
+  {
+    "timestamp": "2026-03-04 19:17:44",
+    "type": "REMOVED",
+    "name": "SentinelTest",
+    "path": "C:\\JIYAA\\Project_Sentinel 2\\simulation\\virus.exe",
+    "location": "HKCU Run",
+    "risk_score": 18,
+    "risk_level": "High",
+    "reasons": [
+      "Suspicious keyword detected: virus",
+      "Suspicious keyword detected: sentineltest",
+      "Multiple risk indicators — elevated threat"
+    ],
+    "message": "Entry removed: SentinelTest from HKCU Run"
+  },
+  {
+    "timestamp": "2026-03-04 19:48:13",
+    "type": "NEW",
+    "name": "SentinelTest",
+    "path": "C:\\JIYAA\\Project_Sentinel 2\\simulation\\virus.exe",
+    "location": "HKCU Run",
+    "risk_score": 18,
+    "risk_level": "High",
+    "reasons": [
+      "Suspicious keyword detected: virus",
+      "Suspicious keyword detected: sentineltest",
+      "Multiple risk indicators — elevated threat"
+    ],
+    "message": "NEW persistence entry: SentinelTest — High risk (score 18)"
+  },
+  {
+    "timestamp": "2026-03-04 20:18:03",
+    "type": "REMOVED",
+    "name": "SentinelTest",
+    "path": "C:\\JIYAA\\Project_Sentinel 2\\simulation\\virus.exe",
+    "location": "HKCU Run",
+    "risk_score": 18,
+    "risk_level": "High",
+    "reasons": [
+      "Suspicious keyword detected: virus",
+      "Suspicious keyword detected: sentineltest",
+      "Multiple risk indicators — elevated threat"
+    ],
+    "message": "Entry removed: SentinelTest from HKCU Run"
+  },
+  {
+    "timestamp": "2026-03-05 11:14:19",
+    "type": "NEW",
+    "name": "SentinelTest",
+    "path": "C:\\JIYAA\\Project_Sentinel 2\\simulation\\virus.exe",
+    "location": "HKCU Run",
+    "risk_score": 18,
+    "risk_level": "High",
+    "reasons": [
+      "Suspicious keyword detected: virus",
+      "Suspicious keyword detected: sentineltest",
+      "Multiple risk indicators — elevated threat"
+    ],
+    "message": "NEW persistence entry: SentinelTest — High risk (score 18)"
+  },
+  {
+    "timestamp": "2026-03-05 11:14:42",
+    "type": "REMOVED",
+    "name": "SentinelTest",
+    "path": "C:\\JIYAA\\Project_Sentinel 2\\simulation\\virus.exe",
+    "location": "HKCU Run",
+    "risk_score": 18,
+    "risk_level": "High",
+    "reasons": [
+      "Suspicious keyword detected: virus",
+      "Suspicious keyword detected: sentineltest",
+      "Multiple risk indicators — elevated threat"
+    ],
+    "message": "Entry removed: SentinelTest from HKCU Run"
+  },
+  {
+    "timestamp": "2026-03-05 11:16:32",
+    "type": "NEW",
+    "name": "SentinelTest",
+    "path": "C:\\JIYAA\\Project_Sentinel 2\\simulation\\virus.exe",
+    "location": "HKCU Run",
+    "risk_score": 18,
+    "risk_level": "High",
+    "reasons": [
+      "Suspicious keyword detected: virus",
+      "Suspicious keyword detected: sentineltest",
+      "Multiple risk indicators — elevated threat"
+    ],
+    "message": "NEW persistence entry: SentinelTest — High risk (score 18)"
+  },
+  {
+    "timestamp": "2026-03-05 20:13:47",
+    "type": "NEW",
+    "name": "SentinelTest_virus",
+    "path": "C:\\Windows\\System32\\calc.exe",
+    "location": "HKCU Run",
+    "risk_score": 0,
+    "risk_level": "Low",
+    "reasons": [
+      "Whitelisted known-safe application: calc.exe"
+    ],
+    "message": "NEW persistence entry: SentinelTest_virus — Low risk (score 0)"
+  },
+  {
+    "timestamp": "2026-03-05 21:21:15",
+    "type": "NEW",
+    "name": "SentinelTest_virus.lnk",
+    "path": "C:\\Users\\Asus\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\SentinelTest_virus.lnk",
+    "location": "Startup Folder",
+    "risk_score": 18,
+    "risk_level": "High",
+    "reasons": [
+      "Located in trusted path",
+      "Suspicious keyword detected: virus",
+      "Suspicious keyword detected: sentineltest",
+      "Tiny file size (982 bytes)",
+      "Multiple risk indicators — elevated threat"
+    ],
+    "message": "NEW persistence entry: SentinelTest_virus.lnk — High risk (score 18)"
+  },
+  {
+    "timestamp": "2026-03-05 21:21:28",
+    "type": "REMOVED",
+    "name": "SentinelTest_virus.lnk",
+    "path": "C:\\Users\\Asus\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\SentinelTest_virus.lnk",
+    "location": "Startup Folder",
+    "risk_score": 18,
+    "risk_level": "High",
+    "reasons": [
+      "Located in trusted path",
+      "Suspicious keyword detected: virus",
+      "Suspicious keyword detected: sentineltest",
+      "Tiny file size (982 bytes)",
+      "Multiple risk indicators — elevated threat"
+    ],
+    "message": "Entry removed: SentinelTest_virus.lnk from Startup Folder"
+  },
+  {
+    "timestamp": "2026-03-05 21:22:58",
+    "type": "REMOVED",
+    "name": "SentinelTest_virus",
+    "path": "C:\\Windows\\System32\\calc.exe",
+    "location": "HKCU Run",
+    "risk_score": 0,
+    "risk_level": "Low",
+    "reasons": [
+      "Whitelisted known-safe application: calc.exe"
+    ],
+    "message": "Entry removed: SentinelTest_virus from HKCU Run"
+  },
+  {
+    "timestamp": "2026-03-06 13:48:14",
+    "type": "NEW",
+    "name": "SentinelTest_virus",
+    "path": "C:\\Windows\\System32\\calc.exe",
+    "location": "HKCU Run",
+    "risk_score": 0,
+    "risk_level": "Low",
+    "reasons": [
+      "Whitelisted known-safe application: calc.exe"
+    ],
+    "message": "NEW persistence entry: SentinelTest_virus — Low risk (score 0)"
+  }
+]
