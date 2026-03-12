@@ -17,31 +17,9 @@ from scanner.watcher       import start_watcher, get_alerts
 from scanner.live_monitor  import start_live_monitor, get_all_processes, get_new_process_alerts
 from scanner.file_scanner  import get_all_open_files
 from scanner.temp_watcher      import start_temp_watcher, get_temp_alerts, scan_watched_dirs
-
-try:
-    from scanner.network_discovery import start_discovery, get_machines, add_manual_machine, get_machine_count, fetch_machine_scan
-except ImportError:
-    def start_discovery():
-        return False
-    def get_machines():
-        return []
-    def add_manual_machine(ip):
-        return None
-    def get_machine_count():
-        return 0
-    def fetch_machine_scan(ip):
-        return {}
-
-try:
-    from scanner.drive_scanner     import start_drive_scan_async, get_drive_scan_results, get_drive_scan_status
-except ImportError:
-    def start_drive_scan_async():
-        return False
-    def get_drive_scan_results():
-        return {"status": "unavailable"}
-    def get_drive_scan_status():
-        return {"status": "unavailable"}
-
+from scanner.network_discovery import start_discovery, get_machines, add_manual_machine, get_machine_count, fetch_machine_scan
+from scanner.agentless_scan    import start_agentless_scan, get_agentless_result, get_agentless_status
+from scanner.drive_scanner     import start_drive_scan_async, get_drive_scan_results, get_drive_scan_status
 from logs.logger           import log_alert, get_logs, clear_logs, get_stats
 from scanner.hash_checker  import check_entry, get_all_hashes, clear_hashes
 from simulation.simulate_attack import (
@@ -285,28 +263,13 @@ def sim_real_bsod():
     Step 3 — Triggers real BSOD
     VM ONLY — do not run on real PC
     """
-    trigger_bsod_delayed = None
     try:
         from simulation.real_bsod import trigger_bsod_delayed
-    except ImportError:
-        try:
-            from simulation.bsod_demo import run_bsod as trigger_bsod_delayed
-        except ImportError:
-            trigger_bsod_delayed = None
-
-    if callable(trigger_bsod_delayed):
-        try:
-            simulate_add()   # inject registry entry first
-            try:
-                trigger_bsod_delayed(delay_seconds=5)
-            except TypeError:
-                trigger_bsod_delayed()
-            flash("💀 Real BSOD triggered! Sentinel will detect virus in 3s, BSOD in 5s. Watch the dashboard!", "danger")
-        except Exception as e:
-            flash(f"❌ BSOD trigger failed: {e} — Run as Administrator", "danger")
-    else:
-        flash("⚠️ BSOD simulation module not available. Install the simulation package or use /simulate/attack demo instead.", "danger")
-
+        simulate_add()   # inject registry entry first
+        trigger_bsod_delayed(delay_seconds=5)  # BSOD after 5s
+        flash("💀 Real BSOD triggered! Sentinel will detect virus in 3s, BSOD in 5s. Watch the dashboard!", "danger")
+    except Exception as e:
+        flash(f"❌ BSOD trigger failed: {e} — Run as Administrator", "danger")
     return redirect(url_for("dashboard"))
 
 
@@ -623,7 +586,52 @@ def api_local_info():
     }), mimetype="application/json")
 
 
-@app.route("/api/drive_scan/start", methods=["POST"])
+@app.route("/api/agentless/start", methods=["POST"])
+def api_agentless_start():
+    ip = (request.json or {}).get("ip", "").strip()
+    if not ip:
+        return Response(json.dumps({"error": "No IP"}), mimetype="application/json")
+    started = start_agentless_scan(ip)
+    return Response(json.dumps({"started": started, "ip": ip}), mimetype="application/json")
+
+
+@app.route("/api/agentless/status/<ip>")
+def api_agentless_status(ip):
+    return Response(json.dumps(get_agentless_status(ip)), mimetype="application/json")
+
+
+@app.route("/api/agentless/result/<ip>")
+def api_agentless_result(ip):
+    result = get_agentless_result(ip)
+    if result is None:
+        return Response(json.dumps({"error": "No scan result yet"}), mimetype="application/json")
+    return Response(json.dumps(result), mimetype="application/json")
+
+
+@app.route("/api/agent/simulate", methods=["POST"])
+def api_agent_simulate():
+    """Send simulation command to remote agent."""
+    data   = request.json or {}
+    ip     = data.get("ip", "").strip()
+    action = data.get("action", "").strip()
+    if not ip or not action:
+        return Response(json.dumps({"success": False, "error": "Missing ip or action"}),
+                        mimetype="application/json")
+    import urllib.request, urllib.error
+    url = f"http://{ip}:5001/simulate/{action}"
+    try:
+        req  = urllib.request.Request(url, method="POST",
+                                       headers={"Content-Type": "application/json",
+                                                "User-Agent": "Sentinel/1.0"})
+        resp = urllib.request.urlopen(req, timeout=8)
+        result = json.loads(resp.read().decode())
+        return Response(json.dumps(result), mimetype="application/json")
+    except Exception as e:
+        return Response(json.dumps({"success": False, "error": str(e)}),
+                        mimetype="application/json")
+
+
+
 def api_drive_scan_start():
     started = start_drive_scan_async()
     return Response(json.dumps({"started": started}), mimetype="application/json")
@@ -642,7 +650,6 @@ def api_drive_scan_results():
 # ══════════════════════════════════════════════════════════════
 # ENTRY POINT
 # ══════════════════════════════════════════════════════════════
-if __name__ == "__main__":
     start_watcher()
     start_live_monitor()
     start_temp_watcher()
